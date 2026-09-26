@@ -48,6 +48,8 @@ export class ArenaScene extends Phaser.Scene {
   private keys!: Record<'left' | 'right' | 'up' | 'down' | 'attack' | 'block' | 'special', Phaser.Input.Keyboard.Key>;
   private keys2!: Record<'left' | 'right' | 'up' | 'down' | 'attack' | 'block' | 'special', Phaser.Input.Keyboard.Key>;
   private virtual = { left: false, right: false, down: false, block: false };
+  private remoteVirtual = { left: false, right: false, down: false, block: false };
+  private onlineRemote = false;
   private directionHistory: { direction: Direction; at: number }[] = [];
   private mode: 'idle' | 'fight' | 'training' | 'versus' = 'idle';
   private trainingStep: TrainingStep = null;
@@ -110,9 +112,11 @@ export class ArenaScene extends Phaser.Scene {
       if (event.code === 'KeyJ') this.queuedAttack = true;
       if (event.code === 'KeyL') this.queuedSpecial = true;
       if (event.code === 'ArrowUp') this.queuedJump = true;
-      if (event.code === 'KeyF') this.queuedAttack2 = true;
-      if (event.code === 'KeyH') this.queuedSpecial2 = true;
-      if (event.code === 'KeyW') this.queuedJump2 = true;
+      if (!this.onlineRemote) {
+        if (event.code === 'KeyF') this.queuedAttack2 = true;
+        if (event.code === 'KeyH') this.queuedSpecial2 = true;
+        if (event.code === 'KeyW') this.queuedJump2 = true;
+      }
       const direction = event.code === 'ArrowDown' ? 'down' : event.code === 'ArrowLeft' ? 'left' : event.code === 'ArrowRight' ? 'right' : null;
       if (direction) {
         this.directionHistory.push({ direction, at: performance.now() });
@@ -132,6 +136,20 @@ export class ArenaScene extends Phaser.Scene {
     else if (control === 'special' && pressed) this.queuedSpecial = true;
     else if (control in this.virtual) this.virtual[control as keyof typeof this.virtual] = pressed;
     if (pressed && (control === 'left' || control === 'right')) this.callbacks?.training('move');
+  }
+
+  setOnlineRemote(enabled: boolean): void {
+    this.onlineRemote = enabled;
+    this.remoteVirtual = { left: false, right: false, down: false, block: false };
+    this.queuedAttack2 = this.queuedSpecial2 = this.queuedJump2 = false;
+  }
+
+  setRemoteControl(control: 'left' | 'right' | 'down' | 'block' | 'jump' | 'attack' | 'special', pressed: boolean): void {
+    if (!this.onlineRemote || this.mode !== 'versus') return;
+    if (control === 'jump' && pressed) this.queuedJump2 = true;
+    else if (control === 'attack' && pressed) this.queuedAttack2 = true;
+    else if (control === 'special' && pressed) this.queuedSpecial2 = true;
+    else if (control in this.remoteVirtual) this.remoteVirtual[control as keyof typeof this.remoteVirtual] = pressed;
   }
 
   audioContext(): AudioContext | null {
@@ -167,6 +185,7 @@ export class ArenaScene extends Phaser.Scene {
     this.queuedSpecial2 = false;
     this.queuedJump2 = false;
     this.virtual = { left: false, right: false, down: false, block: false };
+    this.remoteVirtual = { left: false, right: false, down: false, block: false };
     this.background.setTexture(enemyId === 'cliente' ? 'datacenter' : this.selectedStage);
     this.background.setDisplaySize(W, H);
     this.player = this.makeUnit(playerId, 235, 1);
@@ -298,10 +317,14 @@ export class ArenaScene extends Phaser.Scene {
 
   private handleSecondPlayer(dt: number): void {
     const p = this.enemy!;
-    p.guard = this.keys2.block.isDown && p.elevation === 0;
+    const left = this.onlineRemote ? this.remoteVirtual.left : this.keys2.left.isDown;
+    const right = this.onlineRemote ? this.remoteVirtual.right : this.keys2.right.isDown;
+    const down = this.onlineRemote ? this.remoteVirtual.down : this.keys2.down.isDown;
+    const block = this.onlineRemote ? this.remoteVirtual.block : this.keys2.block.isDown;
+    p.guard = block && p.elevation === 0;
     p.sprite.setTint(p.guard ? 0x9ddcff : 0xffffff);
     if (!p.guard) {
-      const direction = Number(this.keys2.right.isDown) - Number(this.keys2.left.isDown);
+      const direction = Number(right) - Number(left);
       if (direction) {
         p.x = moveHorizontal(p.x, direction * (p.elevation > 0 ? 390 : 285) * dt, this.player!.x, p.elevation > 0, this.player!.elevation > 0, 68, W - 68);
         p.walking = true;
@@ -310,11 +333,11 @@ export class ArenaScene extends Phaser.Scene {
     this.syncFacing();
     if (this.queuedJump2 && p.elevation === 0) { p.velocityY = 690; this.dust(p.x, GROUND - 9, p.id); this.audio?.sound('jump'); }
     this.queuedJump2 = false;
-    if (this.queuedAttack2) this.punch(p, this.player!, this.keys2.down.isDown);
+    if (this.queuedAttack2) this.punch(p, this.player!, down);
     this.queuedAttack2 = false;
     if (this.queuedSpecial2) {
-      const forward = p.facing === 1 ? this.keys2.right.isDown : this.keys2.left.isDown;
-      if (p.meter >= 100 && this.keys2.down.isDown) this.superAttack(p, this.player!);
+      const forward = p.facing === 1 ? right : left;
+      if (p.meter >= 100 && down) this.superAttack(p, this.player!);
       else this.special(p, this.player!, forward);
     }
     this.queuedSpecial2 = false;

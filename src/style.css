@@ -19,11 +19,25 @@
 /* Adalberto appears from below the arena, like a fleeting arcade easter egg. */
 .adalberto-toast{right:0;bottom:0;width:min(53%,570px);height:53%;max-width:none;display:block;transform:none;opacity:1;overflow:visible}
 .adalberto-toast.active{transform:none;opacity:1}
-.adalberto-toast img{position:absolute;right:0;bottom:-2px;width:auto;height:96%;max-width:58%;object-fit:contain;object-position:bottom right;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(-5px 2px 2px #040715dd) drop-shadow(0 0 13px #fff8);transform:translateY(110%);transition:transform .16s steps(4,end)}
-.adalberto-toast.active img{transform:translateY(0)}
+.adalberto-toast img{position:absolute;right:0;bottom:-2px;width:auto;height:96%;max-width:58%;object-fit:contain;object-position:bottom right;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(-5px 2px 2px #040715dd) drop-shadow(0 0 13px #fff8);transform:translateY(110%);opacity:0;transition:transform .16s steps(4,end),opacity .05s}
+.adalberto-toast.active img{transform:translateY(0);opacity:1}
 .adalberto-toast .toast-callout{position:absolute;z-index:1;right:43%;bottom:36%;margin:0;padding:0;border:0;background:none;box-shadow:none;white-space:nowrap;opacity:0;transform:translateY(15px) scale(.8);transition:opacity .08s,transform .12s steps(3,end)}
 .adalberto-toast.active .toast-callout{opacity:1;transform:translateY(0) scale(1)}
 .adalberto-toast strong{color:#ff3f67;font:900 clamp(30px,5vw,68px)/.85 'Barlow Condensed',sans-serif;letter-spacing:.055em;-webkit-text-stroke:1px #fff4e5;text-shadow:3px 4px #3b0924,0 0 13px #ff3f67}
 .adalberto-toast small{margin-top:7px;color:#fff1a0;font:900 clamp(14px,2vw,26px) 'Barlow Condensed',sans-serif;letter-spacing:.12em;text-shadow:2px 3px #42160c,0 0 8px #000}
 @media(pointer:coarse){.adalberto-toast{bottom:0}.adalberto-toast img{height:96%}.adalberto-toast strong{font-size:clamp(22px,5vw,46px)}.adalberto-toast small{font-size:clamp(11px,2vw,20px)}}
 @media(max-width:760px){.adalberto-toast{right:0;bottom:0;width:60%;height:60%}.adalberto-toast img{width:auto;height:94%;max-width:57%}.adalberto-toast .toast-callout{right:44%;bottom:35%;padding:0;margin:0}.adalberto-toast strong{font-size:clamp(19px,5vw,35px)}.adalberto-toast small{font-size:clamp(10px,2vw,15px)}}
+
+.remote-video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:fill;background:#081225;pointer-events:none}
+.online-room-screen{display:grid;place-items:center;text-align:center;background:linear-gradient(145deg,#061326f3,#0d2443f4)}
+.room-panel{width:min(640px,86%);max-height:95%;overflow:auto;padding:clamp(15px,3vw,32px);border:3px solid #58cafa;background:linear-gradient(140deg,#173956,#091527);box-shadow:0 0 0 5px #081426,0 15px 45px #0009}
+.room-panel h2{margin:4px 0 7px;color:#ffe17b;font:900 clamp(28px,4vw,52px) 'Barlow Condensed',sans-serif}
+.room-panel p{font:700 clamp(15px,2vw,21px) 'Rajdhani',sans-serif;margin:0 0 13px}
+.room-share{display:grid;gap:9px;margin:auto;max-width:490px}
+.room-share label{color:#63d4ff;font:900 17px 'Barlow Condensed',sans-serif;letter-spacing:.1em}
+.room-share input{width:100%;padding:10px 13px;border:2px solid #6fcfff;background:#071629;color:#fff;font:700 clamp(11px,1.5vw,16px) 'Rajdhani',sans-serif;text-align:center}
+.room-share .primary-button{padding:8px 25px;font-size:22px}
+.room-share small{font:700 14px 'Rajdhani',sans-serif;color:#b9d8ea}
+.online-room-screen .text-button{margin:8px auto 0}
+@media(max-width:960px){.menu-screen{overflow:hidden}.menu-content{padding:7px}.menu-content h1{font-size:clamp(42px,8vw,76px);margin:5px 0 8px}.menu-content p{font-size:17px;margin-bottom:7px}.menu-content .primary-button{padding:6px 17px;font-size:21px}.menu-content .text-button{font-size:14px;padding:3px 9px;margin-top:2px}.difficulty-choice{margin-top:3px}}
+@media(max-width:760px){.room-panel{padding:9px 14px}.room-panel h2{font-size:26px}.room-panel p{font-size:12px}.room-share{gap:4px}.room-share label{font-size:11px}.room-share input{padding:5px;font-size:10px}.room-share .primary-button{padding:3px 12px;font-size:15px}.room-share small{font-size:9px}}
