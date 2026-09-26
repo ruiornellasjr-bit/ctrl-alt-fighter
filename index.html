@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090d1c" />
+    <meta name="description" content="Ctrl+Alt+Fighter: o torneio arcade da equipe BBS One e Bug Busters." />
+    <title>Ctrl+Alt+Fighter</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="app-header">
+        <div class="brand-small"><span class="brand-icon">⌘</span><span>BBS ONE <b>×</b> BUG BUSTERS</span></div>
+        <div class="header-actions"><button id="sound-toggle" class="mini-button" aria-label="Ligar ou desligar som">♫ SOM</button><button id="settings-button" class="mini-button" aria-label="Ajustar volumes">⚙ ÁUDIO</button></div>
+      </header>
+      <main class="machine">
+        <div id="stage" aria-label="Arena de luta"></div>
+        <div id="hud" class="hud hidden" aria-live="polite">
+          <div class="fighter-hud left"><span id="player-name"></span><div class="health-track"><i id="player-health"></i></div><div class="meter-track"><i id="player-meter"></i></div></div>
+          <div class="timer-box"><strong id="timer">60</strong><small id="round-label">LUTA 1 / 3</small></div>
+          <div class="fighter-hud right"><span id="enemy-name"></span><div class="health-track"><i id="enemy-health"></i></div><div class="meter-track"><i id="enemy-meter"></i></div></div>
+        </div>
+        <div id="fight-actions" class="fight-actions hidden"><button id="pause-button" class="mini-button">⏸ PAUSAR</button><button id="help-button" class="mini-button">? COMANDOS</button></div>
+        <section id="menu" class="screen menu-screen">
+          <div class="menu-art left-art"><img src="/assets/kalliane.png" alt="" /></div>
+          <div class="menu-art right-art"><img src="/assets/rui.png" alt="" /></div>
+          <div class="menu-content"><div class="eyebrow">UM JOGO DA EQUIPE BBS ONE + BUG BUSTERS</div><h1>CTRL<span>+</span>ALT<span>+</span><em>FIGHTER</em></h1><p>O expediente acabou. A batalha começou.</p><button id="play-button" class="primary-button">▶ JOGAR AGORA</button><button id="menu-tutorial" class="text-button">VER TUTORIAL</button></div>
+        </section>
+        <section id="selection" class="screen selection-screen hidden">
+          <div class="screen-title"><small>ESCOLHA SEU PERSONAGEM</small><h2>QUEM VAI PARA A ARENA?</h2></div>
+          <div id="roster" class="roster"></div>
+          <div class="selection-footer"><button id="selection-back" class="text-button">← VOLTAR</button><span>ESCOLHA UM LUTADOR PARA COMEÇAR</span></div>
+        </section>
+        <section id="tutorial" class="screen tutorial-screen hidden"><div class="tutorial-panel"><div class="eyebrow">TREINO RÁPIDO</div><h2 id="tutorial-title">PREPARE-SE</h2><p id="tutorial-copy"></p><div id="tutorial-keys" class="key-row"></div><div class="tutorial-progress"><i id="tutorial-progress-bar"></i></div><button id="skip-tutorial" class="text-button">PULAR TUTORIAL →</button></div></section>
+        <section id="result" class="screen result-screen hidden"><div class="result-panel"><div id="result-tag" class="eyebrow"></div><h2 id="result-title"></h2><p id="result-copy"></p><div class="result-buttons"><button id="result-primary" class="primary-button"></button><button id="result-menu" class="text-button">VOLTAR AO MENU</button></div></div></section>
+        <section id="pause" class="screen pause-screen hidden"><div class="pause-panel"><div class="eyebrow">JOGO PAUSADO</div><h2>RESPIRA. VOLTA PRA LUTA.</h2><p>← → mover · ↑ pular · J atacar · K defender · L especial<br />Barra cheia: ↓, direção do rival, L</p><button id="resume-button" class="primary-button">▶ CONTINUAR</button><button id="pause-menu" class="text-button">VOLTAR AO MENU</button></div></section>
+        <section id="settings" class="screen settings-screen hidden"><div class="settings-panel"><div class="eyebrow">ÁUDIO</div><h2>AJUSTE O VOLUME</h2><label>MÚSICA <input id="music-volume" type="range" min="0" max="100" step="1" /></label><label>EFEITOS <input id="effects-volume" type="range" min="0" max="100" step="1" /></label><button id="settings-close" class="primary-button">FECHAR</button></div></section>
+      </main>
+      <footer class="app-footer"><span>← → MOVER</span><span>↑ PULAR</span><span>J ATAQUE</span><span>K DEFESA</span><span>L ESPECIAL</span><span>↓ → L GOLPE FORTE</span></footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
