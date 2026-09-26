@@ -1,4 +1,4 @@
-type Music = 'menu' | 'battle' | 'none';
+type Music = 'menu' | 'battle' | 'boss' | 'none';
 type Wave = OscillatorType;
 
 const note = (semitones: number) => 440 * 2 ** (semitones / 12);
@@ -113,14 +113,18 @@ export class ArcadeAudio {
 
   private schedule(): void {
     if (!this.context || this.track === 'none') return;
-    const battle = this.track === 'battle';
-    const step = 60 / (battle ? 142 : 108) / 2;
-    const melody = battle
+    const boss = this.track === 'boss';
+    const battle = this.track === 'battle' || boss;
+    const step = 60 / (boss ? 158 : battle ? 142 : 108) / 2;
+    const melody = boss
+      ? [7, -99, 7, 10, 11, 10, 7, -99, 5, 7, 10, 14, 11, 10, 7, -99,
+         3, -99, 7, 10, 12, 10, 7, 5, 3, 5, 7, 10, 11, 10, 7, -99]
+      : battle
       ? [7, -99, 10, 12, 14, 12, 10, -99, 7, 10, 15, 14, 12, -99, 10, 7,
          5, -99, 8, 10, 12, 10, 8, -99, 5, 8, 12, 15, 14, 12, 10, -99]
       : [7, -99, 10, 12, 14, -99, 12, 10, 7, -99, 5, 7, 10, -99, 7, 5,
          3, -99, 7, 10, 12, -99, 10, 7, 5, 3, 5, 7, 10, -99, 7, -99];
-    const roots = battle ? [-17, -14, -12, -19] : [-17, -12, -14, -19];
+    const roots = boss ? [-20, -17, -15, -22] : battle ? [-17, -14, -12, -19] : [-17, -12, -14, -19];
     while (this.nextBeat < this.context.currentTime + 0.2) {
       const pos = this.beat % 32;
       const time = this.nextBeat;
@@ -155,10 +159,14 @@ export class ArcadeAudio {
       case 'jump': this.tone(190, t, 0.24, 'triangle', 0.13, false, 680); this.tone(400, t + 0.035, 0.15, 'square', 0.035, false, 900); this.noise(t, 0.11, 0.045); break;
       case 'land': this.kick(t, false); this.noise(t, 0.12, 0.08, false, 'lowpass', 850); break;
       case 'punch': this.noise(t, 0.1, 0.14, false, 'bandpass', 1300); this.tone(220, t, 0.12, 'sawtooth', 0.1, false, 75, 1400); break;
+      case 'hook': this.noise(t, 0.18, 0.18, false, 'bandpass', 1000); this.tone(280, t, 0.25, 'square', 0.12, false, 75, 1200); this.kick(t + 0.04, false); break;
       case 'hit': this.kick(t, false); this.snare(t + 0.018, false); this.tone(135, t, 0.22, 'sawtooth', 0.11, false, 48, 900); break;
       case 'block': this.noise(t, 0.14, 0.085, false, 'highpass', 3000); this.tone(880, t, 0.25, 'triangle', 0.1, false, 330); this.tone(1300, t + 0.03, 0.16, 'sine', 0.035); break;
       case 'ready': [0, 4, 7, 12].forEach((n, i) => this.tone(note(n + 3), t + i * 0.075, 0.2, 'square', 0.055)); break;
       case 'ko': this.kick(t, false); [0, -3, -7, -12].forEach((n, i) => { this.tone(note(n - 4), t + i * 0.16, 0.31, 'sawtooth', 0.095); this.snare(t + i * 0.16, false); }); break;
+      case 'warning': [0, 1, 0].forEach((n, i) => this.tone(510 + n * 180, t + i * 0.13, 0.11, 'square', 0.065)); break;
+      case 'phase': [0, 3, 6, 9, 12].forEach((n, i) => { this.tone(note(n - 10), t + i * 0.09, 0.28, 'square', 0.09); this.kick(t + i * 0.09, false); }); break;
+      case 'toast': [0, 7, 12, 7, 15].forEach((n, i) => { this.tone(note(n + 7), t + i * 0.085, 0.17, 'square', 0.09); this.tone(note(n - 5), t + i * 0.085, 0.13, 'triangle', 0.04); }); break;
       case 'kalliane': this.noise(t, 0.23, 0.1, false, 'bandpass', 3100); this.tone(580, t + 0.06, 0.23, 'triangle', 0.08, false, 1150); this.noise(t + 0.25, 0.07, 0.1, false, 'highpass', 5100); break;
       case 'laura': [0, 1, 2].forEach(i => this.tone(740 + i * 155, t + i * 0.065, 0.09, 'square', 0.055)); this.noise(t + 0.18, 0.09, 0.075, false, 'highpass', 4500); this.kick(t + 0.22, false); break;
       case 'caio': this.tone(660, t, 0.21, 'square', 0.08, false, 280); this.noise(t + 0.1, 0.1, 0.055, false, 'bandpass', 1800); [0, 1, 2].forEach(i => this.tone(320 + i * 180, t + 0.2 + i * 0.06, 0.085, 'triangle', 0.045)); break;

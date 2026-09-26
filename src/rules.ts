@@ -1,4 +1,4 @@
-export type FighterId = 'kalliane' | 'laura' | 'caio' | 'rui' | 'monteiro' | 'vinicius';
+export type FighterId = 'kalliane' | 'laura' | 'caio' | 'rui' | 'monteiro' | 'vinicius' | 'homologacao' | 'prazo' | 'cliente';
 export type Direction = 'down' | 'left' | 'right';
 
 export const fighterIds: FighterId[] = ['kalliane', 'laura', 'caio', 'rui', 'monteiro', 'vinicius'];

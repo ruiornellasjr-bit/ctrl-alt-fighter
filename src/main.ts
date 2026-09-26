@@ -6,8 +6,8 @@ import { fighters, roster, type FighterDef } from './fighters';
 import { pickOpponents, type FighterId } from './rules';
 
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
-type Screen = 'menu' | 'selection' | 'tutorial' | 'result' | 'pause' | 'settings' | null;
-const screens: Exclude<Screen, null>[] = ['menu', 'selection', 'tutorial', 'result', 'pause', 'settings'];
+type Screen = 'menu' | 'selection' | 'stage-select' | 'tutorial' | 'result' | 'pause' | 'settings' | null;
+const screens: Exclude<Screen, null>[] = ['menu', 'selection', 'stage-select', 'tutorial', 'result', 'pause', 'settings'];
 const audio = new ArcadeAudio();
 let arena: ArenaScene | null = null;
 let screen: Screen = 'menu';
@@ -17,14 +17,22 @@ let opponents: FighterId[] = [];
 let round = 0;
 let trainingIndex = 0;
 let forceTutorial = false;
+let playMode: 'arcade' | 'versus' = 'arcade';
+let choosingSecond = false;
+let toastTimer = 0;
+let selectedStage: 'office' | 'datacenter' = 'office';
+let score = 0;
+let latestHud: Hud | null = null;
 
 const steps = [
   { action: 'move', title: 'ENCONTRE SEU RITMO', copy: 'Use uma seta lateral para se mover.', keys: ['←', '→'] },
   { action: 'jump', title: 'SAIA DO CHÃO', copy: 'Aperte ↑ para pular. Segure ← ou → no ar para passar pelo rival.', keys: ['↑', '←', '→'] },
   { action: 'attack', title: 'PRIMEIRO GOLPE', copy: 'Aproxime-se e aperte J para atacar.', keys: ['J'] },
+  { action: 'hook', title: 'GANCHO!', copy: 'Aproxime-se, segure ↓ e aperte J para dar um gancho.', keys: ['↓', 'J'] },
   { action: 'block', title: 'DEFESA ATIVA', copy: 'Segure K para bloquear o ataque do rival.', keys: ['K'] },
   { action: 'special', title: 'PODER ESPECIAL', copy: 'Aperte L para usar seu poder. Ele volta após alguns segundos.', keys: ['L'] },
-  { action: 'super', title: 'GOLPE FORTE', copy: 'Com a barra cheia, aperte ↓, direção do rival e L.', keys: ['↓', '→', 'L'] },
+  { action: 'alternate', title: 'OUTRA ESTRATÉGIA', copy: 'Segure a direção do rival e aperte L para usar o segundo poder.', keys: ['→', 'L'] },
+  { action: 'super', title: 'BARRA DE COLABORAÇÃO', copy: 'Com a barra cheia, segure ↓ e aperte L para chamar o super.', keys: ['↓', 'L'] },
 ] as const;
 
 function show(next: Screen): void {
@@ -33,6 +41,8 @@ function show(next: Screen): void {
   const fighting = next === null || next === 'pause' || next === 'tutorial' || (next === 'settings' && settingsReturn === null);
   $('hud').classList.toggle('hidden', !fighting);
   $('fight-actions').classList.toggle('hidden', next !== null);
+  $('touch-controls').classList.toggle('hidden', next !== null && next !== 'tutorial');
+  if (next !== null && next !== 'tutorial') $('adalberto-toast').classList.remove('active');
 }
 
 function portrait(def: FighterDef): Promise<string> {
@@ -50,7 +60,7 @@ function portrait(def: FighterDef): Promise<string> {
   });
 }
 
-async function renderRoster(): Promise<void> {
+function renderRoster(): void {
   const holder = $('roster');
   holder.replaceChildren();
   for (const def of roster) {
@@ -60,19 +70,21 @@ async function renderRoster(): Promise<void> {
     card.innerHTML = `<img alt="Foto de ${def.name}" src="${def.art}" /><span class="fighter-info"><small>${def.codename}</small><b>${def.name}</b><em>${def.role}</em></span>`;
     card.addEventListener('click', () => choose(def.id));
     holder.append(card);
-    const cropped = await portrait(def);
-    const image = card.querySelector('img');
-    if (image) image.src = cropped;
+    void portrait(def).then(cropped => {
+      const image = card.querySelector('img');
+      if (image?.isConnected) image.src = cropped;
+    });
   }
 }
 
 function renderHud(hud: Hud): void {
+  latestHud = hud;
   $('player-health').style.width = `${hud.player}%`;
   $('enemy-health').style.width = `${hud.enemy}%`;
   $('player-meter').style.width = `${hud.playerMeter}%`;
   $('enemy-meter').style.width = `${hud.enemyMeter}%`;
   $('timer').textContent = hud.tutorial ? '∞' : String(hud.seconds);
-  $('round-label').textContent = hud.tutorial ? 'TREINO' : `LUTA ${hud.round} / 3`;
+  $('round-label').textContent = hud.tutorial ? 'TREINO' : hud.versus ? 'VERSUS LOCAL' : hud.bossPhase ? `CHEFÃO · FASE ${hud.bossPhase}` : `LUTA ${hud.round} / ${opponents.length}`;
 }
 
 function setNames(): void {
@@ -85,13 +97,43 @@ async function unlockAudio(): Promise<void> {
   if (context) await audio.unlock(context);
 }
 
+function activateAudio(): void {
+  void unlockAudio().then(() => {
+    if (screen === 'menu' || screen === 'selection' || screen === 'stage-select') audio.music('menu');
+    else if (screen === null || screen === 'tutorial') audio.music(opponents[round] === 'cliente' ? 'boss' : 'battle');
+  }).catch(() => { /* Gameplay remains available if the browser blocks audio. */ });
+}
+
 function choose(id: FighterId): void {
   if (!arena) return;
+  if (playMode === 'versus') {
+    if (!choosingSecond) {
+      selected = id;
+      choosingSecond = true;
+      $('selection-heading').textContent = 'AGORA ESCOLHA O PLAYER 2';
+      $('selection-hint').textContent = `${fighters[id].name.toUpperCase()} É O PLAYER 1`;
+      audio.sound('select');
+      return;
+    }
+    opponents = [id];
+    round = 0;
+    choosingSecond = false;
+    show('stage-select');
+    return;
+  }
   selected = id;
-  opponents = pickOpponents(id);
+  opponents = [pickOpponents(id)[0], 'homologacao', 'prazo', 'cliente'];
   round = 0;
+  score = 0;
   audio.sound('select');
-  if (forceTutorial || localStorage.getItem('caf-tutorial') !== 'done') startTutorial();
+  show('stage-select');
+}
+
+function chooseStage(stage: 'office' | 'datacenter'): void {
+  selectedStage = stage;
+  arena?.setStage(stage);
+  audio.sound('select');
+  if (playMode === 'arcade' && (forceTutorial || localStorage.getItem('caf-tutorial') !== 'done')) startTutorial();
   else startFight();
 }
 
@@ -134,18 +176,32 @@ function startFight(): void {
   if (!arena) return;
   localStorage.setItem('caf-tutorial', 'done');
   setNames();
-  arena.startRound(selected, opponents[round], round + 1, false);
-  audio.music('battle');
+  arena.startRound(selected, opponents[round], round + 1, false, playMode === 'versus');
+  audio.music(opponents[round] === 'cliente' ? 'boss' : 'battle');
   show(null);
 }
 
 function showResult(result: 'player' | 'enemy' | 'draw'): void {
   if (screen === 'tutorial') return;
-  const finalWin = result === 'player' && round === 2;
-  $('result-tag').textContent = finalWin ? 'TORNEIO CONCLUÍDO' : result === 'player' ? `LUTA ${round + 1} VENCIDA` : result === 'draw' ? 'EMPATE' : 'AINDA NÃO ACABOU';
-  $('result-title').textContent = finalWin ? 'CAMPEÃO DO EXPEDIENTE!' : result === 'player' ? 'VITÓRIA!' : result === 'draw' ? 'MAIS UMA RODADA!' : 'TENTE OUTRA VEZ!';
-  $('result-copy').textContent = finalWin ? `${fighters[selected].name} conquistou a arena. Agora é a vez de outro colega!` : result === 'player' ? `${fighters[opponents[round]].name} caiu na arena. O próximo desafio espera.` : result === 'draw' ? 'A luta ficou equilibrada até o fim.' : 'Todo bom plano merece uma segunda tentativa.';
+  if (playMode === 'versus') {
+    $('result-tag').textContent = 'CINCO MINUTOS SEM PERDER A AMIZADE';
+    $('result-title').textContent = result === 'draw' ? 'EMPATE!' : result === 'player' ? 'PLAYER 1 VENCEU!' : 'PLAYER 2 VENCEU!';
+    $('result-copy').textContent = 'Diferenças acertadas. A colaboração continua!';
+    $('result-primary').textContent = 'REVANCHE';
+    $('result-bonus').textContent = '';
+    ($('result-primary') as HTMLButtonElement).onclick = startFight;
+    audio.jingle(result === 'player');
+    show('result');
+    return;
+  }
+  const finalWin = result === 'player' && round === opponents.length - 1;
+  const boss = opponents[round] === 'cliente';
+  if (result === 'player') score += 500 + Math.max(0, Math.round((latestHud?.seconds ?? 0) * 20)) + Math.round((latestHud?.player ?? 0) * 10);
+  $('result-tag').textContent = finalWin ? 'CONTRATO FECHADO' : result === 'player' ? `LUTA ${round + 1} VENCIDA` : boss ? 'CONTRATO EM RISCO' : result === 'draw' ? 'EMPATE' : 'AINDA NÃO ACABOU';
+  $('result-title').textContent = finalWin ? 'A EQUIPE SALVOU O CONTRATO!' : result === 'player' ? 'VITÓRIA!' : boss ? 'REUNIÃO DE ALINHAMENTO...' : result === 'draw' ? 'MAIS UMA RODADA!' : 'TENTE OUTRA VEZ!';
+  $('result-copy').textContent = finalWin ? 'Os Binários fecharam juntos. Amanhã todo mundo volta a ser amigo.' : result === 'player' ? `${fighters[opponents[round]].name} caiu na arena. O próximo desafio espera.` : boss ? 'O cliente pediu mais um ajuste. Você pode tentar essa luta de novo.' : 'Todo bom plano merece uma segunda tentativa.';
   $('result-primary').textContent = finalWin ? 'ESCOLHER OUTRO LUTADOR' : result === 'player' ? 'PRÓXIMA LUTA' : 'REPETIR LUTA';
+  $('result-bonus').textContent = result === 'player' ? `BÔNUS DA RODADA · TEMPO ${latestHud?.seconds ?? 0}s · TOTAL ${score.toLocaleString('pt-BR')} PONTOS` : `TOTAL ${score.toLocaleString('pt-BR')} PONTOS`;
   ($('result-primary') as HTMLButtonElement).onclick = () => {
     if (finalWin) { audio.music('menu'); arena?.showMenuBackground(); show('selection'); }
     else { if (result === 'player') round++; startFight(); }
@@ -160,6 +216,42 @@ function menu(): void {
   show('menu');
 }
 
+function openSelection(mode: 'arcade' | 'versus', tutorial: boolean): void {
+  playMode = mode;
+  forceTutorial = tutorial;
+  choosingSecond = false;
+  $('selection-heading').textContent = mode === 'versus' ? 'ESCOLHA O PLAYER 1' : 'QUEM VAI PARA A ARENA?';
+  $('selection-hint').textContent = mode === 'versus' ? 'DEPOIS ESCOLHA O PLAYER 2 · WASD + F G H' : 'ESCOLHA UM LUTADOR PARA COMEÇAR';
+  audio.music('menu');
+  renderRoster();
+  show('selection');
+}
+
+function showToast(): void {
+  const toast = $('adalberto-toast');
+  window.clearTimeout(toastTimer);
+  toast.classList.remove('active');
+  void toast.offsetWidth;
+  toast.classList.add('active');
+  if (!audio.muted && audio.effectsVolume > 0 && 'speechSynthesis' in window) {
+    const speech = new SpeechSynthesisUtterance('Toaaast! Perdeu pacote!');
+    speech.lang = 'pt-BR';
+    speech.rate = 1.12;
+    speech.pitch = 1.55;
+    speech.volume = Math.min(1, audio.effectsVolume);
+    speech.voice = window.speechSynthesis.getVoices().find(voice => voice.lang.toLowerCase().startsWith('pt')) ?? null;
+    window.speechSynthesis.speak(speech);
+  }
+  toastTimer = window.setTimeout(() => toast.classList.remove('active'), 1350);
+}
+
+function announcePhase(phase: number): void {
+  const banner = $('phase-banner');
+  banner.textContent = phase === 2 ? 'FASE 2 · SÓ MAIS UM AJUSTE!' : '';
+  banner.classList.add('active');
+  window.setTimeout(() => banner.classList.remove('active'), 1700);
+}
+
 function pause(): void {
   if (screen !== null) return;
   arena?.setUiPaused(true);
@@ -169,7 +261,7 @@ function pause(): void {
 
 function resume(): void {
   arena?.setUiPaused(false);
-  audio.music('battle');
+  audio.music(opponents[round] === 'cliente' ? 'boss' : 'battle');
   show(null);
 }
 
@@ -197,7 +289,7 @@ playButton.textContent = 'CARREGANDO ARENA...';
 window.addEventListener('ctrl-alt-fighter-ready', () => {
   arena = game.scene.getScene('Arena') as ArenaScene;
   arena.audio = audio;
-  arena.callbacks = { hud: renderHud, result: showResult, training: completeTraining };
+  arena.callbacks = { hud: renderHud, result: showResult, training: completeTraining, toast: showToast, phase: announcePhase };
   playButton.disabled = false;
   playButton.textContent = '▶ JOGAR AGORA';
   arena.showMenuBackground();
@@ -214,8 +306,26 @@ const game = new Phaser.Game({
   scene: [ArenaScene],
 });
 
-playButton.addEventListener('click', async () => { await unlockAudio(); audio.music('menu'); forceTutorial = false; await renderRoster(); show('selection'); });
-$('menu-tutorial').addEventListener('click', async () => { await unlockAudio(); audio.music('menu'); forceTutorial = true; await renderRoster(); show('selection'); });
+playButton.addEventListener('click', () => { activateAudio(); openSelection('arcade', false); });
+$('menu-tutorial').addEventListener('click', () => { activateAudio(); openSelection('arcade', true); });
+$('menu-versus').addEventListener('click', () => { activateAudio(); openSelection('versus', false); });
+$('stage-office').addEventListener('click', () => chooseStage('office'));
+$('stage-datacenter').addEventListener('click', () => chooseStage('datacenter'));
+$('stage-back').addEventListener('click', () => show('selection'));
+$('difficulty').addEventListener('change', () => arena?.setDifficulty(Number(($('difficulty') as HTMLSelectElement).value)));
+document.querySelectorAll<HTMLButtonElement>('[data-control]').forEach(button => {
+  const control = button.dataset.control as 'left' | 'right' | 'down' | 'block' | 'jump' | 'attack' | 'special';
+  button.addEventListener('pointerdown', event => {
+    event.preventDefault();
+    button.setPointerCapture(event.pointerId);
+    arena?.setVirtualControl(control, true);
+    button.classList.add('pressed');
+  });
+  const release = () => { arena?.setVirtualControl(control, false); button.classList.remove('pressed'); };
+  button.addEventListener('pointerup', release);
+  button.addEventListener('pointercancel', release);
+  button.addEventListener('lostpointercapture', release);
+});
 $('selection-back').addEventListener('click', menu);
 $('skip-tutorial').addEventListener('click', startFight);
 $('result-menu').addEventListener('click', menu);

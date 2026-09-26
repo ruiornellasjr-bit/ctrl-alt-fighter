@@ -1,39 +1,28 @@
-# Ctrl+Alt+Fighter
+# CTRL+ALT+FIGHTER
 
-Jogo de luta 2D para navegador criado para a equipe BBS One e Bug BusterS. Escolha um dos seis colegas, conclua o treino interativo e enfrente três adversários controlados pelo computador.
+Jogo de luta 2D para navegador dos Os Binários. Sem conta ou cadastro: qualquer pessoa com o link público pode jogar. O modo arcade passa por três adversários e termina no Cliente do Escopo Infinito, com duas fases. Há também versus local para dois jogadores no mesmo teclado.
 
-## Jogar no computador
+## Controles
 
-- `←` e `→`: mover
-- `↑`: pular; segure `←` ou `→` no ar para passar por cima do adversário
-- `J`: atacar
-- `K`: defender enquanto a tecla estiver pressionada
-- `L`: poder especial
-- Barra cheia + `↓`, direção do adversário, `L`: golpe forte
-- `Esc`: pausar ou continuar
+| Ação | Player 1 | Player 2 no versus |
+| --- | --- | --- |
+| Mover | `←` e `→` | `A` e `D` |
+| Pular | `↑` | `W` |
+| Ataque | `J` | `F` |
+| Gancho | `↓` + `J` | `S` + `F` |
+| Defesa | segurar `K` | segurar `G` |
+| Especial | `L` | `H` |
+| Segundo especial | direção do rival + `L` | direção do rival + `H` |
+| Super com barra cheia | `↓` + `L` | `S` + `H` |
 
-Cada confronto dura até 60 segundos. Se o tempo acabar, vence quem tiver mais vida. A primeira partida apresenta o tutorial, que pode ser repetido pelo menu.
+`Esc` pausa. O tutorial ensina as ações na própria arena. Em aparelhos com toque há botões na tela para o Player 1; o versus local usa teclado.
 
-## Executar localmente
+## Executar e publicar
 
-```bash
-npm install
-npm run dev
-```
+Requisitos: Node.js e npm. Use `npm ci`, `npm test` e `npm run build`. Os arquivos prontos ficam em `dist/`; hospede essa pasta em qualquer serviço de sites estáticos com HTTPS. Não há API, login ou banco de dados. O Site publicado no ChatGPT usa a mesma saída estática.
 
-Para verificar e gerar os arquivos estáticos:
-
-```bash
-npm test
-npm run build
-```
-
-O resultado fica em `dist/`. O projeto usa TypeScript, Vite e Phaser 4. Música, vinhetas e efeitos são sintetizados por Web Audio após o clique em **Jogar**. Música e efeitos têm volumes separados; silêncio e volumes são salvos no navegador.
+O jogo usa TypeScript, Vite e Phaser. Música chiptune, vinhetas e efeitos são gerados pelo Web Audio após uma interação do jogador. Música e efeitos têm volumes separados, salvos neste navegador.
 
 ## Arte
 
-As fotos de seleção vêm da pasta `Ideias` fornecida para este projeto. As versões de combate, com poses de movimento, ataque, defesa, salto, especial e dano, foram criadas com base nas referências dos funcionários. Os novos cenários mantêm o piso da arena livre para a luta. Os arquivos necessários para executar o jogo estão em `public/assets/`.
-
-## Acesso
-
-O jogo está publicado como site público no ChatGPT Sites. A área de cadastro fica para uma versão futura.
+Os seis colegas são os lutadores jogáveis. Dona Homologação, O Prazo e o Cliente do Escopo Infinito são adversários fictícios. A aparição surpresa do Adalberto usa a foto em preto e branco fornecida pela equipe. As artes dos três adversários fictícios foram geradas especificamente para este jogo. Os arquivos necessários estão em `public/assets/`.
