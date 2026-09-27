@@ -36,6 +36,7 @@ type Unit = {
 type Shot = { node: Phaser.GameObjects.Container; x: number; y: number; velocity: number; owner: Unit; damage: number; born: number; boomerang: boolean; returning: boolean };
 
 export type Hud = { player: number; enemy: number; playerMeter: number; enemyMeter: number; seconds: number; round: number; tutorial: boolean; bossPhase: number; versus: boolean };
+export type ArenaControl = 'left' | 'right' | 'down' | 'block' | 'jump' | 'attack' | 'kick' | 'special' | 'super';
 export type ArenaCallbacks = { hud: (state: Hud) => void; result: (result: 'player' | 'enemy' | 'draw') => void; training: (action: Exclude<TrainingStep, null>) => void; toast: () => void; phase: (phase: number) => void };
 
 export class ArenaScene extends Phaser.Scene {
@@ -64,10 +65,14 @@ export class ArenaScene extends Phaser.Scene {
   private pausedByUi = false;
   private lastHud = 0;
   private queuedAttack = false;
+  private queuedKick = false;
   private queuedSpecial = false;
+  private queuedSuper = false;
   private queuedJump = false;
   private queuedAttack2 = false;
+  private queuedKick2 = false;
   private queuedSpecial2 = false;
+  private queuedSuper2 = false;
   private queuedJump2 = false;
 
   constructor() { super('Arena'); }
@@ -130,10 +135,12 @@ export class ArenaScene extends Phaser.Scene {
   setDifficulty(level: number): void { this.difficulty = Phaser.Math.Clamp(level, 0, 2); }
   setStage(stage: 'office' | 'datacenter'): void { this.selectedStage = stage; }
 
-  setVirtualControl(control: 'left' | 'right' | 'down' | 'block' | 'jump' | 'attack' | 'special', pressed: boolean): void {
+  setVirtualControl(control: ArenaControl, pressed: boolean): void {
     if (control === 'jump' && pressed) this.queuedJump = true;
     else if (control === 'attack' && pressed) this.queuedAttack = true;
+    else if (control === 'kick' && pressed) this.queuedKick = true;
     else if (control === 'special' && pressed) this.queuedSpecial = true;
+    else if (control === 'super' && pressed) this.queuedSuper = true;
     else if (control in this.virtual) this.virtual[control as keyof typeof this.virtual] = pressed;
     if (pressed && (control === 'left' || control === 'right')) this.callbacks?.training('move');
   }
@@ -141,14 +148,16 @@ export class ArenaScene extends Phaser.Scene {
   setOnlineRemote(enabled: boolean): void {
     this.onlineRemote = enabled;
     this.remoteVirtual = { left: false, right: false, down: false, block: false };
-    this.queuedAttack2 = this.queuedSpecial2 = this.queuedJump2 = false;
+    this.queuedAttack2 = this.queuedKick2 = this.queuedSpecial2 = this.queuedSuper2 = this.queuedJump2 = false;
   }
 
-  setRemoteControl(control: 'left' | 'right' | 'down' | 'block' | 'jump' | 'attack' | 'special', pressed: boolean): void {
+  setRemoteControl(control: ArenaControl, pressed: boolean): void {
     if (!this.onlineRemote || this.mode !== 'versus') return;
     if (control === 'jump' && pressed) this.queuedJump2 = true;
     else if (control === 'attack' && pressed) this.queuedAttack2 = true;
+    else if (control === 'kick' && pressed) this.queuedKick2 = true;
     else if (control === 'special' && pressed) this.queuedSpecial2 = true;
+    else if (control === 'super' && pressed) this.queuedSuper2 = true;
     else if (control in this.remoteVirtual) this.remoteVirtual[control as keyof typeof this.remoteVirtual] = pressed;
   }
 
@@ -179,10 +188,14 @@ export class ArenaScene extends Phaser.Scene {
     this.trainingStep = tutorial ? 'move' : null;
     this.directionHistory = [];
     this.queuedAttack = false;
+    this.queuedKick = false;
     this.queuedSpecial = false;
+    this.queuedSuper = false;
     this.queuedJump = false;
     this.queuedAttack2 = false;
+    this.queuedKick2 = false;
     this.queuedSpecial2 = false;
+    this.queuedSuper2 = false;
     this.queuedJump2 = false;
     this.virtual = { left: false, right: false, down: false, block: false };
     this.remoteVirtual = { left: false, right: false, down: false, block: false };
@@ -304,6 +317,8 @@ export class ArenaScene extends Phaser.Scene {
     this.queuedJump = false;
     if (this.queuedAttack) this.punch(p, this.enemy!, this.keys.down.isDown || this.virtual.down);
     this.queuedAttack = false;
+    if (this.queuedKick) this.kick(p, this.enemy!);
+    this.queuedKick = false;
     if (this.queuedSpecial) {
       const now = performance.now();
       const recent = this.directionHistory.filter(entry => now - entry.at < 800).map(entry => entry.direction);
@@ -313,6 +328,11 @@ export class ArenaScene extends Phaser.Scene {
       this.directionHistory = [];
     }
     this.queuedSpecial = false;
+    if (this.queuedSuper) {
+      if (p.meter >= 100) this.superAttack(p, this.enemy!);
+      else this.special(p, this.enemy!, false);
+    }
+    this.queuedSuper = false;
   }
 
   private handleSecondPlayer(dt: number): void {
@@ -335,12 +355,19 @@ export class ArenaScene extends Phaser.Scene {
     this.queuedJump2 = false;
     if (this.queuedAttack2) this.punch(p, this.player!, down);
     this.queuedAttack2 = false;
+    if (this.queuedKick2) this.kick(p, this.player!);
+    this.queuedKick2 = false;
     if (this.queuedSpecial2) {
       const forward = p.facing === 1 ? right : left;
       if (p.meter >= 100 && down) this.superAttack(p, this.player!);
       else this.special(p, this.player!, forward);
     }
     this.queuedSpecial2 = false;
+    if (this.queuedSuper2) {
+      if (p.meter >= 100) this.superAttack(p, this.player!);
+      else this.special(p, this.player!, false);
+    }
+    this.queuedSuper2 = false;
   }
 
   private handleEnemy(dt: number): void {
@@ -409,6 +436,16 @@ export class ArenaScene extends Phaser.Scene {
     if (Math.abs(attacker.x - target.x) < (hook ? 185 : 170) && Math.abs(attacker.elevation - target.elevation) < 105) this.hit(target, attacker, trainingDummy ? 6 : hook ? 14 : 10, hook ? 'hook' : 'basic');
     if (this.mode === 'training' && attacker === this.player && this.trainingStep === 'attack') this.callbacks?.training('attack');
     if (this.mode === 'training' && attacker === this.player && this.trainingStep === 'hook' && hook) this.callbacks?.training('hook');
+  }
+
+  private kick(attacker: Unit, target: Unit): void {
+    if (attacker.cooldown > 0 || attacker.guard) return;
+    attacker.cooldown = 0.58;
+    this.pose(attacker, 'punch', 0.34);
+    attacker.visualLunge = 31;
+    this.audio?.sound('kick');
+    this.spark(attacker.x + attacker.facing * 84, GROUND - 130, fighters[attacker.id].accent, 64);
+    if (Math.abs(attacker.x - target.x) < 192 && Math.abs(attacker.elevation - target.elevation) < 105) this.hit(target, attacker, 13, 'basic');
   }
 
   private special(attacker: Unit, target: Unit, alternate = false): void {

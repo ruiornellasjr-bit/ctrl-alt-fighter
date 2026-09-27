@@ -41,3 +41,62 @@
 .online-room-screen .text-button{margin:8px auto 0}
 @media(max-width:960px){.menu-screen{overflow:hidden}.menu-content{padding:7px}.menu-content h1{font-size:clamp(42px,8vw,76px);margin:5px 0 8px}.menu-content p{font-size:17px;margin-bottom:7px}.menu-content .primary-button{padding:6px 17px;font-size:21px}.menu-content .text-button{font-size:14px;padding:3px 9px;margin-top:2px}.difficulty-choice{margin-top:3px}}
 @media(max-width:760px){.room-panel{padding:9px 14px}.room-panel h2{font-size:26px}.room-panel p{font-size:12px}.room-share{gap:4px}.room-share label{font-size:11px}.room-share input{padding:5px;font-size:10px}.room-share .primary-button{padding:3px 12px;font-size:15px}.room-share small{font-size:9px}}
+
+/* Portrait and small-screen play: keep the 16:9 arena clear and put a large,
+   two-hand virtual arcade controller underneath it. */
+@media (pointer:coarse), (max-width:760px){
+  body{min-height:100svh;overscroll-behavior-y:contain}
+  #app{min-height:100svh;display:flex;flex-direction:column;padding:8px max(8px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+  .app-header{height:42px;flex:0 0 42px}
+  .machine{flex:0 0 auto;aspect-ratio:16/9;width:100%;box-shadow:0 0 0 3px #0a1427,0 0 0 5px #1e3652,0 10px 30px #000a}
+  .fight-actions{top:7px;right:7px;bottom:auto}
+  .app-footer{display:none}
+  .touch-controls:not(.hidden){position:relative;inset:auto;z-index:5;display:grid;grid-template-columns:auto auto;grid-template-areas:"pad actions" "hint hint";align-items:center;justify-content:space-between;gap:7px 10px;margin-top:auto;padding:10px max(10px,env(safe-area-inset-left));border:2px solid #416785;border-radius:14px;background:linear-gradient(145deg,#152a43,#091426);box-shadow:0 5px 0 #050b16,0 12px 30px #0008;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+  .touch-pad{grid-area:pad;display:grid!important;grid-template-columns:repeat(3,var(--touch-size));grid-template-rows:repeat(2,var(--touch-size));grid-template-areas:". jump ." "left down right";gap:4px!important}
+  .touch-actions{grid-area:actions;display:grid!important;grid-template-columns:repeat(3,var(--touch-size));gap:clamp(3px,1vw,8px)!important}
+  .touch-controls{--touch-size:clamp(42px,12vw,64px)}
+  .touch-controls button{position:relative;display:grid;place-content:center;gap:1px;width:var(--touch-size);min-width:var(--touch-size);height:var(--touch-size);min-height:var(--touch-size);padding:0;border:2px solid #9be4ff;border-radius:13px;background:linear-gradient(155deg,#204768,#0b1c31);color:#fff;font:900 clamp(19px,5vw,27px) 'Barlow Condensed',sans-serif;line-height:1;box-shadow:0 3px 0 #050c16;touch-action:none}
+  .touch-pad button:nth-child(1){grid-area:jump}.touch-pad button:nth-child(2){grid-area:left}.touch-pad button:nth-child(3){grid-area:down}.touch-pad button:nth-child(4){grid-area:right}
+  .touch-actions button{border-color:#ffce68;background:linear-gradient(155deg,#423b37,#1b1a24)}
+  .touch-actions [data-control="block"]{border-color:#9be4ff}
+  .touch-actions [data-control="special"]{border-color:#ff77ca}
+  .touch-controls button small{font:800 clamp(8px,2.2vw,11px) 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#c7dcf1}
+  .touch-controls button.pressed{transform:translateY(2px);filter:brightness(1.55);box-shadow:0 1px 0 #050c16}
+  .touch-caption{grid-area:hint;margin:0;text-align:center;color:#a9c5dc;font:800 clamp(10px,2.8vw,13px) 'Barlow Condensed',sans-serif;letter-spacing:.06em}
+}
+@media(max-width:760px){
+  .app-header{gap:4px}.brand-small{gap:6px;font-size:12px;letter-spacing:.05em}.brand-icon{width:25px;height:25px;font-size:17px}.header-actions{gap:4px}.mini-button{font-size:10px;padding:5px 6px}
+  .menu-art{opacity:.28;width:28%}.menu-content{width:100%;padding:4px}.menu-content .eyebrow{font-size:9px;letter-spacing:.12em}.menu-content h1{font-size:clamp(28px,8.2vw,46px);line-height:.84;margin:3px 0 5px}.menu-content p{font-size:12px;margin-bottom:5px}.menu-content .primary-button{padding:4px 13px;font-size:16px;box-shadow:0 3px 0 #7f3a12}.menu-content .text-button{font-size:11px;letter-spacing:.06em;padding:1px 5px;margin-top:0}.difficulty-choice{gap:5px;font-size:9px;margin-top:1px}.difficulty-choice select{max-width:150px;padding:2px 4px;font-size:10px}
+  .selection-screen{padding:8px}.screen-title small{font-size:9px}.screen-title h2{font-size:21px;margin-bottom:6px}.roster{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.fighter-card{min-height:58px;padding:3px;gap:5px}.fighter-card img{width:42px;height:48px}.fighter-info b{font-size:14px}.fighter-info small,.fighter-info em{font-size:8px}.selection-footer{margin-top:7px;font-size:9px}.selection-footer .text-button{font-size:11px;padding:4px}
+  .hud{top:6px;left:7px;right:7px;gap:5px}.fighter-hud span{font-size:12px}.health-track{height:10px}.meter-track{height:5px}.timer-box{min-width:35px;margin-top:-1px}.timer-box strong{font-size:26px}.timer-box small{font-size:7px}.fight-actions{gap:4px}.fight-actions .mini-button{font-size:9px;padding:4px}
+  .tutorial-panel{top:42px;right:6px;width:min(230px,58%);padding:5px}.tutorial-panel h2{font-size:17px}.tutorial-panel p{font-size:10px}.tutorial-panel .text-button{font-size:9px;padding:3px}.key-row kbd{height:19px;min-width:19px;font-size:10px}
+}
+
+/* Wellington's cabinet-style two-hand controls, outside the arena canvas. */
+.controls-toggle{min-width:38px;min-height:34px;font-size:18px;padding:3px 8px}
+.touch-controls:not(.hidden){position:relative;inset:auto;z-index:5;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"pad actions" "hint hint";align-items:center;justify-content:center;gap:8px 20px;width:min(820px,100%);margin:12px auto 0;padding:10px 16px;border:2px solid #324e68;background:linear-gradient(145deg,#0c1220,#080b14 72%);box-shadow:0 0 0 3px #080d18,0 8px 24px #0007;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.touch-pad{grid-area:pad;display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(2,54px);grid-template-areas:". jump ." "left down right";gap:4px;justify-content:center}
+.touch-pad button,.touch-actions button{display:grid;place-content:center;min-width:64px;min-height:54px;padding:4px;border:2px solid #82c8e9;border-radius:12px;background:linear-gradient(150deg,#203d57,#0b1b2d);color:#fff;font:900 14px 'Barlow Condensed',sans-serif;letter-spacing:.035em;line-height:1.05;box-shadow:0 3px 0 #030810;touch-action:none}
+.touch-pad button:nth-child(1){grid-area:jump}.touch-pad button:nth-child(2){grid-area:left}.touch-pad button:nth-child(3){grid-area:down}.touch-pad button:nth-child(4){grid-area:right}
+.touch-actions{grid-area:actions;display:grid;grid-template-columns:repeat(3,minmax(64px,82px));grid-template-rows:repeat(2,54px);gap:5px;justify-content:center}
+.touch-actions [data-control="attack"]{border-color:#ffbd4e}.touch-actions [data-control="kick"]{border-color:#ff7188}.touch-actions [data-control="block"]{border-color:#75d9ff}.touch-actions [data-control="special"]{border-color:#82ee9d}.touch-actions [data-control="super"]{border-color:#de8bff}
+.touch-actions button:nth-child(4){grid-column:1}.touch-actions button:nth-child(5){grid-column:2}
+.touch-pad button.pressed,.touch-actions button.pressed{transform:translateY(2px);filter:brightness(1.45);box-shadow:0 1px 0 #030810}
+.touch-caption{grid-area:hint;margin:0;text-align:center;color:#8fa8c6;font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em}
+@media (pointer:coarse), (max-width:760px){
+  #app{min-height:100svh;display:flex;flex-direction:column;padding:8px max(8px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+  .app-header{height:42px;flex:0 0 42px}.machine{flex:0 0 auto;aspect-ratio:16/9;width:100%;box-shadow:0 0 0 3px #0a1427,0 0 0 5px #1e3652,0 10px 30px #000a}
+  .fight-actions{top:7px;right:7px;bottom:auto}.app-footer{display:none}
+  .touch-controls:not(.hidden){grid-template-columns:auto auto;gap:8px clamp(8px,3vw,18px);margin-top:12px;padding:10px max(8px,env(safe-area-inset-left));border:2px solid #416785;border-radius:15px;background:linear-gradient(145deg,#152a43,#091426);box-shadow:0 5px 0 #050b16,0 12px 30px #0008}
+  .touch-controls{--touch-size:clamp(42px,12vw,62px)}
+  .touch-pad{grid-template-columns:repeat(3,var(--touch-size));grid-template-rows:repeat(2,var(--touch-size));gap:3px}
+  .touch-actions{grid-template-columns:repeat(3,var(--touch-size));grid-template-rows:repeat(2,var(--touch-size));gap:3px}
+  .touch-pad button,.touch-actions button{width:var(--touch-size);min-width:var(--touch-size);height:var(--touch-size);min-height:var(--touch-size);padding:2px;font-size:clamp(10px,3.2vw,14px);border-radius:11px}
+  .touch-actions button{font-size:clamp(8px,2.2vw,12px);letter-spacing:-.02em}
+  .touch-caption{font-size:clamp(9px,2.5vw,12px)}
+  .app-header{gap:4px}.brand-small{gap:6px;font-size:12px;letter-spacing:.05em}.brand-icon{width:25px;height:25px;font-size:17px}.header-actions{gap:4px}.mini-button{font-size:10px;padding:5px 6px}.controls-toggle{min-width:30px;min-height:30px;font-size:16px;padding:2px 4px}
+  .menu-art{opacity:.28;width:28%}.menu-content{width:100%;padding:4px}.menu-content .eyebrow{font-size:9px;letter-spacing:.12em}.menu-content h1{font-size:clamp(28px,8.2vw,46px);line-height:.84;margin:3px 0 5px}.menu-content p{font-size:12px;margin-bottom:5px}.menu-content .primary-button{padding:4px 13px;font-size:16px;box-shadow:0 3px 0 #7f3a12}.menu-content .text-button{font-size:11px;letter-spacing:.06em;padding:1px 5px;margin-top:0}.difficulty-choice{gap:5px;font-size:9px;margin-top:1px}.difficulty-choice select{max-width:150px;padding:2px 4px;font-size:10px}
+  .selection-screen{padding:8px}.screen-title small{font-size:9px}.screen-title h2{font-size:21px;margin-bottom:6px}.roster{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.fighter-card{min-height:58px;padding:3px;gap:5px}.fighter-card img{width:42px;height:48px}.fighter-info b{font-size:14px}.fighter-info small,.fighter-info em{font-size:8px}.selection-footer{margin-top:7px;font-size:9px}.selection-footer .text-button{font-size:11px;padding:4px}
+  .hud{top:6px;left:7px;right:7px;gap:5px}.fighter-hud span{font-size:12px}.health-track{height:10px}.meter-track{height:5px}.timer-box{min-width:35px;margin-top:-1px}.timer-box strong{font-size:26px}.timer-box small{font-size:7px}.fight-actions{gap:4px}.fight-actions .mini-button{font-size:9px;padding:4px}
+  .tutorial-panel{top:42px;right:6px;width:min(230px,58%);padding:5px}.tutorial-panel h2{font-size:17px}.tutorial-panel p{font-size:10px}.tutorial-panel .text-button{font-size:9px;padding:3px}.key-row kbd{height:19px;min-width:19px;font-size:10px}
+}

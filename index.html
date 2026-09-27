@@ -12,7 +12,7 @@
     <div id="app">
       <header class="app-header">
         <div class="brand-small"><span class="brand-icon">⌘</span><span>BBS ONE <b>×</b> BUG BUSTERS</span></div>
-        <div class="header-actions"><button id="sound-toggle" class="mini-button" aria-label="Ligar ou desligar som">♫ SOM</button><button id="settings-button" class="mini-button" aria-label="Ajustar volumes">⚙ ÁUDIO</button></div>
+        <div class="header-actions"><button id="controls-toggle" class="mini-button controls-toggle hidden" type="button" aria-label="Mostrar controles na tela" aria-pressed="false">🎮</button><button id="sound-toggle" class="mini-button" aria-label="Ligar ou desligar som">♫ SOM</button><button id="settings-button" class="mini-button" aria-label="Ajustar volumes">⚙ ÁUDIO</button></div>
       </header>
       <main class="machine">
         <div id="stage" aria-label="Arena de luta"></div>
@@ -25,10 +25,6 @@
         <div id="fight-actions" class="fight-actions hidden"><button id="pause-button" class="mini-button">⏸ PAUSAR</button><button id="help-button" class="mini-button">? COMANDOS</button></div>
         <div id="phase-banner" class="phase-banner" aria-live="polite"></div>
         <div id="adalberto-toast" class="adalberto-toast" role="status" aria-live="polite" aria-label="Adalberto: Toaaast! Reinicia que passa!"><div class="toast-callout"><strong>TOAAAST!</strong><small id="toast-quip">REINICIA QUE PASSA!</small></div><img src="/assets/adalberto-toast-cutout.png" alt="" /></div>
-        <div id="touch-controls" class="touch-controls hidden" aria-label="Controles de toque">
-          <div><button data-control="left" aria-label="Mover para a esquerda">◀</button><button data-control="right" aria-label="Mover para a direita">▶</button><button data-control="down" aria-label="Baixo">▼</button><button data-control="jump" aria-label="Pular">PULAR</button></div>
-          <div><button data-control="attack" aria-label="Atacar">J</button><button data-control="block" aria-label="Defender">K</button><button data-control="special" aria-label="Especial">L</button></div>
-        </div>
         <section id="menu" class="screen menu-screen">
           <div class="menu-art left-art"><img src="/assets/kalliane.png" alt="" /></div>
           <div class="menu-art right-art"><img src="/assets/rui.png" alt="" /></div>
@@ -46,6 +42,22 @@
         <section id="pause" class="screen pause-screen hidden"><div class="pause-panel"><div class="eyebrow">JOGO PAUSADO</div><h2>RESPIRA. VOLTA PRA LUTA.</h2><p>P1: ← → mover · ↑ pular · J atacar · K defender · L especial<br />↓ + J gancho · direção + L outro especial · barra cheia: ↓ + L super<br />P2 no versus: WASD + F ataque, G defesa, H especial</p><button id="resume-button" class="primary-button">▶ CONTINUAR</button><button id="pause-menu" class="text-button">VOLTAR AO MENU</button></div></section>
         <section id="settings" class="screen settings-screen hidden"><div class="settings-panel"><div class="eyebrow">ÁUDIO</div><h2>AJUSTE O VOLUME</h2><label>MÚSICA <input id="music-volume" type="range" min="0" max="100" step="1" /></label><label>EFEITOS <input id="effects-volume" type="range" min="0" max="100" step="1" /></label><button id="settings-close" class="primary-button">FECHAR</button></div></section>
       </main>
+      <section id="touch-controls" class="touch-controls hidden" aria-label="Controles na tela">
+        <div class="touch-pad" aria-label="Movimento">
+          <button data-control="jump" aria-label="Pular">↑</button>
+          <button data-control="left" aria-label="Mover para a esquerda">◀</button>
+          <button data-control="down" aria-label="Agachar">↓</button>
+          <button data-control="right" aria-label="Mover para a direita">▶</button>
+        </div>
+        <div class="touch-actions" aria-label="Ações">
+          <button data-control="attack" aria-label="Soco">SOCO</button>
+          <button data-control="kick" aria-label="Chute">CHUTE</button>
+          <button data-control="block" aria-label="Defender">DEFESA</button>
+          <button data-control="special" aria-label="Poder">PODER</button>
+          <button data-control="super" aria-label="Especial com barra cheia">ESPECIAL</button>
+        </div>
+        <p class="touch-caption">BARRA CHEIA + ESPECIAL · SEGURE DIREÇÃO + PODER PARA VARIAR O GOLPE</p>
+      </section>
       <footer class="app-footer"><span>← → MOVER</span><span>↑ PULAR</span><span>J ATAQUE</span><span>↓ + J GANCHO</span><span>K DEFESA</span><span>L ESPECIAL</span><span>→ + L VARIAÇÃO</span><span>↓ + L SUPER</span></footer>
     </div>
     <script type="module" src="/src/main.ts"></script>

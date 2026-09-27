@@ -2,14 +2,14 @@ import Phaser from 'phaser';
 import Peer, { type DataConnection, type MediaConnection } from 'peerjs';
 import './style.css';
 import { ArcadeAudio } from './audio';
-import { ArenaScene, type Hud } from './arena';
+import { ArenaScene, type ArenaControl, type Hud } from './arena';
 import { fighters, roster, type FighterDef } from './fighters';
 import { pickOpponents, type FighterId } from './rules';
 
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
 type Screen = 'menu' | 'selection' | 'stage-select' | 'online-room' | 'tutorial' | 'result' | 'pause' | 'settings' | null;
 type PlayMode = 'arcade' | 'versus' | 'online-host' | 'online-guest';
-type Control = 'left' | 'right' | 'down' | 'block' | 'jump' | 'attack' | 'special';
+type Control = ArenaControl;
 const screens: Exclude<Screen, null>[] = ['menu', 'selection', 'stage-select', 'online-room', 'tutorial', 'result', 'pause', 'settings'];
 const audio = new ArcadeAudio();
 let arena: ArenaScene | null = null;
@@ -33,8 +33,10 @@ let roomStarted = false;
 let roomId = '';
 let guestFighter: FighterId = 'caio';
 let toastQuipIndex = 0;
+let controlsVisible = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 760;
+let controlsManuallyToggled = false;
 const toastQuips = ['REINICIA QUE PASSA!', 'NA MINHA MÁQUINA FUNCIONA!', 'ABRE UM CHAMADO!'];
-const validControls = new Set<Control>(['left', 'right', 'down', 'block', 'jump', 'attack', 'special']);
+const validControls = new Set<Control>(['left', 'right', 'down', 'block', 'jump', 'attack', 'kick', 'special', 'super']);
 const guestHeld = new Set<Control>();
 
 const steps = [
@@ -54,11 +56,27 @@ function show(next: Screen): void {
   const fighting = next === null || next === 'pause' || next === 'tutorial' || (next === 'settings' && settingsReturn === null);
   $('hud').classList.toggle('hidden', !fighting);
   $('fight-actions').classList.toggle('hidden', next !== null);
-  $('touch-controls').classList.toggle('hidden', next !== null && next !== 'tutorial');
+  const inArena = next === null || next === 'tutorial';
+  $('touch-controls').classList.toggle('hidden', !inArena || !controlsVisible);
+  $('controls-toggle').classList.toggle('hidden', !inArena);
+  $('controls-toggle').setAttribute('aria-pressed', String(controlsVisible));
+  $('controls-toggle').setAttribute('aria-label', controlsVisible ? 'Ocultar controles na tela' : 'Mostrar controles na tela');
+  $('controls-toggle').classList.toggle('active', controlsVisible);
   $('pause-button').textContent = playMode === 'online-guest' ? '✕ SAIR DA SALA' : '⏸ PAUSAR';
   $('help-button').classList.toggle('hidden', playMode === 'online-guest');
   if (next !== null && next !== 'tutorial') $('adalberto-toast').classList.remove('active');
 }
+
+window.addEventListener('resize', () => {
+  if (controlsManuallyToggled) return;
+  controlsVisible = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 760;
+  if (screen !== null && screen !== 'tutorial') return;
+  $('touch-controls').classList.toggle('hidden', !controlsVisible);
+  $('controls-toggle').setAttribute('aria-pressed', String(controlsVisible));
+  $('controls-toggle').setAttribute('aria-label', controlsVisible ? 'Ocultar controles na tela' : 'Mostrar controles na tela');
+  $('controls-toggle').classList.toggle('active', controlsVisible);
+  if (screen === 'tutorial') setTutorialText();
+});
 
 function portrait(def: FighterDef): Promise<string> {
   return new Promise(resolve => {
@@ -178,9 +196,20 @@ function startTutorial(): void {
 
 function setTutorialText(): void {
   const step = steps[trainingIndex];
+  const touchInstructions: Record<string, { copy: string; keys: string[] }> = {
+    move: { copy: 'Segure ◀ ou ▶ para se mover.', keys: ['◀', '▶'] },
+    jump: { copy: 'Toque ↑ para pular. Segure ◀ ou ▶ no ar para passar pelo rival.', keys: ['↑', '◀', '▶'] },
+    attack: { copy: 'Aproxime-se e toque SOCO.', keys: ['SOCO'] },
+    hook: { copy: 'Aproxime-se, segure ↓ e toque SOCO para dar um gancho.', keys: ['↓', 'SOCO'] },
+    block: { copy: 'Segure DEFESA para bloquear o ataque do rival.', keys: ['DEFESA'] },
+    special: { copy: 'Toque PODER para usar sua habilidade.', keys: ['PODER'] },
+    alternate: { copy: 'Segure a direção do rival e toque PODER para variar o golpe.', keys: ['→', 'PODER'] },
+    super: { copy: 'Com a barra cheia, segure ↓ e toque ESPECIAL.', keys: ['↓', 'ESPECIAL'] },
+  };
+  const instruction = controlsVisible ? touchInstructions[step.action] : null;
   $('tutorial-title').textContent = step.title;
-  $('tutorial-copy').textContent = step.copy;
-  $('tutorial-keys').innerHTML = step.keys.map(key => `<kbd>${key}</kbd>`).join('');
+  $('tutorial-copy').textContent = instruction?.copy ?? step.copy;
+  $('tutorial-keys').innerHTML = (instruction?.keys ?? step.keys).map(key => `<kbd>${key}</kbd>`).join('');
   $('tutorial-progress-bar').style.width = `${trainingIndex / steps.length * 100}%`;
   $('skip-tutorial').textContent = 'PULAR TUTORIAL →';
   arena?.setTrainingStep(step.action);
@@ -526,6 +555,16 @@ playButton.addEventListener('click', () => { activateAudio(); openSelection('arc
 $('menu-tutorial').addEventListener('click', () => { activateAudio(); openSelection('arcade', true); });
 $('menu-versus').addEventListener('click', () => { activateAudio(); openSelection('versus', false); });
 $('menu-online').addEventListener('click', () => { activateAudio(); openSelection('online-host', false); });
+$('controls-toggle').addEventListener('click', () => {
+  controlsManuallyToggled = true;
+  controlsVisible = !controlsVisible;
+  const inArena = screen === null || screen === 'tutorial';
+  $('touch-controls').classList.toggle('hidden', !inArena || !controlsVisible);
+  $('controls-toggle').setAttribute('aria-pressed', String(controlsVisible));
+  $('controls-toggle').setAttribute('aria-label', controlsVisible ? 'Ocultar controles na tela' : 'Mostrar controles na tela');
+  $('controls-toggle').classList.toggle('active', controlsVisible);
+  if (screen === 'tutorial') setTutorialText();
+});
 $('room-back').addEventListener('click', menu);
 $('copy-room').addEventListener('click', async () => {
   const link = $<HTMLInputElement>('room-link');
