@@ -4,6 +4,7 @@ import { applyDamage, comboReady, fighterIds, roundWinner, type Direction, type 
 import type { ArcadeAudio } from './audio';
 import { resolvePose, type FighterPose } from './animation';
 import { facingOpponent, moveHorizontal, separateOnLanding } from './movement';
+import { stages, type StageId } from './stages';
 
 const W = 960;
 const H = 540;
@@ -60,7 +61,7 @@ export class ArenaScene extends Phaser.Scene {
   private bossPhase = 0;
   private difficulty = 1;
   private nextToast = 0;
-  private selectedStage: 'office' | 'datacenter' = 'office';
+  private selectedStage: StageId = 'office';
   private stopped = false;
   private pausedByUi = false;
   private lastHud = 0;
@@ -78,8 +79,7 @@ export class ArenaScene extends Phaser.Scene {
   constructor() { super('Arena'); }
 
   preload(): void {
-    this.load.image('office', '/assets/office-arena.png');
-    this.load.image('datacenter', '/assets/datacenter-arena.png');
+    for (const stage of stages) this.load.image(stage.id, stage.art);
     for (const id of Object.keys(fighters) as FighterId[]) {
       this.load.image(id, fighters[id].art);
       if (fighters[id].poses) this.load.spritesheet(`${id}-poses`, `/assets/${id}-poses.png`, {
@@ -133,7 +133,7 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   setDifficulty(level: number): void { this.difficulty = Phaser.Math.Clamp(level, 0, 2); }
-  setStage(stage: 'office' | 'datacenter'): void { this.selectedStage = stage; }
+  setStage(stage: StageId): void { this.selectedStage = stage; }
 
   setVirtualControl(control: ArenaControl, pressed: boolean): void {
     if (control === 'jump' && pressed) this.queuedJump = true;
@@ -378,15 +378,15 @@ export class ArenaScene extends Phaser.Scene {
       return;
     }
     const distance = Math.abs(p.x - e.x);
-    const level = this.round + this.difficulty - 1 + (this.bossPhase === 2 ? 2 : 0);
+    const level = this.round + this.difficulty - 1;
     if (distance > 140) { e.x = Phaser.Math.Clamp(e.x + Math.sign(p.x - e.x) * (95 + level * 18) * dt, 70, W - 70); e.walking = true; }
     if (distance < 175 && this.elapsed >= e.aiAt) {
       e.aiAt = this.elapsed + (1.55 - level * 0.16) + Math.random() * 0.5;
-      this.punch(e, p, this.bossPhase === 2 && Math.random() < 0.35);
+      this.punch(e, p, this.bossPhase === 2 && Math.random() < 0.22);
     }
     if (this.elapsed >= e.aiSpecialAt && distance < 370) {
       e.aiSpecialAt = this.elapsed + 4.5 + Math.random() * 2;
-      this.special(e, p, e.id === 'cliente' ? this.bossPhase === 2 && Math.random() < 0.55 : Math.random() < 0.3);
+      this.special(e, p, e.id === 'cliente' ? this.bossPhase === 2 && Math.random() < 0.22 : Math.random() < 0.3);
     }
     e.guard = distance < 175 && Math.sin(this.elapsed * 2.3 + level) > 0.78;
     e.sprite.setTint(e.guard ? 0x9ddcff : 0xffffff);
@@ -459,12 +459,11 @@ export class ArenaScene extends Phaser.Scene {
     const wasReady = attacker.meter >= 100;
     attacker.meter = Math.min(100, attacker.meter + 8);
     if (attacker === this.player && !wasReady && attacker.meter >= 100) this.audio?.sound('ready');
-    if (attacker.id === 'cliente' && alternate) {
-      this.bossMeeting(attacker, target);
-    } else if (kind === 'barrier') {
-      attacker.shieldUntil = this.elapsed + 1.55;
+    if (kind === 'barrier') {
+      const finalBoss = attacker.id === 'cliente';
+      attacker.shieldUntil = this.elapsed + (finalBoss ? 0.85 : 1.55);
       this.firewall(attacker, alternate ? def.alternate.toUpperCase() : def.special.toUpperCase());
-      if (Math.abs(attacker.x - target.x) < 190) this.hit(target, attacker, 16, 'special');
+      if (Math.abs(attacker.x - target.x) < 190) this.hit(target, attacker, finalBoss ? 12 : 16, 'special');
     } else if (kind === 'cable') {
       this.cable(attacker);
       if ((target.x - attacker.x) * attacker.facing > 0 && Math.abs(target.x - attacker.x) < 330) this.hit(target, attacker, 16, 'special');
@@ -475,20 +474,6 @@ export class ArenaScene extends Phaser.Scene {
     if (this.mode === 'training' && attacker === this.player && this.trainingStep === 'special') this.callbacks?.training('special');
     if (this.mode === 'training' && attacker === this.player && this.trainingStep === 'alternate' && alternate) this.callbacks?.training('alternate');
     this.updateHud(true);
-  }
-
-  private bossMeeting(attacker: Unit, target: Unit): void {
-    const zoneX = target.x;
-    const warning = this.add.rectangle(zoneX, GROUND - 170, 235, 310, 0xff6940, 0.23).setStrokeStyle(5, 0xffbb79).setDepth(4);
-    const label = this.add.text(zoneX, GROUND - 340, 'REUNIÃO INFINITA!', { fontFamily: 'monospace', fontSize: '22px', fontStyle: 'bold', color: '#fff1cf', stroke: '#421c0d', strokeThickness: 6 }).setOrigin(0.5).setDepth(7);
-    this.audio?.sound('warning');
-    this.time.delayedCall(720, () => {
-      warning.destroy(); label.destroy();
-      if (!this.stopped && (target === this.player || target === this.enemy) && Math.abs(target.x - zoneX) < 125) {
-        this.spark(zoneX, GROUND - 160, '#ff9b45', 180);
-        this.hit(target, attacker, 22, 'special');
-      }
-    });
   }
 
   private makeProjectile(attacker: Unit): Phaser.GameObjects.Container {
@@ -653,18 +638,13 @@ export class ArenaScene extends Phaser.Scene {
     }
     if (this.mode === 'training' && target === this.player && guarded && this.trainingStep === 'block') this.callbacks?.training('block');
     if (this.mode === 'training') target.health = Math.max(30, target.health);
-    if (target.health <= 0) {
-      if (target === this.enemy && target.id === 'cliente' && this.bossPhase === 1) {
-        this.bossPhase = 2;
-        this.timeLimit = this.elapsed + 60;
-        target.health = 100;
-        target.shieldUntil = this.elapsed + 1.4;
-        target.aiSpecialAt = this.elapsed + 2;
-        this.cameras.main.flash(500, 255, 107, 46);
-        this.callbacks?.phase(2);
-        this.audio?.sound('phase');
-      } else this.finish(target === this.enemy ? 'player' : 'enemy');
+    if (target === this.enemy && target.id === 'cliente' && this.bossPhase === 1 && target.health > 0 && target.health <= 50) {
+      this.bossPhase = 2;
+      this.cameras.main.flash(400, 255, 107, 46);
+      this.callbacks?.phase(2);
+      this.audio?.sound('phase');
     }
+    if (target.health <= 0) this.finish(target === this.enemy ? 'player' : 'enemy');
     if (playerMeterBefore < 100 && (this.player?.meter ?? 0) >= 100) this.audio?.sound('ready');
     this.updateHud(true);
   }

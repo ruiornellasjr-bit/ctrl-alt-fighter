@@ -72,6 +72,28 @@
   .tutorial-panel{top:42px;right:6px;width:min(230px,58%);padding:5px}.tutorial-panel h2{font-size:17px}.tutorial-panel p{font-size:10px}.tutorial-panel .text-button{font-size:9px;padding:3px}.key-row kbd{height:19px;min-width:19px;font-size:10px}
 }
 
+/* Arcade circuit route and expanded original arenas. */
+.campaign-route{max-width:900px;margin:0 auto 14px;padding:8px 12px;border:1px solid #385979;background:#071225aa}
+.route-title{margin-bottom:6px;color:#58d6ff;font:900 13px 'Barlow Condensed',sans-serif;letter-spacing:.14em}
+.opponent-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.route-stop{position:relative;display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;align-items:center;column-gap:7px;min-width:0;padding:4px 7px;text-align:left;background:#13243d;border:1px solid #41627e;color:#fff}
+.route-stop:not(:last-child)::after{content:'›';position:absolute;right:-9px;z-index:1;color:#ffcc63;font:900 22px 'Barlow Condensed',sans-serif}
+.route-stop img{grid-row:1/3;width:40px;height:40px;object-fit:cover;object-position:center 24%;border:2px solid #57baff;background:#071225}
+.route-stop strong{align-self:end;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:900 14px 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.route-stop small{align-self:start;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#a9c0d8;font:700 10px 'Rajdhani',sans-serif}
+.route-stop.boss{border-color:#ff9b45;background:linear-gradient(130deg,#40271f,#1b1c2b)}
+.route-stop.boss img{border-color:#ff9b45}
+.stage-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:930px;gap:10px;margin:8px auto 0}
+.stage-card{min-width:0;padding:4px}
+.stage-card img{aspect-ratio:16/8.5}
+.stage-card strong{font-size:clamp(14px,1.8vw,21px);padding-top:3px}
+.stage-card span{font-size:12px;line-height:1.1}
+@media(max-width:760px){
+  .campaign-route{margin:0 auto 5px;padding:4px 5px}.route-title{font-size:9px;margin-bottom:3px}.opponent-track{gap:3px}
+  .route-stop{grid-template-columns:23px 1fr;column-gap:3px;padding:2px 3px}.route-stop img{width:22px;height:27px;border-width:1px}.route-stop strong{font-size:9px}.route-stop small{font-size:7px}.route-stop:not(:last-child)::after{right:-5px;font-size:13px}
+  .stage-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin:4px auto 0}.stage-card{padding:2px}.stage-card img{aspect-ratio:16/7}.stage-card strong{font-size:clamp(10px,2.8vw,14px);padding:2px 3px 0}.stage-card span{font-size:9px;padding:0 3px 2px}.stage-back{font-size:10px}
+}
+
 /* Wellington's cabinet-style two-hand controls, outside the arena canvas. */
 .controls-toggle{min-width:38px;min-height:34px;font-size:18px;padding:3px 8px}
 .touch-controls:not(.hidden){position:relative;inset:auto;z-index:5;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"pad actions" "hint hint";align-items:center;justify-content:center;gap:8px 20px;width:min(820px,100%);margin:12px auto 0;padding:10px 16px;border:2px solid #324e68;background:linear-gradient(145deg,#0c1220,#080b14 72%);box-shadow:0 0 0 3px #080d18,0 8px 24px #0007;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}

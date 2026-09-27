@@ -5,10 +5,11 @@ import { ArcadeAudio } from './audio';
 import { ArenaScene, type ArenaControl, type Hud } from './arena';
 import { fighters, roster, type FighterDef } from './fighters';
 import { pickOpponents, type FighterId } from './rules';
+import { isStageId, stages, type StageId } from './stages';
 
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
 type Screen = 'menu' | 'selection' | 'stage-select' | 'online-room' | 'tutorial' | 'result' | 'pause' | 'settings' | null;
-type PlayMode = 'arcade' | 'versus' | 'online-host' | 'online-guest';
+type PlayMode = 'arcade' | 'online-host' | 'online-guest';
 type Control = ArenaControl;
 const screens: Exclude<Screen, null>[] = ['menu', 'selection', 'stage-select', 'online-room', 'tutorial', 'result', 'pause', 'settings'];
 const audio = new ArcadeAudio();
@@ -21,9 +22,8 @@ let round = 0;
 let trainingIndex = 0;
 let forceTutorial = false;
 let playMode: PlayMode = 'arcade';
-let choosingSecond = false;
 let toastTimer = 0;
-let selectedStage: 'office' | 'datacenter' = 'office';
+let selectedStage: StageId = 'office';
 let score = 0;
 let latestHud: Hud | null = null;
 let roomPeer: Peer | null = null;
@@ -118,7 +118,7 @@ function renderHud(hud: Hud): void {
   $('player-meter').style.width = `${hud.playerMeter}%`;
   $('enemy-meter').style.width = `${hud.enemyMeter}%`;
   $('timer').textContent = hud.tutorial ? '∞' : String(hud.seconds);
-  $('round-label').textContent = hud.tutorial ? 'TREINO' : hud.versus ? (playMode.startsWith('online-') ? 'VERSUS ONLINE' : 'VERSUS LOCAL') : hud.bossPhase ? `CHEFÃO · FASE ${hud.bossPhase}` : `LUTA ${hud.round} / ${opponents.length}`;
+  $('round-label').textContent = hud.tutorial ? 'TREINO' : hud.versus ? 'VERSUS ONLINE' : hud.bossPhase ? `CHEFÃO · FASE ${hud.bossPhase}` : `LUTA ${hud.round} / ${opponents.length}`;
 }
 
 function setNames(): void {
@@ -149,21 +149,7 @@ function choose(id: FighterId): void {
   if (playMode === 'online-host') {
     selected = id;
     audio.sound('select');
-    show('stage-select');
-    return;
-  }
-  if (playMode === 'versus') {
-    if (!choosingSecond) {
-      selected = id;
-      choosingSecond = true;
-      $('selection-heading').textContent = 'AGORA ESCOLHA O PLAYER 2';
-      $('selection-hint').textContent = `${fighters[id].name.toUpperCase()} É O PLAYER 1`;
-      audio.sound('select');
-      return;
-    }
-    opponents = [id];
-    round = 0;
-    choosingSecond = false;
+    renderCampaignRoute();
     show('stage-select');
     return;
   }
@@ -172,10 +158,53 @@ function choose(id: FighterId): void {
   round = 0;
   score = 0;
   audio.sound('select');
+  renderCampaignRoute();
   show('stage-select');
 }
 
-function chooseStage(stage: 'office' | 'datacenter'): void {
+function renderCampaignRoute(): void {
+  const route = $('campaign-route');
+  const track = $('opponent-track');
+  track.replaceChildren();
+  if (playMode !== 'arcade') { route.classList.add('hidden'); return; }
+  route.classList.remove('hidden');
+  opponents.forEach((id, index) => {
+    const def = fighters[id];
+    const stop = document.createElement('div');
+    stop.className = `route-stop${id === 'cliente' ? ' boss' : ''}`;
+    stop.setAttribute('aria-label', `Luta ${index + 1}: ${def.name}`);
+    const image = document.createElement('img');
+    image.src = def.portraitSource;
+    image.alt = '';
+    const name = document.createElement('strong');
+    name.textContent = def.name;
+    const label = document.createElement('small');
+    label.textContent = id === 'cliente' ? 'CHEFÃO FINAL' : `LUTA ${index + 1} · ${def.codename}`;
+    stop.append(image, name, label);
+    track.append(stop);
+  });
+}
+
+function renderStages(): void {
+  const holder = $('stage-grid');
+  holder.replaceChildren();
+  for (const stage of stages) {
+    const card = document.createElement('button');
+    card.className = 'stage-card';
+    const image = document.createElement('img');
+    image.src = stage.art;
+    image.alt = stage.name;
+    const name = document.createElement('strong');
+    name.textContent = stage.name;
+    const detail = document.createElement('span');
+    detail.textContent = stage.detail;
+    card.append(image, name, detail);
+    card.addEventListener('click', () => chooseStage(stage.id));
+    holder.append(card);
+  }
+}
+
+function chooseStage(stage: StageId): void {
   selectedStage = stage;
   arena?.setStage(stage);
   audio.sound('select');
@@ -261,8 +290,8 @@ function showResult(result: 'player' | 'enemy' | 'draw'): void {
   const boss = opponents[round] === 'cliente';
   if (result === 'player') score += 500 + Math.max(0, Math.round((latestHud?.seconds ?? 0) * 20)) + Math.round((latestHud?.player ?? 0) * 10);
   $('result-tag').textContent = finalWin ? 'CONTRATO FECHADO' : result === 'player' ? `LUTA ${round + 1} VENCIDA` : boss ? 'CONTRATO EM RISCO' : result === 'draw' ? 'EMPATE' : 'AINDA NÃO ACABOU';
-  $('result-title').textContent = finalWin ? 'A EQUIPE SALVOU O CONTRATO!' : result === 'player' ? 'VITÓRIA!' : boss ? 'REUNIÃO DE ALINHAMENTO...' : result === 'draw' ? 'MAIS UMA RODADA!' : 'TENTE OUTRA VEZ!';
-  $('result-copy').textContent = finalWin ? 'Os Binários fecharam juntos. Amanhã todo mundo volta a ser amigo.' : result === 'player' ? `${fighters[opponents[round]].name} caiu na arena. O próximo desafio espera.` : boss ? 'O cliente pediu mais um ajuste. Você pode tentar essa luta de novo.' : 'Todo bom plano merece uma segunda tentativa.';
+  $('result-title').textContent = finalWin ? 'A EQUIPE SALVOU O CONTRATO!' : result === 'player' ? 'VITÓRIA!' : boss ? 'QUASE FECHAMOS O CONTRATO!' : result === 'draw' ? 'MAIS UMA RODADA!' : 'TENTE OUTRA VEZ!';
+  $('result-copy').textContent = finalWin ? 'Os Binários fecharam juntos. Amanhã todo mundo volta a ser amigo.' : result === 'player' ? `${fighters[opponents[round]].name} caiu na arena. O próximo desafio espera.` : boss ? 'O cliente pediu outro ajuste. Respira e tenta de novo.' : 'Todo bom plano merece uma segunda tentativa.';
   $('result-primary').textContent = finalWin ? 'ESCOLHER OUTRO LUTADOR' : result === 'player' ? 'PRÓXIMA LUTA' : 'REPETIR LUTA';
   $('result-bonus').textContent = result === 'player' ? `BÔNUS DA RODADA · TEMPO ${latestHud?.seconds ?? 0}s · TOTAL ${score.toLocaleString('pt-BR')} PONTOS` : `TOTAL ${score.toLocaleString('pt-BR')} PONTOS`;
   ($('result-primary') as HTMLButtonElement).onclick = () => {
@@ -390,7 +419,7 @@ function joinOnlineRoom(id: string): void {
         selected = host;
         opponents = [guest];
         round = 0;
-        selectedStage = message.stage === 'datacenter' ? 'datacenter' : 'office';
+        selectedStage = isStageId(message.stage) ? message.stage : 'office';
         setNames();
         audio.music('battle');
         show(null);
@@ -452,9 +481,8 @@ function menu(): void {
 function openSelection(mode: PlayMode, tutorial: boolean): void {
   playMode = mode;
   forceTutorial = tutorial;
-  choosingSecond = false;
-  $('selection-heading').textContent = mode === 'versus' || mode === 'online-host' ? 'ESCOLHA O PLAYER 1' : mode === 'online-guest' ? 'ESCOLHA O PLAYER 2' : 'QUEM VAI PARA A ARENA?';
-  $('selection-hint').textContent = mode === 'versus' ? 'DEPOIS ESCOLHA O PLAYER 2 · WASD + F G H' : mode === 'online-host' ? 'DEPOIS VOCÊ VAI COPIAR O LINK DA SALA' : mode === 'online-guest' ? 'CONTROLES NO SEU DISPOSITIVO: SETAS + J K L' : 'ESCOLHA UM LUTADOR PARA COMEÇAR';
+  $('selection-heading').textContent = mode === 'online-host' ? 'ESCOLHA O PLAYER 1' : mode === 'online-guest' ? 'ESCOLHA O PLAYER 2' : 'QUEM VAI PARA A ARENA?';
+  $('selection-hint').textContent = mode === 'online-host' ? 'DEPOIS VOCÊ VAI COPIAR O LINK DA SALA' : mode === 'online-guest' ? 'CONTROLES NO SEU DISPOSITIVO: SETAS + J K L' : 'ESCOLHA UM LUTADOR PARA COMEÇAR';
   audio.music('menu');
   renderRoster();
   show('selection');
@@ -553,7 +581,6 @@ const game = new Phaser.Game({
 
 playButton.addEventListener('click', () => { activateAudio(); openSelection('arcade', false); });
 $('menu-tutorial').addEventListener('click', () => { activateAudio(); openSelection('arcade', true); });
-$('menu-versus').addEventListener('click', () => { activateAudio(); openSelection('versus', false); });
 $('menu-online').addEventListener('click', () => { activateAudio(); openSelection('online-host', false); });
 $('controls-toggle').addEventListener('click', () => {
   controlsManuallyToggled = true;
@@ -573,8 +600,7 @@ $('copy-room').addEventListener('click', async () => {
   $('copy-room').textContent = 'LINK COPIADO!';
   window.setTimeout(() => { $('copy-room').textContent = 'COPIAR LINK'; }, 1600);
 });
-$('stage-office').addEventListener('click', () => chooseStage('office'));
-$('stage-datacenter').addEventListener('click', () => chooseStage('datacenter'));
+renderStages();
 $('stage-back').addEventListener('click', () => show('selection'));
 $('difficulty').addEventListener('change', () => arena?.setDifficulty(Number(($('difficulty') as HTMLSelectElement).value)));
 document.querySelectorAll<HTMLButtonElement>('[data-control]').forEach(button => {
