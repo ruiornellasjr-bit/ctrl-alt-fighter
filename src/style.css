@@ -72,6 +72,28 @@
   .tutorial-panel{top:42px;right:6px;width:min(230px,58%);padding:5px}.tutorial-panel h2{font-size:17px}.tutorial-panel p{font-size:10px}.tutorial-panel .text-button{font-size:9px;padding:3px}.key-row kbd{height:19px;min-width:19px;font-size:10px}
 }
 
+/* Mobile: give menus and fight results the full usable phone height. */
+@media (pointer:coarse), (max-width:760px){
+  html,body{width:100%;min-height:100%;overflow-x:hidden}
+  #app{height:100vh;height:100dvh;min-height:100svh;overflow:hidden}
+  .app-header{position:relative;z-index:31;flex:0 0 42px}
+  .machine>.screen:not(.hidden){position:fixed;inset:auto;top:calc(42px + env(safe-area-inset-top));right:env(safe-area-inset-right);bottom:env(safe-area-inset-bottom);left:env(safe-area-inset-left);z-index:30;width:auto;height:auto;min-height:0;max-height:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:clamp(12px,3vh,26px) clamp(12px,4vw,30px)}
+  .result-screen .result-panel,.pause-screen .pause-panel,.settings-screen .settings-panel{width:min(560px,100%);max-height:100%;overflow-y:auto;padding:clamp(16px,4vw,28px)}
+  .result-screen .result-panel h2{font-size:clamp(38px,10vw,56px);margin:8px 0 12px}
+  .result-screen .result-panel p,.pause-screen .pause-panel p{font-size:clamp(16px,4.5vw,20px);line-height:1.25}
+  .result-buttons{display:grid;gap:6px;margin-top:14px}
+  .result-buttons .primary-button,.result-buttons .text-button{width:100%;max-width:100%;margin:0;padding:10px 12px;font-size:clamp(15px,4vw,20px)}
+  .result-bonus{max-width:100%;font-size:clamp(12px,3.4vw,16px);line-height:1.2;overflow-wrap:anywhere}
+  .touch-controls{--touch-size:clamp(44px,12vw,64px)}
+}
+
+@media (pointer:coarse) and (orientation:landscape) and (max-height:560px){
+  #app{height:auto;min-height:100svh;overflow-y:auto}
+  .machine{width:min(100%,calc(177.78dvh - 328px));margin-inline:auto}
+  .touch-controls:not(.hidden){margin-top:8px;padding-block:5px;--touch-size:clamp(36px,10vh,48px)}
+  .touch-caption{font-size:10px}
+}
+
 /* Arcade circuit route and expanded original arenas. */
 .campaign-route{max-width:900px;margin:0 auto 14px;padding:8px 12px;border:1px solid #385979;background:#071225aa}
 .route-title{margin-bottom:6px;color:#58d6ff;font:900 13px 'Barlow Condensed',sans-serif;letter-spacing:.14em}
