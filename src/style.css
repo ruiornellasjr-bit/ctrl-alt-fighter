@@ -367,21 +367,33 @@
 }
 @media(pointer:coarse){.training-side-panel{display:none}}
 
-/* Street-fighter-inspired title screen: poster art, oversized logo and arcade stack. */
+/* Arcade title screen: in-game roster, oversized logo and arcade stack. */
 .menu-screen{background:#030817}
-.menu-cover{object-position:center 51%;filter:saturate(1.12) contrast(1.07) brightness(.92)}
-.menu-screen::before{background:linear-gradient(180deg,#0206174d 0%,transparent 34%,transparent 68%,#02040db3 100%),radial-gradient(ellipse 46% 94% at 50% 46%,transparent 32%,#03071226 67%,#02040c70 100%)}
+.menu-cover{object-position:center 50%;filter:saturate(1.3) contrast(1.1) brightness(.72)}
+.menu-screen::before{z-index:1;background:linear-gradient(180deg,#02061738 0%,transparent 33%,transparent 65%,#02040db3 100%),radial-gradient(ellipse 45% 98% at 50% 46%,transparent 24%,#03071228 67%,#02040c78 100%)}
+.menu-fighter-lineup{position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none}
+.menu-fighter{position:absolute;bottom:-7%;height:70%;width:25%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 7px 2px #02030b) drop-shadow(0 0 12px #000);transform-origin:center bottom}
+.fighter-kalliane{left:-5%;transform:rotate(-2deg)}
+.fighter-laura{left:10%;height:67%;transform:rotate(1deg)}
+.fighter-caio{left:26%;height:72%;transform:rotate(-1deg)}
+.fighter-rui{left:40%;z-index:2;height:76%}
+.fighter-vinicius{left:59%;height:72%;transform:rotate(1deg)}
+.fighter-monteiro{left:78%;height:70%;transform:rotate(2deg)}
 .menu-content{position:absolute;inset:0;width:100%;max-width:none;padding:0;border:0;background:none;box-shadow:none;clip-path:none;backdrop-filter:none;pointer-events:none}
 .menu-content::before,.menu-content::after{display:none}
-.menu-brand-block{position:absolute;z-index:2;top:0;left:50%;width:min(810px,68%);padding:8px 20px 0;transform:translateX(-50%);background:radial-gradient(ellipse at center,#020611bf 0%,#02061173 45%,transparent 72%);pointer-events:none}
+.menu-brand-block{position:absolute;z-index:4;top:0;left:50%;width:min(900px,72%);padding:7px 20px 0;transform:translateX(-50%);background:radial-gradient(ellipse at center,#020611d1 0%,#0206117a 46%,transparent 74%);pointer-events:none}
 .menu-brand-block::after{display:none}
-.menu-brand-block .menu-kicker{width:66%;margin:0 auto 2px;color:#ffd85b;font-size:clamp(9px,.8vw,13px);text-shadow:0 2px #000,0 0 9px #ffb52d}
-.menu-brand-block .eyebrow{font-size:clamp(10px,.92vw,14px);color:#fff;letter-spacing:.19em;text-shadow:2px 2px #07101e,0 0 7px #3ad8ff}
-.menu-brand-block h1{isolation:isolate;position:relative;width:max-content;max-width:100%;margin:5px auto 1px;font-size:clamp(58px,7.35vw,108px);line-height:.7;letter-spacing:-.065em;transform:skew(-5deg);text-shadow:4px 5px 0 #06101b,8px 9px 0 #020309,0 0 16px #55d9ff}
-.menu-brand-block h1::before{content:'';position:absolute;z-index:-1;inset:-10% -9% -18%;background:linear-gradient(165deg,#ff1765 0 7%,#07040e 8% 82%,#ff1765 83% 88%,transparent 89%);clip-path:polygon(3% 15%,18% 8%,16% 0,40% 11%,58% 2%,76% 13%,98% 6%,91% 30%,100% 43%,91% 55%,98% 75%,77% 70%,72% 91%,53% 80%,38% 96%,27% 80%,4% 91%,11% 66%,0 54%,10% 39%);filter:drop-shadow(0 0 7px #ff17658c)}
-.menu-brand-block h1 span{color:#ffe04d;text-shadow:3px 4px #8b3c00,7px 7px #02050a}
-.menu-brand-block h1 em{margin-top:4px;font-size:1.12em;line-height:.72;letter-spacing:-.045em;background:linear-gradient(180deg,#fff24e 4%,#ffbd21 38%,#ff4d36 69%,#e8004f 96%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px #ffdf54;text-shadow:4px 5px 0 #17030a,8px 9px 0 #020309;filter:drop-shadow(0 0 6px #ff2c5d)}
-.menu-brand-block p{margin:6px 0 0;color:#fff;font-size:clamp(12px,1.15vw,17px);font-weight:800;text-shadow:2px 2px #16165d,0 0 7px #5f4cff}
+.menu-brand-block .menu-kicker{width:62%;margin:0 auto 1px;color:#ffd85b;font-size:clamp(8px,.72vw,12px);text-shadow:0 2px #000,0 0 9px #ffb52d}
+.menu-brand-block .eyebrow{font-size:clamp(9px,.82vw,13px);color:#fff;letter-spacing:.2em;text-shadow:2px 2px #07101e,0 0 7px #3ad8ff}
+.menu-brand-block h1{isolation:isolate;position:relative;width:max-content;max-width:100%;margin:2px auto 0;font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:900;line-height:.68;transform:rotate(-2deg) skew(-7deg);filter:drop-shadow(0 0 9px #ff186a)}
+.menu-brand-block h1::before{content:'';position:absolute;z-index:-1;inset:-12% -12% -15%;background:linear-gradient(168deg,#ff0a63 0 6%,#08030e 7% 84%,#ff0a63 85% 91%,transparent 92%);clip-path:polygon(0 22%,18% 12%,13% 2%,38% 12%,55% 0,72% 11%,100% 4%,91% 28%,100% 39%,90% 54%,98% 77%,76% 70%,70% 96%,52% 81%,35% 98%,27% 79%,1% 91%,11% 63%);filter:drop-shadow(0 0 8px #ff1765a8)}
+.menu-brand-block h1::after{content:'♛';position:absolute;right:-10%;top:10%;color:#ffd426;font-size:clamp(22px,3.6vw,52px);line-height:1;transform:rotate(17deg);text-shadow:2px 3px #8a3b00,4px 5px #020309}
+.logo-line{display:flex;align-items:center;justify-content:center;gap:.045em;font-size:clamp(48px,6.2vw,92px);letter-spacing:-.075em;white-space:nowrap}
+.logo-line b{color:#fff;-webkit-text-stroke:1px #fff;text-shadow:4px 5px 0 #050b18,7px 8px 0 #010208}
+.logo-line b:nth-of-type(2){background:linear-gradient(180deg,#fff 7%,#b8f5ff 48%,#27d9ff 84%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-line i{margin:0 .015em;color:#ffe32e;font-style:normal;-webkit-text-stroke:1px #ffb300;text-shadow:3px 4px #8b3c00,6px 7px #02050a}
+.menu-brand-block h1 em{display:block;margin-top:.1em;font-size:clamp(66px,8.5vw,126px);line-height:.62;letter-spacing:-.045em;background:linear-gradient(180deg,#fff34f 3%,#ffbd1b 36%,#ff4b35 66%,#e90051 96%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1.5px #ffdc4d;text-shadow:4px 5px 0 #17030a,8px 9px 0 #020309;filter:drop-shadow(0 0 6px #ff2c5d)}
+.menu-brand-block p{margin:9px 0 0;color:#fff;font-size:clamp(11px,1.05vw,16px);font-weight:800;text-shadow:2px 2px #16165d,0 0 7px #5f4cff}
 .menu-control-panel{position:absolute;z-index:3;left:50%;bottom:2.1%;width:min(420px,35%);padding:0;transform:translateX(-50%);border:0;background:none;box-shadow:none;clip-path:none;backdrop-filter:none;pointer-events:auto}
 .menu-control-panel .menu-actions{gap:5px}
 .menu-control-panel .primary-button,.menu-control-panel .secondary-button,.menu-control-panel .text-button{position:relative;width:100%;min-height:39px;margin:0;padding:7px 16px;border-radius:0;font:900 clamp(14px,1.35vw,20px) 'Barlow Condensed',sans-serif;letter-spacing:.11em;text-decoration:none;clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px)}
@@ -395,9 +407,10 @@
 @media(max-width:760px){
   .menu-cover{object-position:center 52%}
   .menu-screen::before{background:linear-gradient(180deg,#02061759 0%,transparent 38%,#02040da6 100%)}
-  .menu-brand-block{top:1px;width:min(520px,86%);padding:3px 8px 0}
+  .menu-fighter{bottom:-5%;height:68%;width:35%}.fighter-kalliane{left:-12%}.fighter-laura{left:5%;height:64%}.fighter-caio{left:22%;height:69%}.fighter-rui{left:37%;height:73%}.fighter-vinicius{left:58%;height:69%}.fighter-monteiro{left:78%;height:67%}
+  .menu-brand-block{top:1px;width:min(580px,96%);padding:3px 8px 0}
   .menu-brand-block .menu-kicker{font-size:7px}.menu-brand-block .eyebrow{font-size:7px}
-  .menu-brand-block h1{margin:2px auto 0;font-size:clamp(30px,8vw,51px)}
+  .logo-line{font-size:clamp(38px,11vw,62px)}.menu-brand-block h1 em{font-size:clamp(52px,14.5vw,82px)}
   .menu-brand-block p{margin-top:3px;font-size:8px}
   .menu-control-panel{bottom:3px;width:min(320px,43%)}
   .menu-control-panel .menu-actions{gap:2px}
@@ -407,7 +420,7 @@
 
 @media (pointer:coarse) and (orientation:landscape) and (max-height:560px){
   .menu-brand-block{top:0;width:min(500px,55%)}
-  .menu-brand-block h1{font-size:clamp(30px,9vh,52px)}
+  .logo-line{font-size:clamp(26px,8vh,46px)}.menu-brand-block h1 em{font-size:clamp(35px,10.5vh,60px)}
   .menu-control-panel{bottom:3px;width:min(340px,34%)}
   .menu-control-panel .primary-button,.menu-control-panel .secondary-button,.menu-control-panel .text-button{min-height:24px;padding:2px 7px;font-size:clamp(9px,2.3vh,13px)}
   .menu-control-panel .difficulty-choice{display:none}
