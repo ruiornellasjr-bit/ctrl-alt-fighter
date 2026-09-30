@@ -618,6 +618,7 @@ function menu(): void {
   audio.music('menu');
   renderControlLegend();
   show('menu');
+  closeMenuModes(false);
 }
 
 function openSelection(mode: PlayMode, tutorial: boolean): void {
@@ -697,12 +698,28 @@ function closeSettings(): void {
 function updateSoundLabel(): void { $('sound-toggle').textContent = audio.muted ? '♫ SOM OFF' : '♫ SOM ON'; $('sound-toggle').classList.toggle('active', !audio.muted); }
 
 const playButton = $('play-button') as HTMLButtonElement;
+const arcadeButton = $('menu-arcade') as HTMLButtonElement;
 const onlineButton = $('menu-online') as HTMLButtonElement;
 const versusLocalButton = $('menu-versus-local') as HTMLButtonElement;
 playButton.disabled = true;
+arcadeButton.disabled = true;
 onlineButton.disabled = true;
 versusLocalButton.disabled = true;
 playButton.textContent = 'CARREGANDO ARENA...';
+
+function openMenuModes(): void {
+  $('menu').classList.add('is-choosing');
+  $('menu-mode-panel').classList.remove('hidden');
+  playButton.setAttribute('aria-expanded', 'true');
+  arcadeButton.focus({ preventScroll: true });
+}
+
+function closeMenuModes(restoreFocus = true): void {
+  $('menu').classList.remove('is-choosing');
+  $('menu-mode-panel').classList.add('hidden');
+  playButton.setAttribute('aria-expanded', 'false');
+  if (restoreFocus) playButton.focus({ preventScroll: true });
+}
 
 // Browsers block audio until the page has a user gesture, so the title-screen BGM can't
 // truly autoplay on load — instead we grab the very first interaction anywhere on the
@@ -730,9 +747,10 @@ window.addEventListener('ctrl-alt-fighter-ready', () => {
   arena.audio = audio;
   arena.callbacks = { hud: renderHud, result: showResult, training: completeTraining, toast: showToast, phase: announcePhase };
   playButton.disabled = false;
+  arcadeButton.disabled = false;
   onlineButton.disabled = false;
   versusLocalButton.disabled = false;
-  playButton.textContent = '▶ JOGAR AGORA';
+  playButton.textContent = '▶ JOGAR';
   arena.showMenuBackground();
   // In case the user already interacted with the page while the arena was still loading.
   startMenuMusicAsap();
@@ -751,7 +769,9 @@ const game = new Phaser.Game({
   scene: [ArenaScene],
 });
 
-playButton.addEventListener('click', () => { activateAudio(true); openSelection('arcade', false); });
+playButton.addEventListener('click', () => { activateAudio(true); openMenuModes(); });
+arcadeButton.addEventListener('click', () => { activateAudio(); openSelection('arcade', false); });
+$('menu-back').addEventListener('click', () => closeMenuModes());
 $('menu-tutorial').addEventListener('click', () => { activateAudio(); openSelection('arcade', true); });
 $('menu-online').addEventListener('click', () => { activateAudio(); openSelection('online-host', false); });
 $('menu-versus-local').addEventListener('click', () => { activateAudio(); versusLocalPhase = 1; openSelection('versus-local', false); });
@@ -807,6 +827,11 @@ for (const id of ['music-volume', 'effects-volume']) $(id).addEventListener('inp
 // então o guest ganha automaticamente qualquer ação nova adicionada à config (ex: super).
 const guestKeys: Record<string, Control> = Object.fromEntries(CONTROL_ACTIONS.map(action => [codeFor(GUEST_CONTROLS, action), action])) as Record<string, Control>;
 window.addEventListener('keydown', event => {
+  if (event.code === 'Escape' && screen === 'menu' && !$('menu-mode-panel').classList.contains('hidden')) {
+    event.preventDefault();
+    closeMenuModes();
+    return;
+  }
   if (screen === 'selection') {
     const current = Math.max(0, roster.findIndex(def => def.id === highlightedFighter));
     const moves: Partial<Record<string, number>> = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -3, ArrowDown: 3 };
