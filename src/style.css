@@ -366,3 +366,49 @@
   .move-summary-keys kbd{min-width:16px;height:16px;font-size:9px}
 }
 @media(pointer:coarse){.training-side-panel{display:none}}
+
+/* Street-fighter-inspired title screen: poster art, oversized logo and arcade stack. */
+.menu-screen{background:#030817}
+.menu-cover{object-position:center 51%;filter:saturate(1.12) contrast(1.07) brightness(.92)}
+.menu-screen::before{background:linear-gradient(180deg,#0206174d 0%,transparent 34%,transparent 68%,#02040db3 100%),radial-gradient(ellipse 46% 94% at 50% 46%,transparent 32%,#03071226 67%,#02040c70 100%)}
+.menu-content{position:absolute;inset:0;width:100%;max-width:none;padding:0;border:0;background:none;box-shadow:none;clip-path:none;backdrop-filter:none;pointer-events:none}
+.menu-content::before,.menu-content::after{display:none}
+.menu-brand-block{position:absolute;z-index:2;top:0;left:50%;width:min(810px,68%);padding:8px 20px 0;transform:translateX(-50%);background:radial-gradient(ellipse at center,#020611bf 0%,#02061173 45%,transparent 72%);pointer-events:none}
+.menu-brand-block::after{display:none}
+.menu-brand-block .menu-kicker{width:66%;margin:0 auto 2px;color:#ffd85b;font-size:clamp(9px,.8vw,13px);text-shadow:0 2px #000,0 0 9px #ffb52d}
+.menu-brand-block .eyebrow{font-size:clamp(10px,.92vw,14px);color:#fff;letter-spacing:.19em;text-shadow:2px 2px #07101e,0 0 7px #3ad8ff}
+.menu-brand-block h1{isolation:isolate;position:relative;width:max-content;max-width:100%;margin:5px auto 1px;font-size:clamp(58px,7.35vw,108px);line-height:.7;letter-spacing:-.065em;transform:skew(-5deg);text-shadow:4px 5px 0 #06101b,8px 9px 0 #020309,0 0 16px #55d9ff}
+.menu-brand-block h1::before{content:'';position:absolute;z-index:-1;inset:-10% -9% -18%;background:linear-gradient(165deg,#ff1765 0 7%,#07040e 8% 82%,#ff1765 83% 88%,transparent 89%);clip-path:polygon(3% 15%,18% 8%,16% 0,40% 11%,58% 2%,76% 13%,98% 6%,91% 30%,100% 43%,91% 55%,98% 75%,77% 70%,72% 91%,53% 80%,38% 96%,27% 80%,4% 91%,11% 66%,0 54%,10% 39%);filter:drop-shadow(0 0 7px #ff17658c)}
+.menu-brand-block h1 span{color:#ffe04d;text-shadow:3px 4px #8b3c00,7px 7px #02050a}
+.menu-brand-block h1 em{margin-top:4px;font-size:1.12em;line-height:.72;letter-spacing:-.045em;background:linear-gradient(180deg,#fff24e 4%,#ffbd21 38%,#ff4d36 69%,#e8004f 96%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px #ffdf54;text-shadow:4px 5px 0 #17030a,8px 9px 0 #020309;filter:drop-shadow(0 0 6px #ff2c5d)}
+.menu-brand-block p{margin:6px 0 0;color:#fff;font-size:clamp(12px,1.15vw,17px);font-weight:800;text-shadow:2px 2px #16165d,0 0 7px #5f4cff}
+.menu-control-panel{position:absolute;z-index:3;left:50%;bottom:2.1%;width:min(420px,35%);padding:0;transform:translateX(-50%);border:0;background:none;box-shadow:none;clip-path:none;backdrop-filter:none;pointer-events:auto}
+.menu-control-panel .menu-actions{gap:5px}
+.menu-control-panel .primary-button,.menu-control-panel .secondary-button,.menu-control-panel .text-button{position:relative;width:100%;min-height:39px;margin:0;padding:7px 16px;border-radius:0;font:900 clamp(14px,1.35vw,20px) 'Barlow Condensed',sans-serif;letter-spacing:.11em;text-decoration:none;clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px)}
+.menu-control-panel .primary-button{border:2px solid #fff0a9;background:linear-gradient(180deg,#ffd94f 0%,#ffb527 45%,#ec771a 100%);color:#101019;box-shadow:0 0 0 3px #8b4a06,0 0 22px #ffb21ca8,0 5px 0 #422000;text-shadow:0 1px #fff2ae}
+.menu-control-panel .secondary-button,.menu-control-panel .text-button{border:2px solid #40ddff;background:linear-gradient(180deg,#092d59e8,#04152fe8);color:#eafaff;box-shadow:inset 0 0 0 2px #061022,0 3px 0 #020713,0 0 13px #16bdff42;text-shadow:2px 2px #020817}
+.menu-control-panel .secondary-button small{margin-left:7px;color:#8fddf1;font-size:.58em}
+.menu-control-panel .primary-button:hover,.menu-control-panel .secondary-button:hover,.menu-control-panel .text-button:hover{transform:translateY(-2px);filter:brightness(1.18)}
+.menu-control-panel .difficulty-choice{justify-content:space-between;margin:7px 18px 0;padding:5px 8px;border:1px solid #4fb9dc80;background:#031022c9;color:#b9eaff;font-size:11px;box-shadow:0 3px 12px #0008}
+.menu-control-panel .difficulty-choice select{min-width:118px;border:1px solid #60d8ff;background:#061936;color:#fff;padding:3px 7px}
+
+@media(max-width:760px){
+  .menu-cover{object-position:center 52%}
+  .menu-screen::before{background:linear-gradient(180deg,#02061759 0%,transparent 38%,#02040da6 100%)}
+  .menu-brand-block{top:1px;width:min(520px,86%);padding:3px 8px 0}
+  .menu-brand-block .menu-kicker{font-size:7px}.menu-brand-block .eyebrow{font-size:7px}
+  .menu-brand-block h1{margin:2px auto 0;font-size:clamp(30px,8vw,51px)}
+  .menu-brand-block p{margin-top:3px;font-size:8px}
+  .menu-control-panel{bottom:3px;width:min(320px,43%)}
+  .menu-control-panel .menu-actions{gap:2px}
+  .menu-control-panel .primary-button,.menu-control-panel .secondary-button,.menu-control-panel .text-button{min-height:22px;padding:2px 6px;font-size:clamp(8px,2vw,12px);border-width:1px}
+  .menu-control-panel .difficulty-choice{display:none}
+}
+
+@media (pointer:coarse) and (orientation:landscape) and (max-height:560px){
+  .menu-brand-block{top:0;width:min(500px,55%)}
+  .menu-brand-block h1{font-size:clamp(30px,9vh,52px)}
+  .menu-control-panel{bottom:3px;width:min(340px,34%)}
+  .menu-control-panel .primary-button,.menu-control-panel .secondary-button,.menu-control-panel .text-button{min-height:24px;padding:2px 7px;font-size:clamp(9px,2.3vh,13px)}
+  .menu-control-panel .difficulty-choice{display:none}
+}
