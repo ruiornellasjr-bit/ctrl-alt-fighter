@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dist.new/
+.pnpm-store/
+_tmp_*
+scripts/__pycache__/
+.sites-runtime/
+.superpowers/
