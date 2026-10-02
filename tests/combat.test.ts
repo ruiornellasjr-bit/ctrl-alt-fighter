@@ -69,3 +69,38 @@ describe('hitstop', () => {
     expect(impacts).toEqual([1, 2]);
   });
 });
+
+describe('Firewall Punch', () => {
+  it('mantém a janela ativa alinhada aos quadros de impacto da arte', () => {
+    // A animação roda a 12fps, ou seja 5 frames de simulação por quadro
+    // desenhado. A arte tem carga (1-3), impacto (4-5) e recuperação (6):
+    // se o startup deixar de ser múltiplo de 5, a hitbox passa a aparecer no
+    // meio de um quadro de carga e o golpe "acerta antes de socar".
+    const frames = 60 / 12;
+    expect(MOVES.firewall.startup).toBe(3 * frames);
+    expect(MOVES.firewall.active).toBe(2 * frames);
+  });
+
+  it('compensa o dano acima do normal com recuperação punitiva', () => {
+    // É o único especial que exige comando; o risco é o que o equilibra.
+    expect(MOVES.firewall.damage).toBeGreaterThan(MOVES.punch.damage);
+    expect(MOVES.firewall.recovery).toBeGreaterThan(MOVES.punch.recovery);
+  });
+
+  it('alcança mais que o soco e menos que o cabo', () => {
+    expect(MOVES.firewall.reach).toBeGreaterThan(MOVES.punch.reach);
+    expect(MOVES.firewall.reach).toBeLessThan(MOVES.cable.reach);
+  });
+
+  it('gera hitbox de verdade, diferente do projétil', () => {
+    // Regressão: o especial anterior do Rui era `barrier` (defensivo). Se o
+    // roteamento cair em 'projectile' por engano, attackBox devolve null e o
+    // golpe atravessa o adversário sem acertar.
+    const attacker: CombatBody = { x: 300, elevation: 0, facing: 1, state: 'special' };
+    const attack = createAttack('firewall', 0);
+    const active = MOVES.firewall.startup * COMBAT_STEP;
+    const box = attackBox(attacker, attack, active);
+    expect(box).not.toBeNull();
+    expect(box!.width).toBe(MOVES.firewall.reach);
+  });
+});

@@ -1,0 +1,253 @@
+{
+  "implemented": true,
+  "tool": "Built-in ImageGen",
+  "frameWidth": 320,
+  "frameHeight": 256,
+  "columns": 6,
+  "framesPerPose": 6,
+  "baseline": 248,
+  "groups": {
+    "locomotion": {
+      "file": "laura-v1-locomotion.webp",
+      "poses": [
+        {
+          "pose": "idle",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/idle.gif",
+          "label": "Parado"
+        },
+        {
+          "pose": "walk",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/walk.gif",
+          "label": "Caminhada"
+        },
+        {
+          "pose": "run",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/run.gif",
+          "label": "Corrida"
+        },
+        {
+          "pose": "backhop",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/backhop.gif",
+          "label": "Salto para trás"
+        }
+      ],
+      "scale": 1.029126213592233,
+      "bytes": 1173848
+    },
+    "flight": {
+      "file": "laura-v1-flight.webp",
+      "poses": [
+        {
+          "pose": "jump",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/jump.gif",
+          "label": "Pulo"
+        },
+        {
+          "pose": "doublejump",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/doublejump.gif",
+          "label": "Pulo duplo"
+        },
+        {
+          "pose": "airkick",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/airkick.gif",
+          "label": "Chute aéreo"
+        },
+        {
+          "pose": "land",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/land.gif",
+          "label": "Pouso"
+        }
+      ],
+      "scale": 1.029126213592233,
+      "bytes": 1069270,
+      "jumpSource": "v1-sources/jump-safe.png",
+      "jumpScale": 0.4569
+    },
+    "attacks": {
+      "file": "laura-v1-attacks.webp",
+      "poses": [
+        {
+          "pose": "punch",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/punch.gif",
+          "label": "Soco fraco"
+        },
+        {
+          "pose": "gauncho",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/gauncho.gif",
+          "label": "Gancho"
+        },
+        {
+          "pose": "kick",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/kick.gif",
+          "label": "Chute fraco"
+        },
+        {
+          "pose": "sweep",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/sweep.gif",
+          "label": "Rasteira"
+        }
+      ],
+      "scale": 1.029126213592233,
+      "bytes": 1157426
+    },
+    "damage": {
+      "file": "laura-v1-damage.webp",
+      "poses": [
+        {
+          "pose": "hurt",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/hurt.gif",
+          "label": "Dano fraco"
+        },
+        {
+          "pose": "hurtStrong",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/hurtStrong.gif",
+          "label": "Dano forte"
+        },
+        {
+          "pose": "hurtLow",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/hurtLow.gif",
+          "label": "Dano baixo"
+        },
+        {
+          "pose": "hurtHigh",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/hurtHigh.gif",
+          "label": "Dano alto"
+        }
+      ],
+      "scale": 1.029126213592233,
+      "bytes": 1253836
+    },
+    "defense": {
+      "file": "laura-v1-defense.webp",
+      "poses": [
+        {
+          "pose": "crouch",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/crouch.gif",
+          "label": "Agachamento"
+        },
+        {
+          "pose": "guard",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/guard.gif",
+          "label": "Defesa"
+        },
+        {
+          "pose": "knockdown",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/knockdown.gif",
+          "label": "Queda"
+        },
+        {
+          "pose": "getup",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/getup.gif",
+          "label": "Levantada"
+        }
+      ],
+      "scale": 1.029126213592233,
+      "bytes": 1224988,
+      "guardSource": "v1-sources/guard-safe.png",
+      "guardScale": 0.4291
+    },
+    "special": {
+      "file": "laura-v1-special.webp",
+      "poses": [
+        {
+          "pose": "special",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/special.gif",
+          "label": "Poder especial"
+        },
+        {
+          "pose": "super",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/super.gif",
+          "label": "Super"
+        },
+        {
+          "pose": "blockHit",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/blockHit.gif",
+          "label": "Defesa atingida"
+        },
+        {
+          "pose": "victory",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/victory.gif",
+          "label": "Vitória"
+        }
+      ],
+      "scale": 1.029126213592233,
+      "bytes": 1258104
+    },
+    "strong": {
+      "file": "laura-v1-strong.webp",
+      "poses": [
+        {
+          "pose": "punchStrong",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/punchStrong.gif",
+          "label": "Soco forte"
+        },
+        {
+          "pose": "kickStrong",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/kickStrong.gif",
+          "label": "Chute forte"
+        }
+      ],
+      "scale": 0.7277798637558333,
+      "bytes": 548262
+    }
+  },
+  "power": {
+    "special": "Investimento certo",
+    "super": "Fechamento do Mês"
+  },
+  "generationPrompts": "../_shared/generation-prompts-v1.json",
+  "animationCount": 26,
+  "uniqueFrameCount": 156
+}

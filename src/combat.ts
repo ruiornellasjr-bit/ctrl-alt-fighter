@@ -4,8 +4,8 @@ export const COMBAT_STEP = 1 / 60;
 export const HITSTOP_FRAMES = 3; // 50 ms at 60 Hz, independent of rendering FPS.
 export type Rect = { x: number; y: number; width: number; height: number };
 export type CombatBody = { x: number; elevation: number; facing: -1 | 1; state: FighterState };
-export type MoveId = 'punch' | 'hook' | 'kick' | 'barrier' | 'cable' | 'projectile' | 'super';
-export type HitStyle = 'basic' | 'hook' | 'special' | 'super';
+export type MoveId = 'punch' | 'hook' | 'kick' | 'weakPunch' | 'strongPunch' | 'weakKick' | 'strongKick' | 'sweep' | 'barrier' | 'shield' | 'cable' | 'firewall' | 'projectile' | 'super';
+export type HitStyle = 'basic' | 'hook' | 'low' | 'high' | 'special' | 'super';
 type Move = { startup: number; active: number; recovery: number; reach: number; height: number; centerY: number; damage: number; style: HitStyle };
 
 // Durations are simulation frames. Geometry is relative to the fighter's feet.
@@ -13,8 +13,18 @@ export const MOVES: Record<MoveId, Move> = {
   punch: { startup: 4, active: 3, recovery: 8, reach: 128, height: 76, centerY: 150, damage: 10, style: 'basic' },
   hook: { startup: 5, active: 4, recovery: 6, reach: 143, height: 110, centerY: 190, damage: 14, style: 'hook' },
   kick: { startup: 6, active: 4, recovery: 11, reach: 150, height: 72, centerY: 130, damage: 13, style: 'basic' },
+  weakPunch: { startup: 4, active: 2, recovery: 8, reach: 108, height: 68, centerY: 150, damage: 8, style: 'basic' },
+  strongPunch: { startup: 10, active: 4, recovery: 20, reach: 158, height: 82, centerY: 150, damage: 20, style: 'basic' },
+  weakKick: { startup: 5, active: 3, recovery: 12, reach: 132, height: 65, centerY: 90, damage: 10, style: 'basic' },
+  strongKick: { startup: 12, active: 4, recovery: 24, reach: 196, height: 68, centerY: 200, damage: 18, style: 'high' },
+  sweep: { startup: 7, active: 4, recovery: 16, reach: 156, height: 44, centerY: 25, damage: 12, style: 'low' },
   barrier: { startup: 7, active: 6, recovery: 13, reach: 148, height: 220, centerY: 149, damage: 16, style: 'special' },
+  shield: { startup: 12, active: 6, recovery: 20, reach: 196, height: 150, centerY: 155, damage: 18, style: 'special' },
   cable: { startup: 7, active: 6, recovery: 13, reach: 288, height: 48, centerY: 151, damage: 16, style: 'special' },
+  // Firewall Punch: ↓→ + soco ou especial. A arte v5 acompanha as fases:
+  // três quadros de carga, quarto quadro durante o impacto e dois de retorno.
+  // Preserva 15 frames de preparação, 10 ativos, 20 de recuperação e 20 de dano.
+  firewall: { startup: 15, active: 10, recovery: 20, reach: 196, height: 104, centerY: 158, damage: 20, style: 'special' },
   projectile: { startup: 7, active: 1, recovery: 18, reach: 0, height: 0, centerY: 154, damage: 16, style: 'special' },
   super: { startup: 16, active: 3, recovery: 32, reach: 960, height: 540, centerY: 150, damage: 31, style: 'super' },
 };
@@ -34,6 +44,16 @@ export function attackPhase(attack: Attack, now: number): 'startup' | 'active' |
   if (frame < data.startup + data.active) return 'active';
   if (frame < data.startup + data.active + data.recovery) return 'recovery';
   return 'done';
+}
+
+// Os quadros de extensão (3) coincidem com a hitbox, independentemente do FPS.
+export function attackVisualFrame(attack: Attack, now: number, frameCount = 6): number {
+  const frame = Math.max(0, (now - attack.started) / COMBAT_STEP);
+  const data = MOVES[attack.move];
+  const impact = frameCount === 8 ? 4 : 3;
+  if (frame < data.startup) return Math.min(impact - 1, Math.floor(frame / data.startup * impact));
+  if (frame < data.startup + data.active) return impact;
+  return Math.min(frameCount - 1, impact + 1 + Math.floor((frame - data.startup - data.active) / data.recovery * (frameCount - impact - 1)));
 }
 export function hurtbox(body: CombatBody, ground = 500): Rect {
   const height = body.state === 'crouch' ? 164 : 220;

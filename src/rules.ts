@@ -1,7 +1,7 @@
-export type FighterId = 'kalliane' | 'laura' | 'caio' | 'rui' | 'monteiro' | 'vinicius' | 'homologacao' | 'prazo' | 'cliente';
+export type FighterId = 'kalliane' | 'laura' | 'caio' | 'rui' | 'monteiro' | 'vinicius' | 'yafa';
 export type Direction = 'down' | 'left' | 'right';
 
-export const fighterIds: FighterId[] = ['kalliane', 'laura', 'caio', 'rui', 'monteiro', 'vinicius'];
+export const fighterIds: FighterId[] = ['kalliane', 'laura', 'caio', 'rui', 'monteiro', 'vinicius', 'yafa'];
 
 export function comboReady(inputs: Direction[], facing: -1 | 1): boolean {
   const lastTwo = inputs.slice(-2);
@@ -13,7 +13,7 @@ export function applyDamage(health: number, damage: number, blocking: boolean): 
 }
 
 export function pickOpponents(selected: FighterId, random: () => number = Math.random): FighterId[] {
-  const pool = fighterIds.filter(id => id !== selected);
+  const pool = fighterIds.filter(id => id !== selected && id !== 'yafa');
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.min(i, Math.max(0, Math.floor(random() * (i + 1))));
     [pool[i], pool[j]] = [pool[j], pool[i]];

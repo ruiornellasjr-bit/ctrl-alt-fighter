@@ -1,0 +1,16 @@
+{
+  "implemented": true,
+  "tool": "Built-in ImageGen",
+  "pose": "walk",
+  "file": "caio-v6-walk.webp",
+  "frames": 12,
+  "columns": 6,
+  "rows": 2,
+  "frameWidth": 320,
+  "frameHeight": 256,
+  "baseline": 248,
+  "frameRate": 18,
+  "repeat": -1,
+  "scale": 0.7105263157894737,
+  "alignment": "fixed head anchor and boot baseline"
+}

@@ -4,9 +4,9 @@ type Wave = OscillatorType;
 const note = (semitones: number) => 440 * 2 ** (semitones / 12);
 
 const audioBase = import.meta.env.BASE_URL + 'assets/audio/';
-const MENU_THEME_URL = audioBase + 'menu-theme.wav';
-const TITLE_CALL_URL = audioBase + 'title-call.mp3';
-const TITLE_IMPACT_URL = audioBase + 'title-impact.mp3';
+const MENU_THEME_URL = audioBase + 'music/menu-theme.wav';
+const TITLE_CALL_URL = audioBase + 'sfx/title-call.mp3';
+const TITLE_IMPACT_URL = audioBase + 'sfx/title-impact.mp3';
 
 export class ArcadeAudio {
   private context: AudioContext | null = null;
@@ -101,7 +101,10 @@ export class ArcadeAudio {
     let cached = this.sampleCache.get(url);
     if (!cached) {
       cached = fetch(url)
-        .then(response => response.arrayBuffer())
+        .then(response => {
+          if (!response.ok) throw new Error(`Audio HTTP ${response.status}`);
+          return response.arrayBuffer();
+        })
         .then(buffer => context.decodeAudioData(buffer));
       cached.catch(() => this.sampleCache.delete(url));
       this.sampleCache.set(url, cached);
@@ -121,6 +124,7 @@ export class ArcadeAudio {
       source.buffer = buffer;
       source.connect(gain);
       gain.connect(bus);
+      source.onended = () => { source.disconnect(); gain.disconnect(); };
       source.start();
     } catch {
       // Missing/undecodable asset: fail silently, gameplay isn't blocked by it.
@@ -222,6 +226,8 @@ export class ArcadeAudio {
       : [7, -99, 10, 12, 14, -99, 12, 10, 7, -99, 5, 7, 10, -99, 7, 5,
          3, -99, 7, 10, 12, -99, 10, 7, 5, 3, 5, 7, 10, -99, 7, -99];
     const roots = boss ? [-20, -17, -15, -22] : battle ? [-17, -14, -12, -19] : [-17, -12, -14, -19];
+    // Não agenda centenas de notas atrasadas ao voltar de uma aba suspensa.
+    if (this.nextBeat < this.context.currentTime - step) this.nextBeat = this.context.currentTime + 0.02;
     while (this.nextBeat < this.context.currentTime + 0.2) {
       const pos = this.beat % 32;
       const time = this.nextBeat;
@@ -264,7 +270,6 @@ export class ArcadeAudio {
       case 'ko': this.kick(t, false); [0, -3, -7, -12].forEach((n, i) => { this.tone(note(n - 4), t + i * 0.16, 0.31, 'sawtooth', 0.095); this.snare(t + i * 0.16, false); }); break;
       case 'warning': [0, 1, 0].forEach((n, i) => this.tone(510 + n * 180, t + i * 0.13, 0.11, 'square', 0.065)); break;
       case 'phase': [0, 3, 6, 9, 12].forEach((n, i) => { this.tone(note(n - 10), t + i * 0.09, 0.28, 'square', 0.09); this.kick(t + i * 0.09, false); }); break;
-      case 'toast': [0, 7, 12, 7, 15].forEach((n, i) => { this.tone(note(n + 7), t + i * 0.085, 0.17, 'square', 0.09); this.tone(note(n - 5), t + i * 0.085, 0.13, 'triangle', 0.04); }); break;
       case 'kalliane': this.noise(t, 0.23, 0.1, false, 'bandpass', 3100); this.tone(580, t + 0.06, 0.23, 'triangle', 0.08, false, 1150); this.noise(t + 0.25, 0.07, 0.1, false, 'highpass', 5100); break;
       case 'laura': [0, 1, 2].forEach(i => this.tone(740 + i * 155, t + i * 0.065, 0.09, 'square', 0.055)); this.noise(t + 0.18, 0.09, 0.075, false, 'highpass', 4500); this.kick(t + 0.22, false); break;
       case 'caio': this.tone(660, t, 0.21, 'square', 0.08, false, 280); this.noise(t + 0.1, 0.1, 0.055, false, 'bandpass', 1800); [0, 1, 2].forEach(i => this.tone(320 + i * 180, t + 0.2 + i * 0.06, 0.085, 'triangle', 0.045)); break;

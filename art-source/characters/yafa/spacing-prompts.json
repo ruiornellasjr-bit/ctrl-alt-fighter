@@ -1,0 +1,14 @@
+{
+  "tool": "Built-in ImageGen",
+  "implemented": true,
+  "prompts": [
+    {
+      "group": "flight",
+      "prompt": "Edit the attached Yafa animation sprite sheet. Preserve the exact character identity, clothing, briefcase, effects, ALL 24 poses in the same order, 6 columns and 4 rows, true transparent RGBA background. This is a technical spacing repair only: ROW 3 COLUMN 2 trailing black shoe currently touches the briefcase of ROW 3 COLUMN 3. Move the whole ROW 3 COLUMN 2 sprite 10 pixels left and the whole ROW 3 COLUMN 3 sprite 10 pixels right so both intact silhouettes have a clear transparent gap. Preserve all other pixels, do not redraw poses, do not remove parts or shrink body. All 24 complete silhouettes must be independently separable, with transparent pixels between them. No colored/gradient/solid background."
+    },
+    {
+      "group": "attacks",
+      "prompt": "Edit the attached Yafa animation sprite sheet. Preserve the exact character identity, clothing, briefcase, effects, ALL 24 poses in the same order, 6 columns and 4 rows, true transparent RGBA background. This is a technical spacing repair only: ROW 4 COLUMN 3 extended black shoe touches the briefcase of ROW 4 COLUMN 4. Move the whole ROW 4 COLUMN 3 sprite 10 pixels left and the whole ROW 4 COLUMN 4 sprite 10 pixels right so both intact silhouettes have a clear transparent gap. Preserve all other pixels, do not redraw poses, do not remove parts or shrink body. All 24 complete silhouettes must be independently separable, with transparent pixels between them. No colored/gradient/solid background."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comemorações do Monteiro</title>
+<style>body{margin:0;background:#101b2a;color:#eef6ff;font:18px system-ui}main{max-width:960px;margin:24px auto}h1{font-size:26px}button,select{font:inherit;padding:10px;margin:8px 8px 16px 0}canvas{display:block;max-width:100%;height:auto}#status{min-height:30px;color:#c2ef98}</style>
+<main><h1>Prévias das comemorações</h1><label>Adversário <select id="opponent"></select></label><button id="p1" disabled>Monteiro à esquerda</button><button id="p2" disabled>Monteiro à direita</button><div id="status">Carregando animações…</div><div id="arena" aria-label="Prévia das comemorações"></div></main>
+<script type="module">
+import Phaser from 'phaser';
+import { fighters } from '/src/fighters.ts';
+import { stages } from '/src/stages.ts';
+const monteiroVictoryOpponents=['kalliane','laura','caio','rui','monteiro','vinicius','yafa'];
+const select=document.querySelector('#opponent'),status=document.querySelector('#status');
+for(const id of monteiroVictoryOpponents){const option=document.createElement('option');option.value=id;option.textContent=fighters[id].name;select.append(option)}
+select.value='vinicius';
+let scene;
+class VictoryPreview extends Phaser.Scene {
+  preload(){for(const stage of stages)this.load.image(stage.id,stage.art);for(const id of monteiroVictoryOpponents)this.load.spritesheet(id,`./sources/atlases/monteiro-victory-${id}.webp`,{frameWidth:384,frameHeight:320})}
+  create(){scene=this;this.background=this.add.image(480,270,'office').setDisplaySize(960,540);for(const id of monteiroVictoryOpponents)this.anims.create({key:id,frames:this.anims.generateFrameNumbers(id,{start:0,end:5}),frameRate:4,repeat:0});document.querySelectorAll('button').forEach(b=>b.disabled=false);showVictory()}
+}
+function showVictory(second=false){const opponent=select.value;scene.sprite?.destroy();scene.background.setTexture(opponent==='yafa'?'datacenter':'office');status.textContent=`Prévia: Monteiro e ${fighters[opponent].name}`;scene.sprite=scene.add.sprite(480,500,opponent,0).setOrigin(.5,308/320).setScale(312/256).setFlipX(second);scene.sprite.once('animationcomplete',()=>{status.textContent=`Sequência concluída — rival: ${fighters[opponent].name}`});scene.sprite.play(opponent)}
+document.querySelector('#p1').addEventListener('click',()=>showVictory());
+document.querySelector('#p2').addEventListener('click',()=>showVictory(true));
+new Phaser.Game({type:Phaser.AUTO,parent:'arena',width:960,height:540,backgroundColor:'#101b2a',scene:[VictoryPreview],render:{antialias:true},fps:{target:60,limit:60}});
+</script>
+</html>

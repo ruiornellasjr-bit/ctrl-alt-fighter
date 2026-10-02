@@ -24,18 +24,18 @@
         </div>
         <div id="fight-actions" class="fight-actions hidden"><button id="pause-button" class="mini-button">⏸ PAUSAR</button><button id="help-button" class="mini-button">? COMANDOS</button></div>
         <div id="phase-banner" class="phase-banner" aria-live="polite"></div>
-        <div id="adalberto-toast" class="adalberto-toast" role="status" aria-live="polite" aria-label="Adalberto: Toaaast! Reinicia que passa!"><div class="toast-callout"><strong>TOAAAST!</strong><small id="toast-quip">REINICIA QUE PASSA!</small></div><img src="/assets/adalberto-toast-cutout.png" alt="" /></div>
+        <div id="adalberto-toast" class="adalberto-toast" role="status" aria-live="polite" aria-label="Toaaast! Reinicia que passa!"><div class="toast-callout"><strong>TOAAAST!</strong><small id="toast-quip">REINICIA QUE PASSA!</small></div></div>
         <section id="menu" class="screen menu-screen">
-          <img class="menu-cover" src="/assets/menu-arena-neon.png" alt="" aria-hidden="true" />
+          <img class="menu-cover" src="/assets/ui/menu/menu-arena-neon.webp" alt="" aria-hidden="true" />
           <div class="menu-duel" aria-hidden="true">
-            <img class="menu-fighter fighter-kalliane" src="/assets/menu-kalliane.png" alt="" />
-            <img class="menu-fighter fighter-monteiro" src="/assets/menu-monteiro.png" alt="" />
+            <img class="menu-fighter fighter-kalliane" src="/assets/ui/menu/menu-kalliane.webp" alt="" />
+            <img class="menu-fighter fighter-monteiro" src="/assets/ui/menu/menu-monteiro.webp" alt="" />
           </div>
           <div class="menu-content">
             <div class="menu-brand-block">
               <div class="menu-kicker"><span></span><b>ARCADE EDITION</b><span></span></div>
               <div class="eyebrow">BBS ONE + BUG BUSTERS APRESENTAM</div>
-              <img class="menu-logo" src="/assets/ctrl-alt-fighter-logo.png" alt="Ctrl Alt Fighter" />
+              <img class="menu-logo" src="/assets/ui/logo.webp" alt="Ctrl Alt Fighter" />
               <h1 aria-label="Ctrl Alt Fighter"><span class="logo-line"><b>CTRL</b><i>+</i><b>ALT</b><i>+</i></span><em>FIGHTER</em></h1>
               <p>O expediente acabou. A batalha começou.</p>
             </div>
@@ -49,7 +49,7 @@
                 <button id="menu-arcade" class="primary-button">▶ MODO ARCADE <small>1 JOGADOR</small></button>
                 <button id="menu-versus-local" class="secondary-button">VERSUS LOCAL <small>MESMO TECLADO</small></button>
                 <button id="menu-online" class="secondary-button">VERSUS ONLINE <small>2 JOGADORES</small></button>
-                <button id="menu-tutorial" class="text-button">COMO JOGAR</button>
+                <button id="menu-tutorial" class="text-button">SALA DE TREINAMENTO</button>
                 <button id="menu-options" class="text-button">OPÇÕES</button>
               </div>
               <label class="difficulty-choice"><span>DIFICULDADE</span><select id="difficulty"><option value="0">Fácil</option><option value="1" selected>Moderado</option><option value="2">Difícil</option></select></label>
@@ -61,7 +61,7 @@
           <div class="screen-title selection-title"><small>SELEÇÃO DE LUTADOR</small><h2 id="selection-heading">QUEM VAI PARA A ARENA?</h2></div>
           <div class="selection-stage">
             <article class="fighter-showcase" aria-live="polite">
-              <div class="showcase-portrait"><span id="selection-player-marker" class="player-marker">1P</span><img id="selection-hero" src="/assets/selection-kalliane.jpg" alt="Kalliane" /></div>
+              <div class="showcase-portrait"><span id="selection-player-marker" class="player-marker">1P</span><img id="selection-hero" src="/assets/characters/kalliane/portrait-v2.webp" alt="Kalliane" /></div>
               <div class="showcase-name"><small id="selection-role">COMERCIAL</small><strong id="selection-name">KALLIANE</strong><span id="selection-codename">DEAL-MAKER</span></div>
             </article>
             <div class="roster-panel">
@@ -82,23 +82,33 @@
           </div>
           <div class="selection-footer"><button id="selection-back" class="text-button">← VOLTAR</button><span id="selection-hint">SELECIONE E CONFIRME SEU LUTADOR</span></div>
         </section>
-        <section id="stage-select" class="screen stage-screen hidden"><div class="screen-title"><small>MAPA DO CIRCUITO BBS</small><h2>ESCOLHA A ARENA</h2></div><div id="campaign-route" class="campaign-route hidden"><div class="route-title">SEU CAMINHO ATÉ O CHEFÃO</div><div id="opponent-track" class="opponent-track" aria-label="Próximos adversários"></div></div><div id="stage-grid" class="stage-grid" aria-label="Cenários"></div><button id="stage-back" class="text-button">← VOLTAR AOS LUTADORES</button></section>
+        <section id="stage-select" class="screen stage-screen hidden"><div class="screen-title"><small id="stage-select-kicker">MAPA DO CIRCUITO BBS</small><h2 id="stage-select-title">ESCOLHA A ARENA</h2></div><div id="campaign-route" class="campaign-route hidden"><div class="route-title">SEU CAMINHO ATÉ O CHEFÃO</div><div id="opponent-track" class="opponent-track" aria-label="Próximos adversários"></div></div><div id="stage-grid" class="stage-grid" aria-label="Cenários"></div><button id="stage-back" class="text-button">← VOLTAR AOS LUTADORES</button></section>
         <section id="online-room" class="screen online-room-screen hidden"><div class="room-panel"><div class="eyebrow">VERSUS ONLINE · SALA PRIVADA</div><h2 id="room-title">CRIANDO SALA...</h2><p id="room-status">Aguarde a conexão.</p><div id="room-share" class="room-share hidden"><label for="room-link">CONVITE PARA O PLAYER 2</label><input id="room-link" readonly aria-label="Link da sala para o segundo jogador" /><button id="copy-room" class="primary-button">COPIAR LINK</button><small>Envie este link para seu amigo. A luta começa quando ele escolher um personagem.</small></div><button id="room-back" class="text-button">SAIR DA SALA</button></div></section>
         <section id="tutorial" class="screen tutorial-screen hidden">
-          <div class="tutorial-panel"><div class="eyebrow">TREINO RÁPIDO</div><h2 id="tutorial-title">PREPARE-SE</h2><p id="tutorial-copy"></p><div id="tutorial-keys" class="key-row"></div><div class="tutorial-progress"><i id="tutorial-progress-bar"></i></div><button id="skip-tutorial" class="text-button">PULAR TUTORIAL →</button></div>
-          <aside class="training-side-panel">
-            <div class="input-display">
-              <div class="eyebrow">INPUT DISPLAY</div>
-              <div id="input-display-log" class="input-display-log"></div>
-              <div class="input-display-fsm">ESTADO: <strong id="input-display-state">—</strong></div>
-            </div>
-            <div id="move-summary" class="move-summary"></div>
-          </aside>
+          <div id="tutorial-panel" class="tutorial-panel" role="status" aria-live="polite"><span id="tutorial-count" class="tutorial-count">01/11</span><strong id="tutorial-title">MOVER</strong><span id="tutorial-keys" class="key-row"></span><span id="tutorial-copy" class="tutorial-copy"></span><div class="tutorial-progress"><i id="tutorial-progress-bar"></i></div></div>
+          <div id="training-diagnostic" class="training-diagnostic hidden" role="status" aria-live="polite"><strong>COMBAT DIAGNOSTIC</strong><span>Movimento ........ OK</span><span>Ataques básicos ... OK</span><span>Defesa ........... OK</span><span>Especial ......... OK</span><span>Combo ............ OK</span><small>TREINO LIVRE LIBERADO</small></div>
         </section>
         <section id="result" class="screen result-screen hidden"><div class="result-panel"><div id="result-tag" class="eyebrow"></div><h2 id="result-title"></h2><p id="result-copy"></p><div id="result-bonus" class="result-bonus"></div><div class="result-buttons"><button id="result-primary" class="primary-button"></button><button id="result-menu" class="text-button">VOLTAR AO MENU</button></div></div></section>
         <section id="pause" class="screen pause-screen hidden"><div class="pause-panel"><div class="eyebrow">JOGO PAUSADO</div><h2>RESPIRA. VOLTA PRA LUTA.</h2><p id="pause-controls-hint"></p><button id="resume-button" class="primary-button">▶ CONTINUAR</button><button id="pause-menu" class="text-button">VOLTAR AO MENU</button></div></section>
         <section id="settings" class="screen settings-screen hidden"><div class="settings-panel"><div class="eyebrow">ÁUDIO</div><h2>AJUSTE O VOLUME</h2><label>MÚSICA <input id="music-volume" type="range" min="0" max="100" step="1" /></label><label>EFEITOS <input id="effects-volume" type="range" min="0" max="100" step="1" /></label><button id="settings-close" class="primary-button">FECHAR</button></div></section>
       </main>
+      <section id="training-tools" class="training-tools hidden" aria-label="Ferramentas da sala de treinamento">
+        <div class="training-tool-row">
+          <span id="training-mode-label" class="training-mode-label">TUTORIAL GUIADO</span>
+          <button id="skip-tutorial" type="button" class="mini-button">PULAR PARA TREINO LIVRE</button>
+          <div id="free-training-tools" class="free-training-tools hidden">
+            <button id="training-commands" type="button" class="mini-button" aria-expanded="false" aria-controls="training-command-panel">COMANDOS</button>
+            <button id="training-dummy" type="button" class="mini-button" aria-expanded="false" aria-controls="training-dummy-panel">DUMMY: PARADO</button>
+            <button id="training-reset" type="button" class="mini-button">REINICIAR</button>
+            <button id="training-options" type="button" class="mini-button" aria-expanded="false" aria-controls="training-options-panel">MAIS</button>
+          </div>
+          <button id="training-exit" type="button" class="mini-button">SAIR</button>
+        </div>
+        <div id="training-command-panel" class="training-drawer hidden" aria-label="Lista de comandos"><div class="training-drawer-heading">COMANDOS <button id="training-commands-close" type="button" aria-label="Fechar comandos">✕</button></div><div id="move-summary" class="move-summary"></div></div>
+        <div id="training-dummy-panel" class="training-drawer hidden" aria-label="Comportamento do dummy"><div class="training-drawer-heading">CONFIGURAR DUMMY <button id="training-dummy-close" type="button" aria-label="Fechar opções do dummy">✕</button></div><label for="training-dummy-mode">Comportamento</label><select id="training-dummy-mode"><option value="idle">Parado</option><option value="guard">Defendendo</option><option value="attack">Ataque periódico</option></select><small>O dummy recupera vida e não encerra o treino.</small></div>
+        <div id="training-options-panel" class="training-drawer hidden" aria-label="Mais opções de treinamento"><div class="training-drawer-heading">MAIS OPÇÕES <button id="training-options-close" type="button" aria-label="Fechar opções">✕</button></div><div class="training-options-actions"><button id="training-input-toggle" type="button" class="mini-button" aria-pressed="false">INPUT: OFF</button><button id="training-repeat" type="button" class="mini-button">REPETIR TUTORIAL</button><button id="training-tournament" type="button" class="mini-button">IR AO TORNEIO</button></div></div>
+        <div id="input-display" class="input-display hidden" aria-label="Comandos recentes"><strong>INPUT DISPLAY</strong><div id="input-display-log" class="input-display-log"></div><div class="input-display-fsm">ESTADO: <strong id="input-display-state">—</strong></div></div>
+      </section>
       <section id="touch-controls" class="touch-controls hidden" aria-label="Controles na tela">
         <div class="touch-pad" aria-label="Movimento">
           <button data-control="jump" aria-label="Pular">↑</button>
@@ -112,6 +122,8 @@
           <button data-control="block" aria-label="Defender">DEFESA</button>
           <button data-control="special" aria-label="Poder">PODER</button>
           <button data-control="super" aria-label="Especial com barra cheia">ESPECIAL</button>
+          <button data-control="heavyAttack" data-monteiro-only class="hidden" aria-label="Soco forte">SOCO<small>FORTE</small></button>
+          <button data-control="heavyKick" data-monteiro-only class="hidden" aria-label="Chute forte">CHUTE<small>FORTE</small></button>
         </div>
         <p class="touch-caption">BARRA CHEIA + ESPECIAL · SEGURE DIREÇÃO + PODER PARA VARIAR O GOLPE</p>
       </section>

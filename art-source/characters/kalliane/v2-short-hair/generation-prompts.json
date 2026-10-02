@@ -1,0 +1,25 @@
+{
+  "tool": "Built-in ImageGen",
+  "referenceImages": {
+    "Image 1": "Kalliane short-hair portrait: identity and outfit",
+    "Image 2": "Monteiro portrait: art style and pose only"
+  },
+  "sharedPrompt": "Use case identity-preserve; production sprite atlas for Kalliane. Change only her hair to a neat shoulder-length layered honey-blonde bob with light curls. Preserve warm tan skin, dark eyes, black zip jacket with hot-magenta piping and small gold BBS crown, white shirt, blue lanyard and dark ID badge, black joggers with magenta side stripe and gold crown, black/magenta fingerless wraps, white-black-magenta sneakers. Polished hand-inked 1990s arcade-fighter art matching Monteiro, while Kalliane's identity and costume follow Image 1. Face right in three-quarter side view. Transparent RGBA landscape atlas; exact 6 columns × 4 rows, 24 complete full-body sprites in 256×256 cells; clear transparent gutters; stable scale and foot baseline; no cropping, overlap, extra figures, backdrop, floor, labels, watermark or extra limbs. Preserve existing movement semantics and power concepts.",
+  "sequences": {
+    "locomotion": "ROW 1 calm fighting idle with breathing and slight guard adjustments; ROW 2 natural forward walking with alternating steps; ROW 3 forward running with alternating strides; ROW 4 quick backward evasive hop to the left while still facing right, land and return to guard.",
+    "flight": "ROW 1 vertical jump: anticipation, takeoff, rise, apex guard, descend, soft landing; ROW 2 double jump with a clear second upward impulse, apex, descent and recovery; ROW 3 controlled airborne forward kick to the right, extension, retraction and recovery; ROW 4 landing absorbs impact through bent knees and returns to guard.",
+    "attacks": "ROW 1 weak straight punch to the right; ROW 2 rising hook/uppercut to the right; ROW 3 weak front kick to the right; ROW 4 low sweeping kick to the right. Six connected wind-up, contact, retract and recovery frames per row.",
+    "damage": "Six connected non-graphic frames per row: ROW 1 light body-hit flinch; ROW 2 heavy strong-hit recoil; ROW 3 low-hit knee buckle; ROW 4 high-hit head-and-shoulder recoil. No injury or blood.",
+    "defense": "Six connected frames per row: ROW 1 low crouching guard; ROW 2 standing two-arm block; ROW 3 controlled backward knockdown fall and recovery; ROW 4 rise from ground back into fighting guard.",
+    "special": "Preserve current powers: ROW 1 Proposta irresistível, charge and cast a compact pink-and-gold contract card projectile to the right; ROW 2 existing magenta-and-gold network shield forms, braces, fades; ROW 3 super Contrato Assinado, decisive two-fist lunge with compact gold seal/starburst; ROW 4 solo friendly victory. No readable text.",
+    "strong": "ROW 1 six connected frames of powerful straight punch to the right: guard, coil, step, full extension, retract, recover; ROW 2 six connected frames of high roundhouse kick: knee lift, hip turn, extension, retract, land and recover.",
+    "walk12": "12 distinct phases; left heel contact, weight transfer, right heel lift, right foot passes hips, right knee swings forward, right heel contact, transfer, left heel lift, left foot passes hips, left knee swings forward, left toe extends, seamless return to frame 1. Alternate feet, show unique leg position in every frame.",
+    "walkBack12": "12 distinct backward-walk phases, retreat to the left while head/chest face right; alternating rear-foot contacts, weight transfers, heel lifts, feet draw back under hips, knees bend and extend, stance stabilizes, seamless return to frame 1. No hops, running or attacks."
+  },
+  "formatOverride": {
+    "strong": "Transparent RGBA 2172×724 sheet; exact 6 columns × 2 rows for 12 full-body frames.",
+    "walk12": "Transparent RGBA 1536×1024 sheet; exact 4 columns × 3 rows for 12 full-body frames.",
+    "walkBack12": "Transparent RGBA 1536×1024 sheet; exact 4 columns × 3 rows for 12 full-body frames.",
+    "portrait": "Transparent vertical full-body portrait in Kalliane's established outfit and short hair."
+  }
+}

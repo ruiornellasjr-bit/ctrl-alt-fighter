@@ -1,0 +1,351 @@
+{
+  "implemented": true,
+  "animations": [
+    {
+      "name": "soco-fraco",
+      "title": "Soco fraco",
+      "frames": 8,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "columns": 4,
+      "baseline": 480,
+      "scale": 0.6014492753623188,
+      "previewDurationsMs": [
+        100,
+        50,
+        40,
+        40,
+        50,
+        40,
+        50,
+        200
+      ],
+      "sourceBounds": [
+        [
+          50,
+          34,
+          386,
+          423
+        ],
+        [
+          492,
+          40,
+          837,
+          423
+        ],
+        [
+          918,
+          45,
+          1264,
+          423
+        ],
+        [
+          1342,
+          47,
+          1743,
+          423
+        ],
+        [
+          34,
+          468,
+          477,
+          853
+        ],
+        [
+          497,
+          468,
+          841,
+          853
+        ],
+        [
+          927,
+          465,
+          1265,
+          853
+        ],
+        [
+          1370,
+          465,
+          1706,
+          853
+        ]
+      ],
+      "atlas": "sources/soco-fraco-atlas.png",
+      "preview": "soco-fraco.gif"
+    },
+    {
+      "name": "soco-forte",
+      "title": "Soco forte",
+      "frames": 8,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "columns": 4,
+      "baseline": 480,
+      "scale": 0.6014492753623188,
+      "previewDurationsMs": [
+        180,
+        100,
+        80,
+        60,
+        120,
+        90,
+        90,
+        300
+      ],
+      "sourceBounds": [
+        [
+          23,
+          19,
+          368,
+          422
+        ],
+        [
+          445,
+          19,
+          828,
+          422
+        ],
+        [
+          902,
+          32,
+          1255,
+          422
+        ],
+        [
+          1304,
+          29,
+          1754,
+          422
+        ],
+        [
+          31,
+          462,
+          539,
+          856
+        ],
+        [
+          498,
+          466,
+          978,
+          858
+        ],
+        [
+          961,
+          461,
+          1322,
+          856
+        ],
+        [
+          1372,
+          466,
+          1725,
+          856
+        ]
+      ],
+      "atlas": "sources/soco-forte-atlas.png",
+      "preview": "soco-forte.gif"
+    },
+    {
+      "name": "chute-fraco",
+      "title": "Chute fraco",
+      "frames": 8,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "columns": 4,
+      "baseline": 480,
+      "scale": 0.6014492753623188,
+      "previewDurationsMs": [
+        110,
+        60,
+        60,
+        40,
+        70,
+        50,
+        70,
+        220
+      ],
+      "sourceBounds": [
+        [
+          44,
+          21,
+          378,
+          426
+        ],
+        [
+          514,
+          22,
+          798,
+          428
+        ],
+        [
+          918,
+          20,
+          1225,
+          430
+        ],
+        [
+          1342,
+          19,
+          1754,
+          430
+        ],
+        [
+          33,
+          462,
+          509,
+          861
+        ],
+        [
+          531,
+          458,
+          827,
+          861
+        ],
+        [
+          918,
+          464,
+          1260,
+          862
+        ],
+        [
+          1359,
+          462,
+          1700,
+          861
+        ]
+      ],
+      "atlas": "sources/chute-fraco-atlas.png",
+      "preview": "chute-fraco.gif"
+    },
+    {
+      "name": "chute-forte",
+      "title": "Chute forte",
+      "frames": 8,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "columns": 4,
+      "baseline": 480,
+      "scale": 0.6014492753623188,
+      "previewDurationsMs": [
+        180,
+        110,
+        100,
+        80,
+        140,
+        100,
+        100,
+        320
+      ],
+      "sourceBounds": [
+        [
+          41,
+          29,
+          369,
+          422
+        ],
+        [
+          509,
+          31,
+          876,
+          428
+        ],
+        [
+          949,
+          11,
+          1256,
+          429
+        ],
+        [
+          1392,
+          28,
+          1706,
+          429
+        ],
+        [
+          11,
+          475,
+          501,
+          866
+        ],
+        [
+          516,
+          455,
+          918,
+          864
+        ],
+        [
+          971,
+          459,
+          1257,
+          866
+        ],
+        [
+          1371,
+          461,
+          1711,
+          866
+        ]
+      ],
+      "atlas": "sources/chute-forte-atlas.png",
+      "preview": "chute-forte.gif"
+    },
+    {
+      "name": "vitoria-cabo",
+      "title": "Vitória com cabo de rede",
+      "frames": 6,
+      "frameWidth": 640,
+      "frameHeight": 512,
+      "columns": 3,
+      "baseline": 480,
+      "scale": 0.6014492753623188,
+      "previewDurationsMs": [
+        450,
+        400,
+        450,
+        400,
+        400,
+        1600
+      ],
+      "sourceBounds": [
+        [
+          37,
+          49,
+          506,
+          469
+        ],
+        [
+          539,
+          62,
+          1004,
+          469
+        ],
+        [
+          1057,
+          75,
+          1505,
+          470
+        ],
+        [
+          25,
+          528,
+          489,
+          960
+        ],
+        [
+          547,
+          481,
+          984,
+          960
+        ],
+        [
+          1067,
+          486,
+          1512,
+          962
+        ]
+      ],
+      "atlas": "sources/vitoria-cabo-atlas.png",
+      "preview": "vitoria-cabo.gif"
+    }
+  ]
+}

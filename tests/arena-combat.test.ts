@@ -38,10 +38,10 @@ describe('arena attack integration', () => {
     expect(s.enemy.health).toBe(100);
     s.elapsed = 4 * COMBAT_STEP;
     s.tickAttacks();
-    expect(s.enemy.health).toBe(90);
+    expect(s.enemy.health).toBe(92);
     expect(s.player.attack.consumed).toBe(true);
     s.tickAttacks();
-    expect(s.enemy.health).toBe(90);
+    expect(s.enemy.health).toBe(92);
   });
   it('interruption cancels a pending attack and its hitbox', () => {
     const s = setup();
@@ -58,7 +58,7 @@ describe('arena attack integration', () => {
     s.punch(s.enemy, s.player);
     s.elapsed = 4 * COMBAT_STEP;
     s.tickAttacks();
-    expect([s.player.health, s.enemy.health]).toEqual([90, 90]);
+    expect([s.player.health, s.enemy.health]).toEqual([92, 92]);
     expect([s.player.attack, s.enemy.attack]).toEqual([null, null]);
     expect([s.player.x, s.enemy.x]).toEqual([300, 420]);
     for (let i = 0; i < 3; i++) s.hitstop.step();
@@ -184,7 +184,7 @@ describe('debug and approved controls', () => {
     s.handlePlayer(COMBAT_STEP);
     expect(s.player.x).toBeGreaterThan(300);
     s.punch(s.player, s.enemy);
-    expect(s.player.attack.move).toBe('punch');
+    expect(s.player.attack.move).toBe('weakPunch');
     s.player.cooldown = 0;
     s.player.state = 'crouch';
     s.punch(s.player, s.enemy, true);

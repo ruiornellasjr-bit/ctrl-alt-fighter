@@ -288,8 +288,11 @@ def repack(path, out_path, report):
 
 
 def main():
-    src = sys.argv[1] if len(sys.argv) > 1 else 'public/assets/spritesheets-v2'
-    dst = sys.argv[2] if len(sys.argv) > 2 else 'public/assets/spritesheets-v3'
+    if len(sys.argv) != 3:
+        raise SystemExit('uso: repack-spritesheets.py ORIGEM DESTINO')
+    src, dst = sys.argv[1:]
+    if not os.path.isdir(src):
+        raise SystemExit(f'Pasta de origem não encontrada: {src}')
     os.makedirs(dst, exist_ok=True)
 
     report = []

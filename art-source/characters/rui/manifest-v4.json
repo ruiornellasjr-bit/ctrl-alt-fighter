@@ -1,0 +1,47 @@
+{
+  "version": 4,
+  "status": "pilot",
+  "layout": {
+    "sheetWidth": 1920,
+    "sheetHeight": 2560,
+    "columns": 6,
+    "rows": 10,
+    "frameWidth": 320,
+    "frameHeight": 256,
+    "direction": "right",
+    "frameOrder": "left-to-right",
+    "baseline": 247,
+    "idleHeight": 218
+  },
+  "animations": {
+    "idle": { "row": 0, "frames": 4, "source": "v4" },
+    "walk": { "row": 1, "frames": 6, "source": "v4-walk" },
+    "punch": { "row": 2, "frames": 4, "source": "v4" },
+    "kick": { "row": 3, "frames": 4, "source": "v4" },
+    "guard": { "row": 4, "frames": 4, "source": "v3" },
+    "jump": { "row": 5, "frames": 4, "source": "v4-jump" },
+    "special": { "row": 6, "frames": 6, "source": "v4-firewall-punch" },
+    "hurtRecovery": { "row": 7, "frames": 4, "source": "v3" },
+    "crouch": { "row": 8, "frames": 3, "source": "v4-crouch" },
+    "gauncho": { "row": 9, "frames": 6, "source": "v4-gauncho" }
+  },
+  "notes": {
+    "row4": "Na v3 esta linha se chamava crouchGuard e servia para agachar E defender. Com a linha 8 existindo, aqui e so defesa.",
+    "crouchFrames": "A arte tem 4 quadros, mas o quarto e o personagem se levantando. Como agachar e um estado sustentado, usar os 4 em loop faria o personagem subir e descer sozinho: usamos 3 e seguramos no ultimo.",
+    "row6": "Firewall Punch. Substituiu a barreira defensiva herdada da v3: a arte e claramente ofensiva. A escala vem do quadro 1 medida numa faixa estreita sobre os pes, porque o fogo estende a silhueta ate 572px e distorceria a medida da altura.",
+    "row5": "Pulo. Antes copiava a linha de pulo da v3; agora tem arte propria (quadros 2-5 da fonte rui-jump-6frames.png). Descartamos os quadros de agachamento (1 e 6) pelo mesmo motivo do crouch: holdsLastFrame prende o ultimo quadro por quase toda a subida/descida, e terminar num agachamento de pouso ficaria visualmente errado com o personagem ainda no ar.",
+    "row9": "Gauncho: visual exclusivo do Rui para o gancho universal (agachar + soco, MOVES.hook em combat.ts) -- o golpe em si nao muda para ninguem, so a arte do Rui. Os outros personagens continuam mostrando o soco comum via alias (gauncho -> punch nas folhas v3). A fonte tem 14 quadros numa unica tira onde o rastro do golpe e a explosao do impacto conectam varias figuras num so bloco de alpha; a separacao usa densidade de pixels opacos por coluna (nao so presenca). Usamos 6 dos 14 quadros-fonte (indices 0, 3, 6, 7, 9, 13: agachado pronto, carga, subida com rastro, impacto, retracao, recuperacao), escolhidos por inspecao visual. A escala vem do indice-fonte 3 (nao do 0, um agachamento bem fechado que inflaria a escala), medida numa faixa estreita sobre os pes para nao ser distorcida pela explosao do impacto. O quadro de impacto (indice-fonte 7) estoura os 256px da celula nessa escala (~0,99, quase 1:1) porque a explosao tem massa solida ate a metade da caixa, nao so pontas finas -- cortar por cima apagaria o efeito. Por isso so esse quadro usa uma escala menor, reduzida ao minimo necessario para caber inteiro (corpo + explosao preservados); os outros 5 quadros usam a escala de referencia sem alteracao."
+  },
+  "fighters": {
+    "rui": "spritesheet-v4.png"
+  },
+  "sources": {
+    "rui-4row.png": "Folha original de 4 colunas com idle/punch/kick.",
+    "rui-walk-6frames.png": "Arte de caminhada em 6 quadros, grade 3x2.",
+    "rui-crouch-8frames.png": "Arte de agachamento, grade 4x2. As duas fileiras sao a mesma sequencia reenquadrada; usamos a inferior (deriva de pes de 12px contra 38px da superior).",
+    "rui-firewall-punch-6frames.png": "Arte do Firewall Punch, grade 3x2 lida em Z: carga (1-3), impacto (4-5) e recuperacao (6).",
+    "rui-jump-6frames.png": "Arte de pulo, grade 3x2 lida em Z: agachamento/preparacao (1), impulso (2), subida (3), apice (4), descida (5), aterrissagem/agachamento (6). Usamos os quadros 2-5: o 1 e o 6 sao a mesma pose de agachamento e o pulo so comeca depois que o personagem ja deixou o chao, entao replay-la no ar seria redundante; terminar no quadro 6 tambem ficaria errado porque holdsLastFrame prende a ultima pose por boa parte do tempo no ar.",
+    "rui-gauncho-14frames.png": "Arte do Gauncho (gancho com luva mecanica), 14 quadros numa unica tira 2000x667px sem grade regular. Ver notes.row9."
+  },
+  "rebuild": "python3 scripts/build-rui-v4.py public/assets/characters/rui/sources/rui-walk-6frames.png public/assets/characters/rui/sources/rui-crouch-8frames.png public/assets/characters/rui/sources/rui-firewall-punch-6frames.png public/assets/characters/rui/sources/rui-jump-6frames.png public/assets/characters/rui/sources/rui-gauncho-14frames.png"
+}

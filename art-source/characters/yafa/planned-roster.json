@@ -1,0 +1,20 @@
+{
+  "status": "Integrado ao jogo após autorização do usuário",
+  "replacement": {
+    "from": "cliente",
+    "to": "yafa"
+  },
+  "remove": [
+    "homologacao",
+    "prazo"
+  ],
+  "keep": [
+    "kalliane",
+    "laura",
+    "caio",
+    "rui",
+    "monteiro",
+    "vinicius"
+  ],
+  "campaignProposal": "Três adversários do elenco, sem repetição, e Yafa como chefe final em duas fases."
+}

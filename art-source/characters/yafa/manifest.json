@@ -1,0 +1,246 @@
+{
+  "implemented": true,
+  "tool": "Built-in ImageGen",
+  "frameWidth": 320,
+  "frameHeight": 256,
+  "columns": 6,
+  "framesPerPose": 6,
+  "baseline": 248,
+  "groups": {
+    "locomotion": {
+      "file": "yafa-v1-locomotion.webp",
+      "poses": [
+        {
+          "pose": "idle",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/idle.gif",
+          "label": "Parado"
+        },
+        {
+          "pose": "walk",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/walk.gif",
+          "label": "Caminhada"
+        },
+        {
+          "pose": "run",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/run.gif",
+          "label": "Corrida"
+        },
+        {
+          "pose": "backhop",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/backhop.gif",
+          "label": "Recuo"
+        }
+      ],
+      "scale": 0.877906976744186,
+      "bytes": 1146172
+    },
+    "flight": {
+      "file": "yafa-v1-flight.webp",
+      "poses": [
+        {
+          "pose": "jump",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/jump.gif",
+          "label": "Pulo"
+        },
+        {
+          "pose": "doublejump",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/doublejump.gif",
+          "label": "Pulo duplo"
+        },
+        {
+          "pose": "airkick",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/airkick.gif",
+          "label": "Chute aéreo"
+        },
+        {
+          "pose": "land",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/land.gif",
+          "label": "Pouso"
+        }
+      ],
+      "scale": 0.877906976744186,
+      "bytes": 1182888
+    },
+    "attacks": {
+      "file": "yafa-v1-attacks.webp",
+      "poses": [
+        {
+          "pose": "punch",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/punch.gif",
+          "label": "Soco fraco"
+        },
+        {
+          "pose": "gauncho",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/gauncho.gif",
+          "label": "Gancho"
+        },
+        {
+          "pose": "kick",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/kick.gif",
+          "label": "Chute fraco"
+        },
+        {
+          "pose": "sweep",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/sweep.gif",
+          "label": "Rasteira"
+        }
+      ],
+      "scale": 0.877906976744186,
+      "bytes": 1082048
+    },
+    "damage": {
+      "file": "yafa-v1-damage.webp",
+      "poses": [
+        {
+          "pose": "hurt",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/hurt.gif",
+          "label": "Dano fraco"
+        },
+        {
+          "pose": "hurtStrong",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/hurtStrong.gif",
+          "label": "Dano forte"
+        },
+        {
+          "pose": "hurtLow",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/hurtLow.gif",
+          "label": "Dano baixo"
+        },
+        {
+          "pose": "hurtHigh",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/hurtHigh.gif",
+          "label": "Dano alto"
+        }
+      ],
+      "scale": 0.877906976744186,
+      "bytes": 1175796
+    },
+    "defense": {
+      "file": "yafa-v1-defense.webp",
+      "poses": [
+        {
+          "pose": "crouch",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/crouch.gif",
+          "label": "Agachamento"
+        },
+        {
+          "pose": "guard",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/guard.gif",
+          "label": "Guarda"
+        },
+        {
+          "pose": "knockdown",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/knockdown.gif",
+          "label": "Queda"
+        },
+        {
+          "pose": "getup",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/getup.gif",
+          "label": "Recuperação"
+        }
+      ],
+      "scale": 0.877906976744186,
+      "bytes": 1104456
+    },
+    "special": {
+      "file": "yafa-v1-special.webp",
+      "poses": [
+        {
+          "pose": "special",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/special.gif",
+          "label": "Escudo da Apólice"
+        },
+        {
+          "pose": "super",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/super.gif",
+          "label": "Cláusula Final"
+        },
+        {
+          "pose": "blockHit",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/blockHit.gif",
+          "label": "Bloqueio atingido"
+        },
+        {
+          "pose": "victory",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/victory.gif",
+          "label": "Vitória"
+        }
+      ],
+      "scale": 0.877906976744186,
+      "bytes": 1221528
+    },
+    "strong": {
+      "file": "yafa-v1-strong.webp",
+      "poses": [
+        {
+          "pose": "punchStrong",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/punchStrong.gif",
+          "label": "Soco forte"
+        },
+        {
+          "pose": "kickStrong",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/kickStrong.gif",
+          "label": "Chute forte"
+        }
+      ],
+      "scale": 0.6208402929461647,
+      "bytes": 514652
+    }
+  },
+  "power": {
+    "name": "Escudo da Apólice",
+    "super": "Cláusula Final"
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "implemented": true,
+  "tool": "Built-in ImageGen",
+  "frameWidth": 320,
+  "frameHeight": 256,
+  "columns": 6,
+  "framesPerPose": 6,
+  "baseline": 248,
+  "groups": {
+    "locomotion": {
+      "file": "caio-v1-locomotion.webp",
+      "poses": [
+        {
+          "pose": "idle",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/idle.gif",
+          "label": "Parado"
+        },
+        {
+          "pose": "walk",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/walk.gif",
+          "label": "Caminhada"
+        },
+        {
+          "pose": "run",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/run.gif",
+          "label": "Corrida"
+        },
+        {
+          "pose": "backhop",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/backhop.gif",
+          "label": "Salto para trás"
+        }
+      ],
+      "scale": 1.087179487179487,
+      "bytes": 1114086
+    },
+    "flight": {
+      "file": "caio-v1-flight.webp",
+      "poses": [
+        {
+          "pose": "jump",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/jump.gif",
+          "label": "Pulo"
+        },
+        {
+          "pose": "doublejump",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/doublejump.gif",
+          "label": "Pulo duplo"
+        },
+        {
+          "pose": "airkick",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/airkick.gif",
+          "label": "Chute aéreo"
+        },
+        {
+          "pose": "land",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/land.gif",
+          "label": "Pouso"
+        }
+      ],
+      "scale": 1.087179487179487,
+      "bytes": 1096698
+    },
+    "attacks": {
+      "file": "caio-v1-attacks.webp",
+      "poses": [
+        {
+          "pose": "punch",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/punch.gif",
+          "label": "Soco fraco"
+        },
+        {
+          "pose": "gauncho",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/gauncho.gif",
+          "label": "Gancho"
+        },
+        {
+          "pose": "kick",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/kick.gif",
+          "label": "Chute fraco"
+        },
+        {
+          "pose": "sweep",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/sweep.gif",
+          "label": "Rasteira"
+        }
+      ],
+      "scale": 1.087179487179487,
+      "bytes": 1070364
+    },
+    "damage": {
+      "file": "caio-v1-damage.webp",
+      "poses": [
+        {
+          "pose": "hurt",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/hurt.gif",
+          "label": "Dano fraco"
+        },
+        {
+          "pose": "hurtStrong",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/hurtStrong.gif",
+          "label": "Dano forte"
+        },
+        {
+          "pose": "hurtLow",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/hurtLow.gif",
+          "label": "Dano baixo"
+        },
+        {
+          "pose": "hurtHigh",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/hurtHigh.gif",
+          "label": "Dano alto"
+        }
+      ],
+      "scale": 1.087179487179487,
+      "bytes": 1286002
+    },
+    "defense": {
+      "file": "caio-v1-defense.webp",
+      "poses": [
+        {
+          "pose": "crouch",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/crouch.gif",
+          "label": "Agachamento"
+        },
+        {
+          "pose": "guard",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/guard.gif",
+          "label": "Defesa"
+        },
+        {
+          "pose": "knockdown",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/knockdown.gif",
+          "label": "Queda"
+        },
+        {
+          "pose": "getup",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/getup.gif",
+          "label": "Levantada"
+        }
+      ],
+      "scale": 1.087179487179487,
+      "bytes": 1096472
+    },
+    "special": {
+      "file": "caio-v1-special.webp",
+      "poses": [
+        {
+          "pose": "special",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/special.gif",
+          "label": "Ticket Bumerangue"
+        },
+        {
+          "pose": "super",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/super.gif",
+          "label": "Reinício Forçado"
+        },
+        {
+          "pose": "blockHit",
+          "row": 2,
+          "frames": 6,
+          "preview": "previews/blockHit.gif",
+          "label": "Defesa atingida"
+        },
+        {
+          "pose": "victory",
+          "row": 3,
+          "frames": 6,
+          "preview": "previews/victory.gif",
+          "label": "Vitória"
+        }
+      ],
+      "scale": 1.087179487179487,
+      "bytes": 1390140
+    },
+    "strong": {
+      "file": "caio-v1-strong.webp",
+      "poses": [
+        {
+          "pose": "punchStrong",
+          "row": 0,
+          "frames": 6,
+          "preview": "previews/punchStrong.gif",
+          "label": "Soco forte"
+        },
+        {
+          "pose": "kickStrong",
+          "row": 1,
+          "frames": 6,
+          "preview": "previews/kickStrong.gif",
+          "label": "Chute forte"
+        }
+      ],
+      "scale": 1.087179487179487,
+      "bytes": 551260
+    }
+  },
+  "power": {
+    "special": "Ticket Bumerangue",
+    "alternate": "Tela Azul",
+    "super": "Reinício Forçado"
+  },
+  "overrides": {
+    "walk": {
+      "implemented": true,
+      "tool": "Built-in ImageGen",
+      "pose": "walk",
+      "file": "caio-v6-walk.webp",
+      "frames": 12,
+      "columns": 6,
+      "rows": 2,
+      "frameWidth": 320,
+      "frameHeight": 256,
+      "baseline": 248,
+      "frameRate": 18,
+      "repeat": -1,
+      "scale": 0.7105263157894737,
+      "alignment": "fixed head anchor and boot baseline"
+    },
+    "walkBack": {
+      "implemented": true,
+      "tool": "Built-in ImageGen",
+      "pose": "walkBack",
+      "file": "caio-v6-walk-back.webp",
+      "frames": 12,
+      "columns": 6,
+      "rows": 2,
+      "frameWidth": 320,
+      "frameHeight": 256,
+      "baseline": 248,
+      "frameRate": 18,
+      "repeat": -1,
+      "scale": 0.8089887640449438,
+      "alignment": "fixed head anchor and boot baseline"
+    }
+  },
+  "uniqueFrameCount": 174,
+  "animationCount": 27
+}

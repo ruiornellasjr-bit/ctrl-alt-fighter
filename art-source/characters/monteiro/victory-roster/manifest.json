@@ -1,0 +1,349 @@
+{
+  "implemented": true,
+  "tool": "Built-in ImageGen",
+  "opponents": {
+    "kalliane": {
+      "file": "monteiro-victory-kalliane.webp",
+      "frames": 6,
+      "frameWidth": 384,
+      "frameHeight": 320,
+      "columns": 3,
+      "baseline": 300,
+      "originY": 0.9625,
+      "scale": 0.4988235294117647,
+      "sourceBounds": [
+        [
+          38,
+          49,
+          511,
+          474
+        ],
+        [
+          539,
+          61,
+          1008,
+          474
+        ],
+        [
+          1056,
+          75,
+          1512,
+          474
+        ],
+        [
+          26,
+          527,
+          493,
+          961
+        ],
+        [
+          548,
+          481,
+          993,
+          961
+        ],
+        [
+          1067,
+          484,
+          1513,
+          962
+        ]
+      ],
+      "bytes": 387700
+    },
+    "laura": {
+      "file": "monteiro-victory-laura.webp",
+      "frames": 6,
+      "frameWidth": 384,
+      "frameHeight": 320,
+      "columns": 3,
+      "baseline": 300,
+      "originY": 0.9625,
+      "scale": 0.5011820330969267,
+      "sourceBounds": [
+        [
+          34,
+          47,
+          510,
+          470
+        ],
+        [
+          536,
+          60,
+          1007,
+          471
+        ],
+        [
+          1053,
+          73,
+          1504,
+          471
+        ],
+        [
+          18,
+          527,
+          499,
+          962
+        ],
+        [
+          537,
+          482,
+          996,
+          962
+        ],
+        [
+          1059,
+          484,
+          1512,
+          962
+        ]
+      ],
+      "bytes": 415888
+    },
+    "caio": {
+      "file": "monteiro-victory-caio.webp",
+      "frames": 6,
+      "frameWidth": 384,
+      "frameHeight": 320,
+      "columns": 3,
+      "baseline": 300,
+      "originY": 0.9625,
+      "scale": 0.5023696682464455,
+      "sourceBounds": [
+        [
+          36,
+          48,
+          515,
+          470
+        ],
+        [
+          538,
+          61,
+          1008,
+          472
+        ],
+        [
+          1056,
+          74,
+          1507,
+          472
+        ],
+        [
+          24,
+          528,
+          501,
+          961
+        ],
+        [
+          546,
+          483,
+          993,
+          962
+        ],
+        [
+          1065,
+          483,
+          1513,
+          963
+        ]
+      ],
+      "bytes": 387734
+    },
+    "rui": {
+      "file": "monteiro-victory-rui.webp",
+      "frames": 6,
+      "frameWidth": 384,
+      "frameHeight": 320,
+      "columns": 3,
+      "baseline": 300,
+      "originY": 0.9625,
+      "scale": 0.503562945368171,
+      "sourceBounds": [
+        [
+          34,
+          49,
+          522,
+          470
+        ],
+        [
+          539,
+          61,
+          1011,
+          470
+        ],
+        [
+          1052,
+          74,
+          1512,
+          469
+        ],
+        [
+          25,
+          529,
+          508,
+          961
+        ],
+        [
+          542,
+          484,
+          1008,
+          961
+        ],
+        [
+          1061,
+          485,
+          1518,
+          961
+        ]
+      ],
+      "bytes": 395302
+    },
+    "monteiro": {
+      "file": "monteiro-victory-monteiro.webp",
+      "frames": 6,
+      "frameWidth": 384,
+      "frameHeight": 320,
+      "columns": 3,
+      "baseline": 300,
+      "originY": 0.9625,
+      "scale": 0.4988235294117647,
+      "sourceBounds": [
+        [
+          35,
+          49,
+          517,
+          474
+        ],
+        [
+          535,
+          59,
+          1012,
+          474
+        ],
+        [
+          1056,
+          73,
+          1505,
+          474
+        ],
+        [
+          26,
+          527,
+          510,
+          961
+        ],
+        [
+          544,
+          481,
+          1007,
+          961
+        ],
+        [
+          1066,
+          484,
+          1519,
+          962
+        ]
+      ],
+      "bytes": 397344
+    },
+    "vinicius": {
+      "file": "monteiro-victory-vinicius.webp",
+      "frames": 6,
+      "frameWidth": 384,
+      "frameHeight": 320,
+      "columns": 3,
+      "baseline": 300,
+      "originY": 0.9625,
+      "scale": 0.4711111111111111,
+      "sourceBounds": [
+        [
+          25,
+          37,
+          520,
+          487
+        ],
+        [
+          531,
+          47,
+          1011,
+          487
+        ],
+        [
+          1043,
+          54,
+          1513,
+          488
+        ],
+        [
+          27,
+          525,
+          498,
+          973
+        ],
+        [
+          544,
+          497,
+          1009,
+          973
+        ],
+        [
+          1070,
+          495,
+          1518,
+          973
+        ]
+      ],
+      "bytes": 364862
+    },
+    "yafa": {
+      "file": "monteiro-victory-yafa.webp",
+      "frames": 6,
+      "frameWidth": 384,
+      "frameHeight": 320,
+      "columns": 3,
+      "baseline": 300,
+      "originY": 0.9625,
+      "scale": 0.4896073903002309,
+      "sourceBounds": [
+        [
+          32,
+          46,
+          524,
+          479
+        ],
+        [
+          532,
+          63,
+          1036,
+          480
+        ],
+        [
+          1053,
+          70,
+          1517,
+          480
+        ],
+        [
+          22,
+          530,
+          519,
+          963
+        ],
+        [
+          533,
+          487,
+          1019,
+          964
+        ],
+        [
+          1067,
+          487,
+          1534,
+          964
+        ]
+      ],
+      "bytes": 392514
+    }
+  }
+}

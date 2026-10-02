@@ -10,23 +10,23 @@
 .tutorial-panel{left:auto;right:16px;top:104px;transform:none;width:min(350px,42%)}
 @media(max-width:760px){#app{padding:8px}.brand-small{font-size:13px}.brand-icon{width:27px;height:27px}.app-header{height:45px}.mini-button{font-size:11px;padding:5px}.menu-art{opacity:.48;width:37%}.menu-content h1{font-size:clamp(40px,10vw,75px)}.menu-content p{font-size:17px}.selection-screen{padding:12px}.screen-title h2{font-size:26px;margin-bottom:8px}.roster{gap:6px}.fighter-card{min-height:65px;padding:3px;gap:4px}.fighter-card img{width:45px;height:55px}.fighter-info b{font-size:16px}.fighter-info small,.fighter-info em{font-size:9px}.selection-footer{font-size:10px}.hud{top:5px;left:6px;right:6px;gap:6px}.fighter-hud span{font-size:13px}.health-track{height:11px}.timer-box{min-width:35px}.timer-box strong{font-size:29px}.timer-box small{font-size:8px}.tutorial-panel{top:48px;padding:6px;width:min(265px,47%);right:7px}.tutorial-panel h2{font-size:20px}.tutorial-panel p{font-size:11px}.tutorial-panel .text-button{font-size:9px;padding:4px}.key-row kbd{height:20px;min-width:20px;font-size:11px}.fight-actions{bottom:4px;right:4px}.app-footer{font-size:10px;gap:7px;padding-top:14px}}
 
-.menu-content .text-button{margin-top:3px;padding:5px 12px}.difficulty-choice{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:7px;color:#b7ddf5;font:800 14px 'Barlow Condensed',sans-serif;letter-spacing:.08em}.difficulty-choice select{max-width:215px;background:#101d36;border:1px solid #59c7ed;color:#fff;padding:5px 7px;font:700 13px 'Barlow Condensed',sans-serif}.phase-banner{position:absolute;z-index:5;left:50%;top:26%;transform:translate(-50%,-25%) scale(.85);opacity:0;pointer-events:none;white-space:nowrap;color:#ffe1a2;font:900 clamp(23px,4vw,53px) 'Barlow Condensed',sans-serif;text-shadow:4px 4px #7f2514,0 0 22px #ff4b2b;transition:opacity .18s,transform .2s}.phase-banner.active{opacity:1;transform:translate(-50%,-25%) scale(1)}.adalberto-toast{position:absolute;z-index:6;right:15px;bottom:7px;display:flex;align-items:end;gap:11px;max-width:390px;pointer-events:none;transform:translateX(115%);opacity:0;transition:transform .26s steps(5,end),opacity .15s}.adalberto-toast.active{transform:translateX(0);opacity:1}.adalberto-toast img{width:128px;height:128px;object-fit:cover;object-position:center;border:4px solid #ffe27d;box-shadow:5px 5px #0a1930,0 0 26px #ffcb57;border-radius:50%}.adalberto-toast div{background:#091830ed;border:3px solid #ffe27d;padding:9px 11px;margin-bottom:20px;box-shadow:4px 5px #050b18}.adalberto-toast strong{display:block;color:#ffe27d;font:900 28px 'Barlow Condensed',sans-serif;letter-spacing:.05em;text-shadow:2px 2px #8c3a18}.adalberto-toast small{display:block;color:#e8f6ff;font:700 13px 'Rajdhani',sans-serif}.touch-controls{display:none;position:absolute;z-index:4;bottom:4px;left:4px;right:4px;justify-content:space-between;pointer-events:none;touch-action:none;user-select:none}.touch-controls>div{display:flex;gap:4px}.touch-controls button{pointer-events:auto;min-width:40px;min-height:40px;border:2px solid #a6e8ff;background:#0b2744bb;color:white;font:900 12px 'Barlow Condensed',sans-serif;touch-action:none}.touch-controls button.pressed{background:#48b8ee;color:#081225}.touch-controls [data-control="attack"]{border-color:#ffcf62}.touch-controls [data-control="special"]{border-color:#ff57bf}
-@media(pointer:coarse){.touch-controls:not(.hidden){display:flex}.fight-actions{bottom:auto;top:62px}.adalberto-toast{bottom:56px}.adalberto-toast img{width:86px;height:86px}.adalberto-toast strong{font-size:20px}.adalberto-toast small{font-size:11px}}
-@media(max-width:760px){.menu-content{padding:7px}.menu-content h1{margin:8px 0}.menu-content p{margin-bottom:8px}.menu-content .primary-button{padding:6px 15px}.menu-content .text-button{font-size:12px;padding:2px}.difficulty-choice{font-size:10px;margin-top:2px}.difficulty-choice select{font-size:10px;padding:2px}.adalberto-toast{right:3px;bottom:3px}.adalberto-toast img{width:70px;height:70px}.adalberto-toast div{padding:5px;margin-bottom:7px}.adalberto-toast strong{font-size:17px}.adalberto-toast small{font-size:9px}.touch-controls button{min-width:29px;min-height:28px;font-size:9px}.phase-banner{font-size:20px}}
+.menu-content .text-button{margin-top:3px;padding:5px 12px}.difficulty-choice{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:7px;color:#b7ddf5;font:800 14px 'Barlow Condensed',sans-serif;letter-spacing:.08em}.difficulty-choice select{max-width:215px;background:#101d36;border:1px solid #59c7ed;color:#fff;padding:5px 7px;font:700 13px 'Barlow Condensed',sans-serif}.phase-banner{position:absolute;z-index:5;left:50%;top:26%;transform:translate(-50%,-25%) scale(.85);opacity:0;pointer-events:none;white-space:nowrap;color:#ffe1a2;font:900 clamp(23px,4vw,53px) 'Barlow Condensed',sans-serif;text-shadow:4px 4px #7f2514,0 0 22px #ff4b2b;transition:opacity .18s,transform .2s}.phase-banner.active{opacity:1;transform:translate(-50%,-25%) scale(1)}.adalberto-toast{position:absolute;z-index:6;right:15px;bottom:7px;display:flex;align-items:end;gap:11px;max-width:390px;pointer-events:none;transform:translateX(115%);opacity:0;transition:transform .26s steps(5,end),opacity .15s}.adalberto-toast.active{transform:translateX(0);opacity:1}.adalberto-toast div{background:#091830ed;border:3px solid #ffe27d;padding:9px 11px;margin-bottom:20px;box-shadow:4px 5px #050b18}.adalberto-toast strong{display:block;color:#ffe27d;font:900 28px 'Barlow Condensed',sans-serif;letter-spacing:.05em;text-shadow:2px 2px #8c3a18}.adalberto-toast small{display:block;color:#e8f6ff;font:700 13px 'Rajdhani',sans-serif}.touch-controls{display:none;position:absolute;z-index:4;bottom:4px;left:4px;right:4px;justify-content:space-between;pointer-events:none;touch-action:none;user-select:none}.touch-controls>div{display:flex;gap:4px}.touch-controls button{pointer-events:auto;min-width:40px;min-height:40px;border:2px solid #a6e8ff;background:#0b2744bb;color:white;font:900 12px 'Barlow Condensed',sans-serif;touch-action:none}.touch-controls button.pressed{background:#48b8ee;color:#081225}.touch-controls [data-control="attack"]{border-color:#ffcf62}.touch-controls [data-control="special"]{border-color:#ff57bf}
+@media(pointer:coarse){.touch-controls:not(.hidden){display:flex}.fight-actions{bottom:auto;top:62px}.adalberto-toast{bottom:56px}.adalberto-toast strong{font-size:20px}.adalberto-toast small{font-size:11px}}
+@media(max-width:760px){.menu-content{padding:7px}.menu-content h1{margin:8px 0}.menu-content p{margin-bottom:8px}.menu-content .primary-button{padding:6px 15px}.menu-content .text-button{font-size:12px;padding:2px}.difficulty-choice{font-size:10px;margin-top:2px}.difficulty-choice select{font-size:10px;padding:2px}.adalberto-toast{right:3px;bottom:3px}.adalberto-toast div{padding:5px;margin-bottom:7px}.adalberto-toast strong{font-size:17px}.adalberto-toast small{font-size:9px}.touch-controls button{min-width:29px;min-height:28px;font-size:9px}.phase-banner{font-size:20px}}
 .stage-screen{background:linear-gradient(150deg,#071325ee,#091c39f2);padding:30px 42px;text-align:center;overflow:auto}.stage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:850px;margin:18px auto 0}.stage-card{display:flex;flex-direction:column;text-align:left;background:#102340;color:#fff;border:3px solid #547da6;padding:7px;box-shadow:0 8px 23px #0009}.stage-card:hover,.stage-card:focus-visible{border-color:#ffe376;transform:translateY(-3px)}.stage-card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}.stage-card strong{font:900 clamp(18px,2.4vw,28px) 'Barlow Condensed',sans-serif;color:#ffcf68;letter-spacing:.07em;padding:4px 5px 0}.stage-card span{font:700 14px 'Rajdhani',sans-serif;padding:0 5px 4px;color:#b9d5e9}.stage-screen .text-button{margin-top:4px}.result-bonus{padding:8px 12px;margin:6px auto;background:#0c2945;border:1px solid #5ad3f6;color:#ffe588;font:800 16px 'Barlow Condensed',sans-serif;letter-spacing:.08em}
 @media(max-width:760px){.stage-screen{padding:8px 18px}.stage-grid{gap:8px;margin:4px auto}.stage-card{padding:3px}.stage-card strong{font-size:14px}.stage-card span{font-size:10px}.stage-screen .text-button{font-size:11px;padding:3px}.result-bonus{font-size:12px;padding:4px}}
 
-/* Adalberto appears from below the arena, like a fleeting arcade easter egg. */
-.adalberto-toast{right:0;bottom:0;width:min(53%,570px);height:53%;max-width:none;display:block;transform:none;opacity:1;overflow:visible}
+/* Silent arcade callout, without a portrait. */
+.adalberto-toast{right:16px;bottom:64px;width:auto;height:auto;max-width:calc(100% - 32px);display:block;transform:none;opacity:1;overflow:visible}
 .adalberto-toast.active{transform:none;opacity:1}
-.adalberto-toast img{position:absolute;right:0;bottom:-2px;width:auto;height:96%;max-width:58%;object-fit:contain;object-position:bottom right;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(-5px 2px 2px #040715dd) drop-shadow(0 0 13px #fff8);transform:translateY(110%);opacity:0;transition:transform .16s steps(4,end),opacity .05s}
-.adalberto-toast.active img{transform:translateY(0);opacity:1}
-.adalberto-toast .toast-callout{position:absolute;z-index:1;right:43%;bottom:36%;margin:0;padding:0;border:0;background:none;box-shadow:none;white-space:nowrap;opacity:0;transform:translateY(15px) scale(.8);transition:opacity .08s,transform .12s steps(3,end)}
+
+
+.adalberto-toast .toast-callout{position:relative;z-index:1;right:auto;bottom:auto;margin:0;padding:0;border:0;background:none;box-shadow:none;white-space:nowrap;opacity:0;transform:translateY(15px) scale(.8);transition:opacity .08s,transform .12s steps(3,end)}
 .adalberto-toast.active .toast-callout{opacity:1;transform:translateY(0) scale(1)}
 .adalberto-toast strong{color:#ff3f67;font:900 clamp(30px,5vw,68px)/.85 'Barlow Condensed',sans-serif;letter-spacing:.055em;-webkit-text-stroke:1px #fff4e5;text-shadow:3px 4px #3b0924,0 0 13px #ff3f67}
 .adalberto-toast small{margin-top:7px;color:#fff1a0;font:900 clamp(14px,2vw,26px) 'Barlow Condensed',sans-serif;letter-spacing:.12em;text-shadow:2px 3px #42160c,0 0 8px #000}
-@media(pointer:coarse){.adalberto-toast{bottom:0}.adalberto-toast img{height:96%}.adalberto-toast strong{font-size:clamp(22px,5vw,46px)}.adalberto-toast small{font-size:clamp(11px,2vw,20px)}}
-@media(max-width:760px){.adalberto-toast{right:0;bottom:0;width:60%;height:60%}.adalberto-toast img{width:auto;height:94%;max-width:57%}.adalberto-toast .toast-callout{right:44%;bottom:35%;padding:0;margin:0}.adalberto-toast strong{font-size:clamp(19px,5vw,35px)}.adalberto-toast small{font-size:clamp(10px,2vw,15px)}}
+@media(pointer:coarse){.adalberto-toast{bottom:56px}.adalberto-toast strong{font-size:clamp(22px,5vw,46px)}.adalberto-toast small{font-size:clamp(11px,2vw,20px)}}
+@media(max-width:760px){.adalberto-toast{right:8px;bottom:48px;width:auto;height:auto;max-width:calc(100% - 16px)}.adalberto-toast .toast-callout{right:auto;bottom:auto;padding:0;margin:0}.adalberto-toast strong{font-size:clamp(19px,5vw,35px)}.adalberto-toast small{font-size:clamp(10px,2vw,15px)}}
 
 .remote-video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:fill;background:#081225;pointer-events:none}
 .online-room-screen{display:grid;place-items:center;text-align:center;background:linear-gradient(145deg,#061326f3,#0d2443f4)}
@@ -127,6 +127,10 @@
 .touch-actions button:nth-child(4){grid-column:1}.touch-actions button:nth-child(5){grid-column:2}
 .touch-pad button.pressed,.touch-actions button.pressed{transform:translateY(2px);filter:brightness(1.45);box-shadow:0 1px 0 #030810}
 .touch-caption{grid-area:hint;margin:0;text-align:center;color:#8fa8c6;font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em}
+.touch-actions.monteiro-actions{grid-template-rows:repeat(3,54px)}
+.touch-actions [data-control="heavyAttack"]{border-color:#ffe389;grid-column:1;grid-row:3}
+.touch-actions [data-control="heavyKick"]{border-color:#ff9cae;grid-column:2;grid-row:3}
+.touch-actions button small{display:block;font-size:9px;line-height:1.1;letter-spacing:.02em}
 @media (pointer:coarse), (max-width:760px){
   #app{min-height:100svh;display:flex;flex-direction:column;padding:8px max(8px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
   .app-header{height:42px;flex:0 0 42px}.machine{flex:0 0 auto;aspect-ratio:16/9;width:100%;box-shadow:0 0 0 3px #0a1427,0 0 0 5px #1e3652,0 10px 30px #000a}
@@ -135,6 +139,7 @@
   .touch-controls{--touch-size:clamp(42px,12vw,62px)}
   .touch-pad{grid-template-columns:repeat(3,var(--touch-size));grid-template-rows:repeat(2,var(--touch-size));gap:3px}
   .touch-actions{grid-template-columns:repeat(3,var(--touch-size));grid-template-rows:repeat(2,var(--touch-size));gap:3px}
+  .touch-actions.monteiro-actions{grid-template-rows:repeat(3,var(--touch-size))}
   .touch-pad button,.touch-actions button{width:var(--touch-size);min-width:var(--touch-size);height:var(--touch-size);min-height:var(--touch-size);padding:2px;font-size:clamp(10px,3.2vw,14px);border-radius:11px}
   .touch-actions button{font-size:clamp(8px,2.2vw,12px);letter-spacing:-.02em}
   .touch-caption{font-size:clamp(9px,2.5vw,12px)}
@@ -410,6 +415,9 @@
 .showcase-name{right:18px;bottom:12px;left:18px}
 .showcase-name strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
+@media(min-width:761px){.selection-stage{grid-template-rows:minmax(0,1fr)}.roster-panel{min-height:0}}
+.roster-panel .roster{grid-template-rows:repeat(3,minmax(0,1fr));flex:1 1 0;margin:0}
+.roster-panel .fighter-card:last-child{grid-column:1 / -1}
 .roster-panel .fighter-card{padding:5px 5px 34px;background:linear-gradient(150deg,color-mix(in srgb,var(--accent) 12%,#10243b),#050b15)}
 .roster-panel .fighter-card::before{height:39%;background:linear-gradient(transparent,#030711f3 72%)}
 .roster-panel .fighter-card img{position:relative;inset:auto;display:block;width:100%;height:100%;padding:4px;object-fit:contain;object-position:center;background:radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--accent) 13%,#1a3047),#07111e 72%);filter:saturate(.78) brightness(.8);transform:none}
@@ -428,33 +436,40 @@
   .roster-panel .fighter-card{padding:2px 2px 23px}.roster-panel .fighter-info{bottom:3px}.roster-panel .fighter-info b{font-size:13px}
 }
 
-/* Modo treino: painel lateral esquerdo com Input Display (teclas recentes +
-   estado da FSM) e resumo visual dos golpes básicos, espelhando visualmente
-   o .tutorial-panel que já ocupa o lado direito. */
-.training-side-panel{pointer-events:auto;position:absolute;top:104px;left:16px;width:min(300px,40%);display:flex;flex-direction:column;gap:10px}
-.input-display,.move-summary{background:#071326e9;border:2px solid #58d8ff;box-shadow:0 0 25px #21b7ff99;padding:10px 14px}
-.input-display-log{display:flex;flex-wrap:wrap;gap:6px;min-height:33px;align-items:center;margin-top:6px}
-.input-display-log kbd{display:grid;place-items:center;min-width:33px;height:33px;border:1px solid #c7edff;background:#17385c;color:#fff;box-shadow:2px 3px #07101a;font:800 15px 'Barlow Condensed',sans-serif}
-.input-display-log small{color:#6f8cae}
-.input-display-fsm{margin-top:8px;font:800 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;color:#b7ddf5}
-.input-display-fsm strong{color:#ffbe4b}
-.move-summary-item{padding:6px 0;border-top:1px solid #17385c}
-.move-summary-item:first-child{border-top:0;padding-top:0}
-.move-summary-item strong{display:block;font:800 15px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#ffbe4b}
-.move-summary-item small{display:block;color:#b7ddf5;font-size:12px;margin-top:2px}
-.move-summary-keys{display:inline-flex;gap:4px;margin-top:4px}
-.move-summary-keys kbd{display:grid;place-items:center;min-width:26px;height:26px;border:1px solid #c7edff;background:#17385c;color:#fff;font:800 12px 'Barlow Condensed',sans-serif}
-@media(max-width:760px){
-  .training-side-panel{top:48px;left:6px;width:min(190px,42%);gap:5px}
-  .input-display,.move-summary{padding:5px 7px}
-  .input-display-log{min-height:20px;gap:3px}
-  .input-display-log kbd{min-width:20px;height:20px;font-size:10px}
-  .input-display-fsm{font-size:9px;margin-top:4px}
-  .move-summary-item strong{font-size:11px}
-  .move-summary-item small{font-size:8px}
-  .move-summary-keys kbd{min-width:16px;height:16px;font-size:9px}
-}
-@media(pointer:coarse){.training-side-panel{display:none}}
+/* O tutorial ocupa uma única faixa curta; ferramentas e ajuda ficam fora da arena. */
+.tutorial-panel{left:50%;right:auto;top:90px;transform:translateX(-50%);width:min(550px,76%);min-height:62px;padding:6px 12px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:3px 10px;border:1px solid #58d8ff;background:#071326df;box-shadow:0 0 12px #21b7ff55}
+.tutorial-count{color:#ffca55;font:900 15px 'Barlow Condensed',sans-serif;letter-spacing:.08em}
+.tutorial-panel strong{font:900 22px 'Barlow Condensed',sans-serif;letter-spacing:.06em;white-space:nowrap}
+.tutorial-panel .key-row{display:inline-flex;gap:4px}.tutorial-panel .key-row kbd{min-width:26px;height:25px;font-size:13px}
+.tutorial-copy{width:100%;font:700 13px/1.1 'Rajdhani',sans-serif;color:#cbe8f7}
+.tutorial-panel .tutorial-progress{width:100%;height:3px;margin:1px 0 0}
+.tutorial-panel.is-complete{border-color:#7ae9a4;box-shadow:0 0 16px #48e89788}
+.training-diagnostic{pointer-events:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(340px,78%);display:flex;flex-direction:column;gap:3px;padding:14px 18px;background:#071326ed;border:2px solid #58d8ff;box-shadow:0 0 26px #21b7ff99;color:#d8f4ff;font:700 13px/1.3 monospace;text-align:left}
+.training-diagnostic strong{color:#ffca55;font:900 23px 'Barlow Condensed',sans-serif;letter-spacing:.1em;text-align:center}
+.training-diagnostic small{margin-top:4px;color:#7ae9a4;font:900 16px 'Barlow Condensed',sans-serif;text-align:center;letter-spacing:.08em}
+.training-tools{margin:11px auto 0;width:100%;max-width:1264px;color:#eaf5ff}
+.training-tool-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:8px 10px;background:#0c1b30;border:1px solid #3d6684;box-shadow:0 4px 14px #0005}
+.training-mode-label{margin-right:auto;color:#ffca55;font:900 16px 'Barlow Condensed',sans-serif;letter-spacing:.12em}
+.free-training-tools{display:flex;flex-wrap:wrap;gap:7px}
+.training-tool-row .mini-button{font-size:13px;padding:6px 9px}
+.training-drawer{margin:6px 0 0;padding:12px;background:#0b1c30;border:1px solid #4a90ac;box-shadow:0 6px 18px #0006}
+.training-drawer-heading{display:flex;align-items:center;justify-content:space-between;color:#ffca55;font:900 19px 'Barlow Condensed',sans-serif;letter-spacing:.08em}
+.training-drawer-heading button{border:0;background:none;color:#d8f4ff;font-size:19px}
+.training-drawer label{display:block;margin:5px 0;color:#b7ddf5;font:700 15px 'Barlow Condensed',sans-serif}
+.training-drawer select{width:min(270px,100%);padding:6px;background:#102d48;border:1px solid #58d8ff;color:#fff}
+.training-drawer small{display:block;margin-top:6px;color:#b7ddf5}
+.training-options-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.move-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:5px 15px;max-height:190px;overflow-y:auto}
+.move-summary-item{padding:5px 0;border-top:1px solid #30516d}
+.move-summary-item strong{display:block;color:#ffca55;font:900 15px 'Barlow Condensed',sans-serif}
+.move-summary-item small{display:block;color:#b7ddf5;font-size:12px}
+.move-summary-keys{display:flex;gap:4px;margin:3px 0}
+.move-summary-keys kbd,.input-display-log kbd{display:grid;place-items:center;min-width:25px;height:23px;padding:0 3px;border:1px solid #a9e8ff;background:#17385c;color:#fff;font:800 12px 'Barlow Condensed',sans-serif}
+.input-display{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px;padding:6px 10px;background:#0b1c30;border:1px solid #3d6684}
+.input-display>strong{color:#58d8ff;font:900 14px 'Barlow Condensed',sans-serif;letter-spacing:.08em}
+.input-display-log{display:flex;gap:4px;align-items:center;min-height:23px}
+.input-display-fsm{font:800 12px 'Barlow Condensed',sans-serif;color:#b7ddf5}.input-display-fsm strong{color:#ffca55}
+@media(max-width:760px){.tutorial-panel{top:42px;width:min(360px,67%);min-height:36px;padding:3px 5px;gap:1px 4px}.tutorial-count{font-size:10px}.tutorial-panel strong{font-size:13px}.tutorial-panel .key-row kbd{min-width:17px;height:17px;font-size:9px}.tutorial-copy{font-size:9px}.training-tool-row{gap:4px;padding:5px}.training-mode-label{font-size:11px}.training-tool-row .mini-button{font-size:10px;padding:4px 6px}.training-tool-row>#training-exit{margin-left:auto;order:2}.free-training-tools{order:3;flex:1 1 100%;min-width:0;justify-content:space-between;gap:4px}.training-diagnostic{width:min(260px,75%);padding:8px;font-size:9px}.training-diagnostic strong{font-size:15px}.training-diagnostic small{font-size:11px}}
 
 /* Final title art supplied for the arcade opening. */
 .menu-cover{object-position:center center!important;filter:saturate(1.08) contrast(1.04) brightness(.72)!important}

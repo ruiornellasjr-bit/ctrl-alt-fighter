@@ -1,0 +1,45 @@
+{
+  "implemented": true,
+  "groups": {
+    "weak-punch": {
+      "file": "monteiro-v6-weak-punch.webp",
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frames": 8,
+      "columns": 4,
+      "baseline": 480,
+      "pivotX": 190,
+      "scale": 0.5234567901234568
+    },
+    "strong-punch": {
+      "file": "monteiro-v6-strong-punch.webp",
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frames": 8,
+      "columns": 4,
+      "baseline": 480,
+      "pivotX": 190,
+      "scale": 0.5234567901234568
+    },
+    "weak-kick": {
+      "file": "monteiro-v6-weak-kick.webp",
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frames": 8,
+      "columns": 4,
+      "baseline": 480,
+      "pivotX": 190,
+      "scale": 0.5234567901234568
+    },
+    "strong-kick": {
+      "file": "monteiro-v6-strong-kick.webp",
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "frames": 8,
+      "columns": 4,
+      "baseline": 480,
+      "pivotX": 190,
+      "scale": 0.5234567901234568
+    }
+  }
+}

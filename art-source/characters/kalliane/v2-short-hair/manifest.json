@@ -1,0 +1,139 @@
+{
+  "status": "implemented",
+  "character": "Kalliane",
+  "visualChange": "shoulder-length layered honey-blonde hair",
+  "referenceStyle": "Monteiro arcade-fighter sprite art",
+  "gameplay": "existing controls, movement semantics, power names and power concepts retained",
+  "frameWidth": 320,
+  "frameHeight": 256,
+  "columns": 6,
+  "framesPerPose": 6,
+  "baseline": 248,
+  "scale": 0.99531,
+  "poseScale": {
+    "crouch": 0.9,
+    "guard": 0.92,
+    "jump": 0.92,
+    "doublejump": 0.92,
+    "airkick": 0.92,
+    "land": 0.92
+  },
+  "frameOverrides": {
+    "guard": {
+      "0": "guard-01.png",
+      "1": "guard-02.png",
+      "2": "guard-03.png",
+      "3": "guard-04.png",
+      "4": "guard-05.png",
+      "5": "guard-06.png"
+    },
+    "punch": {
+      "2": "punch-03.png",
+      "3": "punch-04.png"
+    },
+    "punchStrong": {
+      "2": "punchStrong-03.png",
+      "3": "punchStrong-04.png"
+    },
+    "victory": {
+      "0": "victory-01.png",
+      "1": "victory-02.png",
+      "2": "victory-03.png",
+      "3": "victory-04.png",
+      "4": "victory-05.png",
+      "5": "victory-06.png"
+    }
+  },
+  "overrideHeight": {
+    "guard": 212,
+    "punch": 208,
+    "punchStrong": 208,
+    "victory": 208
+  },
+  "groups": {
+    "locomotion": "atlases/kalliane-v2-locomotion.webp",
+    "flight": "atlases/kalliane-v2-flight.webp",
+    "attacks": "atlases/kalliane-v2-attacks.webp",
+    "damage": "atlases/kalliane-v2-damage.webp",
+    "defense": "atlases/kalliane-v2-defense.webp",
+    "special": "atlases/kalliane-v2-special.webp",
+    "strong": "atlases/kalliane-v2-strong.webp"
+  },
+  "poses": {
+    "locomotion": [
+      "idle",
+      "walk",
+      "run",
+      "backhop"
+    ],
+    "flight": [
+      "jump",
+      "doublejump",
+      "airkick",
+      "land"
+    ],
+    "attacks": [
+      "punch",
+      "gauncho",
+      "kick",
+      "sweep"
+    ],
+    "damage": [
+      "hurt",
+      "hurtStrong",
+      "hurtLow",
+      "hurtHigh"
+    ],
+    "defense": [
+      "crouch",
+      "guard",
+      "knockdown",
+      "getup"
+    ],
+    "special": [
+      "special",
+      "super",
+      "blockHit",
+      "victory"
+    ],
+    "strong": [
+      "punchStrong",
+      "kickStrong"
+    ]
+  },
+  "animationCount": 27,
+  "uniqueFrameCount": 174,
+  "overrides": {
+    "walk": {
+      "file": "atlases/kalliane-v2-walk12.webp",
+      "frames": 12,
+      "frameRate": 18,
+      "preview": "previews/walk-12frames.gif",
+      "frameDirectory": "frames/walk12/",
+      "scale": 0.66544
+    },
+    "walkBack": {
+      "file": "atlases/kalliane-v2-walkBack12.webp",
+      "frames": 12,
+      "frameRate": 18,
+      "preview": "previews/walk-back-12frames.gif",
+      "frameDirectory": "frames/walkBack12/",
+      "scale": 0.66544
+    }
+  },
+  "powers": {
+    "special": "Proposta irresistível",
+    "super": "Contrato Assinado!"
+  },
+  "references": [
+    "portrait-v2.png (short-hair identity/outfit)",
+    "../../monteiro/portrait.png (art style only)"
+  ],
+  "tool": "Built-in ImageGen",
+  "sourceFiles": "sources/",
+  "preview": "preview.gif",
+  "atlasFiles": "atlases/",
+  "portrait": "portrait-v2.webp",
+  "promptFile": "generation-prompts.json",
+  "runtimeFilesModified": true
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Monteiro — Cabo de Rede",
+  "durationSeconds": 8,
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "audio": "Efeitos de carga, lançamento e impacto sintetizados; sem fala.",
+  "status": "Vídeo independente, não implementado no jogo.",
+  "sourceArt": [
+    "public/assets/characters/monteiro/monteiro-v5-special.webp",
+    "public/assets/characters/monteiro/monteiro-v5-locomotion.webp",
+    "public/assets/characters/rui/rui-v5-damage.webp",
+    "art-source/stages/datacenter-arena.png"
+  ],
+  "storyboard": [
+    "0–1,65s: apresentação de Monteiro",
+    "1,65–2,83s: Cabo de Rede e impacto",
+    "3,6–5,95s: repetição em câmera lenta",
+    "6,2–8s: pose final e frase do personagem"
+  ]
+}

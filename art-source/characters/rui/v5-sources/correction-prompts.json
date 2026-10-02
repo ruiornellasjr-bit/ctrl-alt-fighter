@@ -1,0 +1,24 @@
+{
+  "tool": "Built-in ImageGen",
+  "transparent_background": true,
+  "edits": [
+    {
+      "group": "flight",
+      "reference": "legacy/flight-first.png",
+      "output": "flight.png",
+      "prompt": "Use case: precise-object-edit. Image 1 EDIT TARGET: transparent Rui 24-pose sprite sheet. Change ONLY the left arm in ROW TWO COLUMN FOUR (the arm extended horizontally toward image right): replace that arm's silver/gold mechanical glove and cuff with Rui's normal pale blue pinstriped rolled sleeve, tan bare wrist and bare fist. Keep his RIGHT-arm mechanical gauntlet (the arm nearer the image left in this pose, bent near his chest) unchanged. Rui has EXACTLY ONE mechanical gauntlet, right arm; his opposite arm is bare in every pose. Preserve exact layout, all 24 complete poses, face/glasses/beard/vest/boots, body proportions, canvas1536x1024 and true transparent alpha. Do not redraw other frames or add objects. Background remains genuinely transparent."
+    },
+    {
+      "group": "special",
+      "reference": "legacy/special-first.png",
+      "output": "special.png",
+      "prompt": "Use case: precise-object-edit. Image1 EDIT TARGET: Rui 6-column4-row transparent sprite sheet24poses. Fix spacing and visibility only. ROW1COLUMN4 and ROW2COLUMN4 are the extended Firewall Punch / super impact: make orange/blue energy ring smaller, strictly within its own cell; his bald head, glasses, gray beard and face MUST remain visible ABOVE extended arm, with neck anatomically connecting torso. Currently gauntlet and energy obscure head; correct that. Every individual sprite/glow must have at least15px clear transparent gap from neighbouring sprites in all directions. In victory ROW4COL4,COL5,COL6 compact raised right mechanical fist slightly lower/closer head so no fist/tube/glow touches feet of ROW3 sprites above. Other poses preserve exactly. Keep ONE right mechanical gauntlet and bare left hand, body scale, costume, all24fullbodies, existinganimationorder. 1536x1024 actualalpha transparent background; no gradient background. No clipped body parts; no joined sprites."
+    },
+    {
+      "group": "strong",
+      "reference": "legacy/strong-first.png",
+      "output": "strong.png",
+      "prompt": "Use case: precise-object-edit. Image1 EDIT TARGET: Rui transparent12-frame heavyattack sheet6columns2rows. Fix transparent padding only: fit each whole sprite, including every boot/arm and orange/blue glow, INSIDE its own equal cell with at least22px transparency on all four sides. In particular ROW1COL6 and ROW2COL6 right boot currently touches right outer canvas edge; restore complete rounded boot tip/sole with clear transparent margin. ROW1COL4 energy fits inside cell without touching COL5 glow. Preserve everypose/actionsequencepeakCOL4, Rui's baldheadglassesgraybeard brownvestpale-bluepinstripeshirt navyjeansbootsONErightgauntletbareleftarm, body proportions and common scale. Exactly6columns2rows, eachposefullbody. Canvas2172x724 with genuine RGBA transparentalpha, no scenery no background no new objects."
+    }
+  ]
+}
