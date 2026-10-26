@@ -1,0 +1,249 @@
+{
+  "version": "1.1",
+  "modules": [
+    {
+      "id": "01",
+      "title": "Fundamentos para a atuação comercial",
+      "lessons": [
+        {
+          "id": "01.1",
+          "title": "Posicionamento e portfólio"
+        },
+        {
+          "id": "01.2",
+          "title": "Investigação e venda consultiva"
+        },
+        {
+          "id": "01.3",
+          "title": "Registros e próximos passos"
+        }
+      ],
+      "workloadMinutes": 50
+    },
+    {
+      "id": "02",
+      "title": "Prospecção e qualificação",
+      "lessons": [
+        {
+          "id": "02.1",
+          "title": "Seleção de empresas e contatos"
+        },
+        {
+          "id": "02.2",
+          "title": "Cadastro e organização no Odoo"
+        },
+        {
+          "id": "02.3",
+          "title": "Preparação e abordagem pelo GoTo"
+        },
+        {
+          "id": "02.4",
+          "title": "Qualificação e acompanhamento"
+        },
+        {
+          "id": "02.5",
+          "title": "Passagem para o Closer"
+        }
+      ],
+      "workloadMinutes": 75
+    },
+    {
+      "id": "03",
+      "title": "Diagnóstico, proposta e fechamento",
+      "lessons": [
+        {
+          "id": "03.1",
+          "title": "Preparação e diagnóstico"
+        },
+        {
+          "id": "03.2",
+          "title": "Validação de viabilidade"
+        },
+        {
+          "id": "03.3",
+          "title": "Proposta e limites de entrega"
+        },
+        {
+          "id": "03.4",
+          "title": "Negociação e confirmação da venda"
+        },
+        {
+          "id": "03.5",
+          "title": "Passagem para implantação"
+        }
+      ],
+      "workloadMinutes": 80
+    },
+    {
+      "id": "04",
+      "title": "Preparação e entrada em operação",
+      "lessons": [
+        {
+          "id": "04.1",
+          "title": "Conferência da entrada"
+        },
+        {
+          "id": "04.2",
+          "title": "Reunião inicial e plano"
+        },
+        {
+          "id": "04.3",
+          "title": "Levantamento e preparação técnica"
+        },
+        {
+          "id": "04.4",
+          "title": "Ativação e testes de cobertura"
+        },
+        {
+          "id": "04.5",
+          "title": "Passagem para a operação"
+        }
+      ],
+      "workloadMinutes": 85
+    },
+    {
+      "id": "05",
+      "title": "Entrada, triagem e organização no GLPI",
+      "lessons": [
+        {
+          "id": "05.1",
+          "title": "Origens e triagem"
+        },
+        {
+          "id": "05.2",
+          "title": "Atribuição e checklist"
+        },
+        {
+          "id": "05.3",
+          "title": "Planejamento e pendência"
+        },
+        {
+          "id": "05.4",
+          "title": "Comunicação e registro de esforço"
+        }
+      ],
+      "workloadMinutes": 70
+    },
+    {
+      "id": "06",
+      "title": "Monitoramento e atuação preventiva",
+      "lessons": [
+        {
+          "id": "06.1",
+          "title": "Leitura do Zabbix"
+        },
+        {
+          "id": "06.2",
+          "title": "Contexto no Grafana"
+        },
+        {
+          "id": "06.3",
+          "title": "Decisão e chamado preventivo"
+        }
+      ],
+      "workloadMinutes": 55
+    },
+    {
+      "id": "07",
+      "title": "Diagnóstico e intervenção remota",
+      "lessons": [
+        {
+          "id": "07.1",
+          "title": "Contexto e inventário no Datto"
+        },
+        {
+          "id": "07.2",
+          "title": "Intervenção com controle"
+        },
+        {
+          "id": "07.3",
+          "title": "Escalação e solução técnica"
+        }
+      ],
+      "workloadMinutes": 60
+    },
+    {
+      "id": "08",
+      "title": "Backup e eventos de segurança",
+      "lessons": [
+        {
+          "id": "08.1",
+          "title": "Cobertura e leitura da Acronis"
+        },
+        {
+          "id": "08.2",
+          "title": "Falha de backup e recuperação"
+        },
+        {
+          "id": "08.3",
+          "title": "Evento EDR e resposta"
+        }
+      ],
+      "workloadMinutes": 60
+    },
+    {
+      "id": "09",
+      "title": "Conectividade e alterações de rede",
+      "lessons": [
+        {
+          "id": "09.1",
+          "title": "Diagnóstico antes da mudança"
+        },
+        {
+          "id": "09.2",
+          "title": "Mudança e validação no pfSense"
+        }
+      ],
+      "workloadMinutes": 45
+    },
+    {
+      "id": "10",
+      "title": "Acompanhamento e continuidade do relacionamento",
+      "lessons": [
+        {
+          "id": "10.1",
+          "title": "Leitura do contexto operacional"
+        },
+        {
+          "id": "10.2",
+          "title": "Validação e retorno"
+        },
+        {
+          "id": "10.3",
+          "title": "Recorrência e necessidade adicional"
+        }
+      ],
+      "workloadMinutes": 55
+    },
+    {
+      "id": "11",
+      "title": "Qualidade, validação e indicadores",
+      "lessons": [
+        {
+          "id": "11.1",
+          "title": "Validação da solução e fechamento"
+        },
+        {
+          "id": "11.2",
+          "title": "SLI, SLO, SLA e melhoria"
+        }
+      ],
+      "workloadMinutes": 40
+    },
+    {
+      "id": "12",
+      "title": "Caso completo e avaliação prática",
+      "lessons": [
+        {
+          "id": "12.1",
+          "title": "O caso Aurora completo"
+        },
+        {
+          "id": "12.2",
+          "title": "Desafio com falha de passagem"
+        }
+      ],
+      "workloadMinutes": 55
+    }
+  ]
+}

@@ -123,4 +123,9 @@ O **Rui** usa a coleção **v5 com caminhada v6**, com **174 quadros em 27 anima
 
 ## BBS ONE Academy
 
-O projeto independente da Academy fica em [BBS Academy/](BBS%20Academy/README.md), separado do build do jogo. Acesse a publicação pelo [GitHub Pages](https://ruiornellasjr-bit.github.io/ctrl-alt-fighter/) ou pelo [Site no ChatGPT](https://bbs-comece-por-aqui.bbsone-2952.chatgpt.site/). As mudanças na pasta são publicadas automaticamente pelo GitHub Actions após serem integradas à branch `main`.
+A plataforma BBS ONE Academy é publicada no ChatGPT Sites; o código compartilhado e o planejamento estão em `BBS Academy/`.
+
+- Plataforma: https://bbs-comece-por-aqui.bbsone-2952.chatgpt.site/
+- Código para colaboração: https://github.com/ruiornellasjr-bit/ctrl-alt-fighter/tree/main/BBS%20Academy
+
+A publicação utiliza autenticação, banco D1 e armazenamento de arquivos R2 do ChatGPT Sites. GitHub Pages não é a hospedagem de produção da Academy.

@@ -1,0 +1,749 @@
+{
+  "version": "1.1",
+  "modules": [
+    {
+      "id": "01",
+      "title": "Fundamentos comerciais",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "01-Q1",
+          "prompt": "Uma empresa relata interrupções no acesso aos sistemas. Qual é o primeiro passo comercial?",
+          "options": [
+            "Oferecer todas as frentes do portfólio.",
+            "Investigar frequência, contexto e impacto antes de recomendar.",
+            "Garantir que o monitoramento eliminará as falhas.",
+            "Concluir que a equipe atual é responsável pelo problema."
+          ],
+          "topic": "Diagnosticar antes de recomendar"
+        },
+        {
+          "id": "01-Q2",
+          "prompt": "O conceito ONE orienta qual conduta?",
+          "options": [
+            "Contratar obrigatoriamente as quatro frentes.",
+            "Apresentar o mesmo pacote a qualquer empresa.",
+            "Substituir a investigação pelo catálogo.",
+            "Combinar serviços conforme as necessidades e prioridades identificadas."
+          ],
+          "topic": "Posicionamento ONE"
+        },
+        {
+          "id": "01-Q3",
+          "prompt": "Qual afirmação sobre monitoramento é adequada?",
+          "options": [
+            "Amplia a visibilidade e apoia a identificação de situações que exigem atenção.",
+            "Garante que nenhum incidente ocorrerá.",
+            "Dispensa validação técnica da solução.",
+            "Assegura que toda ocorrência será resolvida imediatamente."
+          ],
+          "topic": "Limites do monitoramento"
+        },
+        {
+          "id": "01-Q4",
+          "prompt": "O cliente pergunta sobre um requisito que o vendedor não consegue confirmar. O que fazer?",
+          "options": [
+            "Confirmar para manter o interesse.",
+            "Evitar registrar a dúvida.",
+            "Registrar a questão e buscar validação com o responsável.",
+            "Apresentar a hipótese como característica contratada."
+          ],
+          "topic": "Validação de compromisso"
+        },
+        {
+          "id": "01-Q5",
+          "prompt": "Qual anotação permite melhor continuidade?",
+          "options": [
+            "Cliente interessado.",
+            "Equipe administrativa relata falhas de acesso; impacto ainda a aprofundar; reunião com TI combinada para a data registrada.",
+            "Retornar quando possível.",
+            "Cliente precisa de todo o portfólio. registro das aulas e da aprovação prática. 28 / 45"
+          ],
+          "topic": "Registro para continuidade"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Prospecção e qualificação",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "02-Q1",
+          "prompt": "Uma empresa apresenta sinais de aderência ao ICP. Isso significa que:",
+          "options": [
+            "A contratação está garantida.",
+            "O orçamento está aprovado.",
+            "Há uma hipótese de aderência a investigar.",
+            "A proposta pode ser enviada sem contato."
+          ],
+          "topic": "Hipótese de aderência ao ICP"
+        },
+        {
+          "id": "02-Q2",
+          "prompt": "Antes de criar um contato no Odoo, o SDR deve:",
+          "options": [
+            "Verificar se empresa e contato já existem e conferir o histórico.",
+            "Criar sempre um novo registro.",
+            "Guardar os dados apenas na agenda pessoal.",
+            "Avançar a oportunidade sem conferir a origem."
+          ],
+          "topic": "Consulta ao histórico no Odoo"
+        },
+        {
+          "id": "02-Q3",
+          "prompt": "Após uma ligação pelo GoTo com um próximo passo combinado, qual ação é adequada?",
+          "options": [
+            "Presumir que a telefonia atualizou o CRM.",
+            "Registrar apenas que houve uma ligação.",
+            "Informar verbalmente um colega e encerrar.",
+            "Registrar resultado relevante e próximo passo no local definido pela empresa."
+          ],
+          "topic": "Registro de interação no CRM"
+        },
+        {
+          "id": "02-Q4",
+          "prompt": "O interlocutor diz que precisa discutir o tema com TI antes de marcar reunião. Como registrar?",
+          "options": [
+            "Venda confirmada.",
+            "Dependência de alinhamento com TI, interlocutores conhecidos e ação de acompanhamento combinada.",
+            "Ausência definitiva de interesse.",
+            "Reunião concluída."
+          ],
+          "topic": "Qualificação e próximo passo"
+        },
+        {
+          "id": "02-Q5",
+          "prompt": "Qual entrega prepara melhor a reunião do Closer?",
+          "options": [
+            "Somente telefone e nome.",
+            "Um aviso de que o cliente é importante.",
+            "Contexto, impacto relatado, participantes, acordos, histórico e dúvidas ainda abertas.",
+            "Uma solução definitiva sem avaliação. registro das aulas e da aprovação prática. 29 / 45"
+          ],
+          "topic": "Passagem para o Closer"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Diagnóstico, proposta e fechamento",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "03-Q1",
+          "prompt": "Ao assumir uma oportunidade do SDR, o Closer deve:",
+          "options": [
+            "Consultar o histórico e aprofundar as informações já levantadas.",
+            "Recomeçar todas as perguntas sem ler o registro.",
+            "Enviar proposta antes da reunião.",
+            "Tratar as hipóteses como diagnóstico técnico."
+          ],
+          "topic": "Consulta ao histórico"
+        },
+        {
+          "id": "03-Q2",
+          "prompt": "Um prazo solicitado depende de viabilidade técnica ainda não avaliada. Qual é a conduta?",
+          "options": [
+            "Prometer e avisar o Técnico depois.",
+            "Excluir o requisito do registro.",
+            "Oferecer desconto em lugar da validação.",
+            "Validar antes de confirmar o compromisso e registrar a decisão."
+          ],
+          "topic": "Validação de compromisso"
+        },
+        {
+          "id": "03-Q3",
+          "prompt": "Qual proposta é mais consistente?",
+          "options": [
+            "Lista genérica de produtos.",
+            "Solução ligada à necessidade, com escopo, exclusões, dependências e condições validadas.",
+            "Documento que omite limitações para facilitar a venda.",
+            "Oferta de todas as frentes, independentemente do cenário."
+          ],
+          "topic": "Construção da proposta"
+        },
+        {
+          "id": "03-Q4",
+          "prompt": "O cliente pede um serviço adicional durante a negociação. O Closer deve:",
+          "options": [
+            "Incluí-lo informalmente na conversa.",
+            "Confirmar sem revisar a proposta.",
+            "Validar escopo e condições, atualizar a versão aplicável e registrar o acordo.",
+            "Deixar a decisão para a implantação sem comunicar."
+          ],
+          "topic": "Mudança de escopo"
+        },
+        {
+          "id": "03-Q5",
+          "prompt": "Qual situação exige completar a passagem para implantação?",
+          "options": [
+            "Há uma promessa relevante não registrada na contratação nem na ficha de transição.",
+            "O pacote contém escopo e contatos conferidos.",
+            "As pendências têm responsáveis identificados.",
+            "O Técnico recebeu os requisitos validados. registro das aulas e da aprovação prática. 30 / 45"
+          ],
+          "topic": "Passagem para implantação"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": "Implantação e entrada em operação",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "04-Q1",
+          "prompt": "A contratação chegou sem contato responsável e com escopo ambíguo. O que fazer?",
+          "options": [
+            "Instalar todas as ferramentas disponíveis.",
+            "Conferir a entrada e solicitar os dados faltantes aos responsáveis.",
+            "Declarar o ambiente pronto.",
+            "Transferir a descoberta integral ao suporte."
+          ],
+          "topic": "Qualidade da entrada"
+        },
+        {
+          "id": "04-Q2",
+          "prompt": "A reunião inicial de implantação deve produzir:",
+          "options": [
+            "Apenas uma apresentação institucional.",
+            "Uma nova venda obrigatória.",
+            "Garantia de ausência de incidentes.",
+            "Plano de etapas, responsáveis, dependências, janelas e próximos marcos."
+          ],
+          "topic": "Plano de implantação"
+        },
+        {
+          "id": "04-Q3",
+          "prompt": "Na preparação técnica, quais ativos devem orientar a cobertura?",
+          "options": [
+            "Todos os ativos encontrados, sem avaliar contrato.",
+            "Somente os que já apresentam incidentes.",
+            "Os ativos e serviços do escopo, com lacunas e exceções documentadas.",
+            "Qualquer dispositivo com nome parecido."
+          ],
+          "topic": "Escopo e cobertura"
+        },
+        {
+          "id": "04-Q4",
+          "prompt": "Um agente Datto instalado é suficiente para comprovar prontidão?",
+          "options": [
+            "Não; é preciso verificar funcionamento, cobertura e testes aplicáveis.",
+            "Sim, independentemente do estado do agente.",
+            "Sim, sem conferir cliente e ativo.",
+            "Sim, mesmo sem comunicação com a plataforma."
+          ],
+          "topic": "Prontidão técnica"
+        },
+        {
+          "id": "04-Q5",
+          "prompt": "Qual entrega sustenta a passagem para a operação?",
+          "options": [
+            "Uma mensagem informal de conclusão.",
+            "Escopo, ativos, contatos, cobertura, testes, exceções e aceite conforme critérios definidos.",
+            "Somente a proposta inicial.",
+            "Uma relação de pendências sem responsáveis. registro das aulas e da aprovação prática. 31 / 45"
+          ],
+          "topic": "Aceite da operação"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": "Entrada, triagem e organização no GLPI",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "05-Q1",
+          "prompt": "Um chamado por e-mail veio com categoria inadequada. A primeira ação deve ser:",
+          "options": [
+            "Corrigir o enquadramento e conferir os campos iniciais antes do tratamento.",
+            "Manter a classificação para preservar o recebimento.",
+            "Encerrar e pedir nova abertura.",
+            "Lançar horas sem examinar a demanda."
+          ],
+          "topic": "Triagem"
+        },
+        {
+          "id": "05-Q2",
+          "prompt": "O checklist de execução tem qual função?",
+          "options": [
+            "Concentrar todas as horas de trabalho.",
+            "Substituir a descrição do resultado.",
+            "Guiar e tornar visível o plano; o esforço real é lançado no local próprio.",
+            "Dispensar evidências."
+          ],
+          "topic": "Checklist e registro de horas"
+        },
+        {
+          "id": "05-Q3",
+          "prompt": "Segundo a distinção proposta neste guia, qual caso é Atendimento Planejado?",
+          "options": [
+            "Acesso não liberado e nenhuma janela confirmada.",
+            "Execução definida para uma janela confirmada, com responsável e alinhamento registrados.",
+            "Chamado sem próximo passo.",
+            "Demanda sem responsável."
+          ],
+          "topic": "Atendimento planejado"
+        },
+        {
+          "id": "05-Q4",
+          "prompt": "Um ticket depende de acesso ainda não liberado. Qual registro de pendência é adequado?",
+          "options": [
+            "Aguardando.",
+            "Sem previsão.",
+            "Pendente de alguém.",
+            "Motivo, ações já feitas, dependência, tentativas de contato, impacto e próximo acompanhamento."
+          ],
+          "topic": "Registro de pendência"
+        },
+        {
+          "id": "05-Q5",
+          "prompt": "Como registrar as horas de uma etapa executada?",
+          "options": [
+            "Pelo esforço real, com descrição coerente e tarefa marcada Feito ao concluir a etapa.",
+            "Pelo tempo total em que o chamado ficou aberto.",
+            "Pelo prazo contratual disponível.",
+            "Por uma estimativa sem relação com a execução. registro das aulas e da aprovação prática. 32 / 45"
+          ],
+          "topic": "Esforço executado"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": "Monitoramento e prevenção",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "06-Q1",
+          "prompt": "Ao abrir um alerta no Zabbix, qual conjunto deve ser verificado?",
+          "options": [
+            "Somente a cor do alerta.",
+            "Somente o nome do técnico.",
+            "Apenas o último valor medido.",
+            "Cliente, ativo, condição, duração, severidade, histórico e impacto conhecido."
+          ],
+          "topic": "Leitura de alerta"
+        },
+        {
+          "id": "06-Q2",
+          "prompt": "No uso descrito nos anexos, o Grafana ajuda principalmente a:",
+          "options": [
+            "Substituir os registros do GLPI.",
+            "Interpretar gráficos, tendências e dados das fontes disponíveis.",
+            "Autorizar mudanças de firewall.",
+            "Confirmar automaticamente a causa de qualquer incidente."
+          ],
+          "topic": "Uso do Grafana"
+        },
+        {
+          "id": "06-Q3",
+          "prompt": "Um alerta normalizou antes da análise. O analista deve:",
+          "options": [
+            "Encerrar qualquer investigação sem consulta.",
+            "Descartar o histórico.",
+            "Examinar histórico e impacto para decidir se há acompanhamento ou investigação necessária.",
+            "Presumir que não houve efeito para o usuário."
+          ],
+          "topic": "Normalização e histórico"
+        },
+        {
+          "id": "06-Q4",
+          "prompt": "Já existe um chamado para a mesma ocorrência. O que fazer?",
+          "options": [
+            "Conferir a relação e associar as evidências conforme o processo, evitando duplicidade.",
+            "Criar vários tickets iguais.",
+            "Excluir o chamado anterior.",
+            "Ignorar a ocorrência."
+          ],
+          "topic": "Evitar duplicidade"
+        },
+        {
+          "id": "06-Q5",
+          "prompt": "Uma tendência aparece no gráfico. Qual conclusão é responsável?",
+          "options": [
+            "A tendência prova qualquer hipótese de causa.",
+            "O gráfico dispensa outros testes.",
+            "O cliente está necessariamente sem serviço.",
+            "A tendência apoia uma hipótese que deve ser correlacionada com outras evidências. registro das aulas e da aprovação prática. 33 / 45"
+          ],
+          "topic": "Correlação de evidências"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": "Diagnóstico e suporte remoto",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "07-Q1",
+          "prompt": "Antes de acessar um dispositivo pelo Datto, é necessário:",
+          "options": [
+            "Confirmar cliente e ativo, contexto do chamado e autorização aplicável.",
+            "Escolher o primeiro dispositivo da lista.",
+            "Executar um script para descobrir a quem pertence.",
+            "Confiar somente na semelhança do nome."
+          ],
+          "topic": "Identificação do ativo"
+        },
+        {
+          "id": "07-Q2",
+          "prompt": "Uma intervenção remota deve ser seguida de:",
+          "options": [
+            "Encerramento automático, independentemente do resultado.",
+            "Registro apenas do horário de início.",
+            "Teste do resultado e documentação da ação, evidência e próximo passo.",
+            "Remoção do histórico de diagnóstico."
+          ],
+          "topic": "Validação da intervenção"
+        },
+        {
+          "id": "07-Q3",
+          "prompt": "O N1 reconhece que precisa de apoio especializado. Como encaminhar?",
+          "options": [
+            "Transferir um ticket vazio.",
+            "Reunir contexto, impacto, testes, resultados e motivo e acionar a Coordenação conforme o fluxo.",
+            "Orientar o usuário a repetir tudo ao N2.",
+            "Fechar o ticket e abrir outro sem histórico."
+          ],
+          "topic": "Escalonamento"
+        },
+        {
+          "id": "07-Q4",
+          "prompt": "Uma ação com script ou patch pode afetar a operação. O analista deve:",
+          "options": [
+            "Executar sem avaliar para reduzir tempo.",
+            "Omitir o risco do ticket.",
+            "Pressupor que todo acesso remoto autoriza qualquer ação.",
+            "Verificar impacto, preparo e autorização antes da execução."
+          ],
+          "topic": "Autorização de mudança"
+        },
+        {
+          "id": "07-Q5",
+          "prompt": "Qual resumo de solução é mais adequado?",
+          "options": [
+            "Ativo, testes, intervenção, resultado comprovado, evidências e limitações remanescentes.",
+            "Resolvido.",
+            "Verificado.",
+            "Feito ajuste. registro das aulas e da aprovação prática. 34 / 45"
+          ],
+          "topic": "Resumo da solução"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": "Backup e eventos de segurança",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "08-Q1",
+          "prompt": "Um backup consta como concluído. Isso comprova recuperação dos dados?",
+          "options": [
+            "Sim, sem teste adicional.",
+            "Sim, se o agente estiver instalado.",
+            "Não; a capacidade de recuperação precisa ser verificada com teste adequado.",
+            "Não há relação entre backup e recuperação."
+          ],
+          "topic": "Comprovação de recuperação"
+        },
+        {
+          "id": "08-Q2",
+          "prompt": "Uma execução de backup falhou. A conduta adequada é:",
+          "options": [
+            "Identificar causa, corrigir quando aplicável, reexecutar e validar o resultado.",
+            "Ignorar se houve uma cópia antiga.",
+            "Encerrar apenas porque o alerta foi lido.",
+            "Registrar sucesso sem conferir."
+          ],
+          "topic": "Falha de backup"
+        },
+        {
+          "id": "08-Q3",
+          "prompt": "Um evento EDR aparece como mitigado. O analista deve:",
+          "options": [
+            "Concluir que não existe risco residual sem análise.",
+            "Excluir os logs.",
+            "Tratar o bloqueio como validação do cliente.",
+            "Confirmar a mitigação, investigar o evento e avaliar riscos remanescentes."
+          ],
+          "topic": "Tratamento de evento EDR"
+        },
+        {
+          "id": "08-Q4",
+          "prompt": "Diante de ameaça não mitigada, qual ação é responsável?",
+          "options": [
+            "Aguardar sempre a próxima rotina semanal.",
+            "Investigar, acionar contenção conforme alçada e escalar quando necessário.",
+            "Isolar qualquer dispositivo sem conferir o ativo.",
+            "Encerrar após anexar o alerta."
+          ],
+          "topic": "Risco e alçada"
+        },
+        {
+          "id": "08-Q5",
+          "prompt": "Ao comparar falha de backup e evento EDR, a prioridade deve:",
+          "options": [
+            "Seguir sempre uma ordem fixa, independentemente do impacto.",
+            "Depender apenas da quantidade de alertas.",
+            "Considerar risco, criticidade, contexto e regras de atendimento aprovadas.",
+            "Ser definida pelo nome da ferramenta. registro das aulas e da aprovação prática. 35 / 45"
+          ],
+          "topic": "Prioridade por risco"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "title": "Conectividade e alterações de rede",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "09-Q1",
+          "prompt": "Um usuário não acessa uma aplicação. Antes de alterar o pfSense, deve-se:",
+          "options": [
+            "Liberar todo o tráfego.",
+            "Investigar DNS, gateway, rota, porta e alcance e correlacionar evidências.",
+            "Reiniciar todos os dispositivos.",
+            "Criar regra definitiva sem testar."
+          ],
+          "topic": "Diagnóstico de conectividade"
+        },
+        {
+          "id": "09-Q2",
+          "prompt": "Para correlacionar logs do firewall com a falha, quais dados são importantes?",
+          "options": [
+            "Somente o nome do analista.",
+            "A data da instalação da ferramenta.",
+            "A quantidade de tickets do dia.",
+            "Horário, origem, destino e contexto dos testes."
+          ],
+          "topic": "Correlação de logs"
+        },
+        {
+          "id": "09-Q3",
+          "prompt": "Uma mudança relevante de rede precisa prever:",
+          "options": [
+            "Impacto, autorização, backup de configuração, janela aplicável e reversão.",
+            "Somente o clique de aplicação.",
+            "Apenas o pedido verbal de um usuário.",
+            "Exclusão das configurações anteriores."
+          ],
+          "topic": "Mudança controlada"
+        },
+        {
+          "id": "09-Q4",
+          "prompt": "Depois do ajuste, o resultado deve ser conferido por:",
+          "options": [
+            "Ausência de reclamação imediata.",
+            "Encerramento sem repetição de teste.",
+            "Repetição dos testes previstos e registro das evidências.",
+            "Apenas confirmação de que a regra foi salva."
+          ],
+          "topic": "Validação pós-mudança"
+        },
+        {
+          "id": "09-Q5",
+          "prompt": "Os testes não sustentam a hipótese de bloqueio no firewall. A conduta é:",
+          "options": [
+            "Alterar regras mesmo assim.",
+            "Continuar a investigação a partir das evidências, sem mudança injustificada.",
+            "Afirmar que o problema está resolvido.",
+            "Apagar os testes inconclusivos. registro das aulas e da aprovação prática. 36 / 45"
+          ],
+          "topic": "Hipótese baseada em evidências"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Acompanhamento e continuidade",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "10-Q1",
+          "prompt": "Antes do retorno ao cliente, CS/CSM deve:",
+          "options": [
+            "Recomeçar toda a investigação comercial.",
+            "Depender apenas de uma conversa informal.",
+            "Confirmar a causa sem ler os testes.",
+            "Consultar escopo, histórico e resultado técnico para preparar a comunicação."
+          ],
+          "topic": "Retorno fundamentado"
+        },
+        {
+          "id": "10-Q2",
+          "prompt": "O usuário informa que o problema continua após a intervenção. O que fazer?",
+          "options": [
+            "Preservar o fechamento mesmo assim.",
+            "Registrar a divergência e devolver ao responsável técnico para continuidade conforme o fluxo.",
+            "Tratar automaticamente como nova venda.",
+            "Apagar a validação anterior."
+          ],
+          "topic": "Divergência após intervenção"
+        },
+        {
+          "id": "10-Q3",
+          "prompt": "Uma necessidade parece exceder o contrato atual. CS/CSM deve:",
+          "options": [
+            "Prometer a entrega imediatamente.",
+            "Cobrar por uma correção sem análise.",
+            "Confirmar contexto e limites e encaminhar avaliação comercial quando justificada.",
+            "Incluir o serviço silenciosamente."
+          ],
+          "topic": "Limite contratual"
+        },
+        {
+          "id": "10-Q4",
+          "prompt": "Qual retorno é adequado ao público não técnico?",
+          "options": [
+            "Explicar ação, resultado confirmado, limitações e próximo passo em linguagem clara.",
+            "Enviar todos os logs sem contexto.",
+            "Usar apenas siglas.",
+            "Afirmar causa ainda não comprovada."
+          ],
+          "topic": "Comunicação clara"
+        },
+        {
+          "id": "10-Q5",
+          "prompt": "Se o tipo de chamado exige confirmação e ela ainda não foi obtida, deve-se:",
+          "options": [
+            "Registrar validação presumida.",
+            "Encerrar porque o técnico terminou.",
+            "Remover a dependência do ticket.",
+            "Registrar a situação e o acompanhamento conforme o fluxo aprovado. registro das aulas e da aprovação prática. 37 / 45"
+          ],
+          "topic": "Confirmação antes do fechamento"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Qualidade, validação e indicadores",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "11-Q1",
+          "prompt": "Qual relação entre SLI, SLO e SLA está correta?",
+          "options": [
+            "SLI mede, SLO define meta interna e SLA formaliza compromisso com o cliente.",
+            "SLI é um contrato e SLA é uma métrica.",
+            "SLO substitui qualquer SLA.",
+            "Os três termos significam o mesmo."
+          ],
+          "topic": "SLI, SLO e SLA"
+        },
+        {
+          "id": "11-Q2",
+          "prompt": "Um chamado está Pendente. É possível concluir que o SLA está pausado?",
+          "options": [
+            "Sim, em qualquer configuração.",
+            "Sim, se houver texto longo.",
+            "Não; é preciso verificar contrato, regra e configuração aplicáveis.",
+            "Sim, independentemente do motivo."
+          ],
+          "topic": "Interpretação de SLA"
+        },
+        {
+          "id": "11-Q3",
+          "prompt": "Ao validar uma solução, a Coordenação encontra horas sem relação com o histórico. O que fazer?",
+          "options": [
+            "Aprovar para reduzir o backlog.",
+            "Solicitar esclarecimento ou correção orientada antes da validação correspondente.",
+            "Excluir todas as horas.",
+            "Transferir a conferência ao cliente sem contexto."
+          ],
+          "topic": "Validação de registro"
+        },
+        {
+          "id": "11-Q4",
+          "prompt": "Um prazo de atendimento foi ultrapassado. O registro deve mostrar:",
+          "options": [
+            "Apenas que o ticket atrasou.",
+            "Uma nova data sem explicação.",
+            "Uma promessa de que nunca ocorrerá novamente.",
+            "Desvio, causa conhecida, ação corretiva, responsável e próximo marco."
+          ],
+          "topic": "Tratamento de desvio"
+        },
+        {
+          "id": "11-Q5",
+          "prompt": "A sequência entre solução, validação e fechamento deve ser ensinada com base em:",
+          "options": [
+            "Fluxo homologado e estados reais do GLPI, conciliando os materiais existentes.",
+            "Uma ordem inventada pelo instrutor.",
+            "Qualquer configuração genérica do produto.",
+            "Somente a aparência de uma captura antiga. registro das aulas e da aprovação prática. 38 / 45"
+          ],
+          "topic": "Fluxo homologado"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Caso integrado e avaliação final",
+      "version": "1.1",
+      "questions": [
+        {
+          "id": "12-Q1",
+          "prompt": "A operação recebeu um cliente sem saber uma promessa comercial relevante. A melhor correção é:",
+          "options": [
+            "Pedir que o cliente reconstrua todo o histórico.",
+            "Tratar a promessa como inexistente sem verificar.",
+            "Recuperar os registros, confirmar o acordo com os responsáveis e atualizar a transição.",
+            "Criar uma solução sem considerar a contratação."
+          ],
+          "topic": "Recuperar a transição"
+        },
+        {
+          "id": "12-Q2",
+          "prompt": "Um atendimento deve obrigatoriamente usar todas as ferramentas?",
+          "options": [
+            "Não; a escolha depende do problema, do escopo e das evidências necessárias.",
+            "Sim, em qualquer ocorrência.",
+            "Sim, mesmo sem cobertura contratada.",
+            "Não é necessário usar ferramenta alguma em nenhum caso."
+          ],
+          "topic": "Uso proporcional de ferramentas"
+        },
+        {
+          "id": "12-Q3",
+          "prompt": "Qual sequência representa continuidade adequada?",
+          "options": [
+            "Venda, encerramento sem implantação e atendimento sem histórico.",
+            "Alerta, mudança sem análise e conclusão presumida.",
+            "Contato, promessa não validada e transferência informal.",
+            "Contexto comercial, escopo validado, implantação conferida, atendimento registrado e retorno fundamentado."
+          ],
+          "topic": "Continuidade do processo"
+        },
+        {
+          "id": "12-Q4",
+          "prompt": "Na trilha proposta, quem concluiu apenas o percurso de SDR pode receber:",
+          "options": [
+            "Certificado da trilha integral de 12 módulos.",
+            "Certificado dos módulos ou do percurso efetivamente concluído, com identificação e carga correspondentes.",
+            "Certificação de operação avançada de todas as ferramentas.",
+            "Certificado sem registro de aprovação."
+          ],
+          "topic": "Escopo do certificado"
+        },
+        {
+          "id": "12-Q5",
+          "prompt": "Quando o certificado de um módulo pode ser emitido?",
+          "options": [
+            "Quando o participante abriu o primeiro vídeo.",
+            "Quando o teste foi feito, independentemente da nota.",
+            "Após concluir as aulas, obter 4/5 no teste e ter a prática aprovada, sem falhas críticas pendentes.",
+            "Quando existe apenas autodeclaração de participação. registro das aulas e da aprovação prática. 39 / 45"
+          ],
+          "topic": "Critérios de emissão"
+        }
+      ]
+    }
+  ]
+}

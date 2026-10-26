@@ -1,0 +1,53 @@
+{
+  "version": "1.1",
+  "paths": [
+    {
+      "id": "sdr",
+      "label": "SDR",
+      "requiredModules": ["01", "02", "12"],
+      "requiredLessons": [],
+      "complementaryModules": [],
+      "complementaryLessons": ["03.5", "04.1", "04.5", "10.1"]
+    },
+    {
+      "id": "closer",
+      "label": "Closer",
+      "requiredModules": ["01", "03", "12"],
+      "requiredLessons": ["02.5"],
+      "complementaryModules": ["04", "10"],
+      "complementaryLessons": ["05.1", "11.2"]
+    },
+    {
+      "id": "cs-csm",
+      "label": "CS/CSM",
+      "requiredModules": ["01", "04", "10", "12"],
+      "requiredLessons": ["03.5"],
+      "complementaryModules": ["05", "11"],
+      "complementaryLessons": ["07.3"]
+    },
+    {
+      "id": "atendimento-n1",
+      "label": "Atendimento / N1",
+      "requiredModules": ["01", "05", "07", "12"],
+      "requiredLessons": ["03.5", "04.5"],
+      "complementaryModules": ["06"],
+      "complementaryLessons": ["08.1", "09.1"]
+    },
+    {
+      "id": "monitoramento-n2",
+      "label": "Monitoramento / especialidades / N2",
+      "requiredModules": ["05", "06", "07", "08", "09", "12"],
+      "requiredLessons": ["01.1", "03.5", "04.3", "04.4", "04.5"],
+      "complementaryModules": ["10", "11"],
+      "complementaryLessons": ["01.2"]
+    },
+    {
+      "id": "coordenacao",
+      "label": "Coordenação / Gestão de TI",
+      "requiredModules": ["01", "04", "05", "10", "11", "12"],
+      "requiredLessons": ["03.2", "03.5"],
+      "complementaryModules": ["06", "07", "08", "09"],
+      "complementaryLessons": []
+    }
+  ]
+}
