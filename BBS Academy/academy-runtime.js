@@ -66,7 +66,7 @@
     }
     menuForRole();
     if(state.me)updateProgressUI();
-    else {const note=$(".footer-note");if(note)note.textContent="Entre com sua conta ChatGPT para escolher seu percurso e registrar aulas, avaliações e práticas no seu perfil.";const danger=$$(".notice.danger").find(x=>x.textContent.includes("Modo de apresentação"));if(danger)danger.textContent="Os conteúdos disponíveis podem ser consultados publicamente. Entre com sua conta ChatGPT para registrar seu progresso e acessar avaliações, práticas e certificados.";}
+    else {const note=$(".footer-note");if(note)note.textContent="Entre com sua conta ChatGPT para escolher seu percurso e registrar aulas, avaliações e práticas no seu perfil.";if($("#progressText"))$("#progressText").textContent="Entre para registrar as aulas consultadas e concluídas no seu perfil.";if($("#heroProgressText"))$("#heroProgressText").textContent="Entre na Academy para acompanhar seu progresso pessoal.";const danger=$$(".notice.danger").find(x=>x.textContent.includes("Modo de apresentação"));if(danger)danger.textContent="Os conteúdos disponíveis podem ser consultados publicamente. Entre com sua conta ChatGPT para registrar seu progresso e acessar avaliações, práticas e certificados.";}
     if(state.me?.role==="learner"){$("#content")?.classList.add("ac-hidden");$("#materials")?.classList.add("ac-hidden");}
   }
   function showPathChooser(){

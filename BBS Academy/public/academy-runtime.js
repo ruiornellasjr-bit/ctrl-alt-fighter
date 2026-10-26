@@ -66,7 +66,7 @@
     }
     menuForRole();
     if(state.me)updateProgressUI();
-    else {const note=$(".footer-note");if(note)note.textContent="Entre com sua conta ChatGPT para escolher seu percurso e registrar aulas, avaliações e práticas no seu perfil.";const danger=$$(".notice.danger").find(x=>x.textContent.includes("Modo de apresentação"));if(danger)danger.textContent="Os conteúdos disponíveis podem ser consultados publicamente. Entre com sua conta ChatGPT para registrar seu progresso e acessar avaliações, práticas e certificados.";}
+    else {const note=$(".footer-note");if(note)note.textContent="Entre com sua conta ChatGPT para escolher seu percurso e registrar aulas, avaliações e práticas no seu perfil.";if($("#progressText"))$("#progressText").textContent="Entre para registrar as aulas consultadas e concluídas no seu perfil.";if($("#heroProgressText"))$("#heroProgressText").textContent="Entre na Academy para acompanhar seu progresso pessoal.";const danger=$$(".notice.danger").find(x=>x.textContent.includes("Modo de apresentação"));if(danger)danger.textContent="Os conteúdos disponíveis podem ser consultados publicamente. Entre com sua conta ChatGPT para registrar seu progresso e acessar avaliações, práticas e certificados.";}
     if(state.me?.role==="learner"){$("#content")?.classList.add("ac-hidden");$("#materials")?.classList.add("ac-hidden");}
   }
   function showPathChooser(){
@@ -109,7 +109,7 @@
       }
       let action=$("#markLesson",wrapper);const completed=state.progress.some(x=>x.lesson_id===id&&x.completed_at);if(action){const clean=action.cloneNode(true);action.replaceWith(clean);action=clean;action.textContent=completed?"Aula concluída no seu perfil":item?.status==="disponivel"?"Concluir aula":"Disponível após publicação do conteúdo";action.disabled=!state.me||item?.status!=="disponivel"||completed;action.onclick=async()=>{try{await post("progress",{lessonId:id,action:"complete"});state.progress=await api("progress").then(x=>x.items);updateProgressUI();action.textContent="Aula concluída no seu perfil";action.disabled=true}catch(e){alert(e.message)}};}
       const localText=$$(".lesson-actions small",wrapper)[0];if(localText)localText.textContent=state.me?"Consulta e conclusão registradas no seu perfil":"Entre para registrar seu progresso";
-      if(state.me)post("progress",{lessonId:id,action:"consulted"}).catch(()=>{});
+      if(state.me)post("progress",{lessonId:id,action:"consulted"}).then(async()=>{state.progress=(await api("progress")).items||[];updateProgressUI();renderLearnerPath()}).catch(()=>{});
     };
   }
   function setupAssessments(){
