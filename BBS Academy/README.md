@@ -9,6 +9,7 @@ Plataforma de aprendizagem da BBS ONE, publicada no ChatGPT Sites e mantida em c
 - Plano de cursos e percursos por função: `data/`
 - Banco de dados e migrações: `db/` e `drizzle/`
 - Identidade visual: `assets/logo-bbs-one.png`
+- Pasta colaborativa para videoaulas: [`videoaulas/`](videoaulas/README.md)
 
 ## O que a plataforma registra
 
